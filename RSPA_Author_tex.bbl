@@ -1,0 +1,226 @@
+\begin{thebibliography}{10}
+
+\bibitem{pyragas2006delayed}
+Pyragas K.
+\newblock Delayed feedback control of chaos.
+\newblock Philosophical Transactions of the Royal Society A: Mathematical,
+  Physical and Engineering Sciences. 2006;364(1846):2309--2334.
+
+\bibitem{sieber2016generic}
+Sieber J.
+\newblock Generic stabilizability for time-delayed feedback control.
+\newblock Proceedings of the Royal Society A: Mathematical, Physical and
+  Engineering Sciences. 2016;472(2189):20150593.
+
+\bibitem{sieber2008control}
+Sieber J, Krauskopf B.
+\newblock Control based bifurcation analysis for experiments.
+\newblock Nonlinear Dynamics. 2008;51(3):365--377.
+
+\bibitem{sieber2011control}
+Sieber J, Krauskopf B, Wagg D, Neild S, Gonzalez-Buelga A.
+\newblock Control-based continuation of unstable periodic orbits.
+\newblock Journal of Computational and Nonlinear Dynamics. 2011;6(1):011005.
+
+\bibitem{bureau2013experimental}
+Bureau E, Schilder F, Santos IF, Thomsen JJ, Starke J.
+\newblock Experimental bifurcation analysis of an impact oscillator—tuning a
+  non-invasive control scheme.
+\newblock Journal of Sound and Vibration. 2013;332(22):5883--5897.
+
+\bibitem{bureau2014experimental}
+Bureau E, Schilder F, Elmeg{\aa}rd M, Santos IF, Thomsen JJ, Starke J.
+\newblock Experimental bifurcation analysis of an impact
+  oscillator—Determining stability.
+\newblock Journal of Sound and Vibration. 2014;333(21):5464--5474.
+
+\bibitem{barton2013systematic}
+Barton DA, Sieber J.
+\newblock Systematic experimental exploration of bifurcations with noninvasive
+  control.
+\newblock Physical Review E. 2013;87(5):052916.
+
+\bibitem{barton2011numerical}
+Barton DA, Burrow SG.
+\newblock Numerical continuation in a physical experiment: investigation of a
+  nonlinear energy harvester.
+\newblock Journal of Computational and Nonlinear Dynamics. 2011;6(1):011010.
+
+\bibitem{renson2019application}
+Renson L, Shaw A, Barton D, Neild S.
+\newblock Application of control-based continuation to a nonlinear structure
+  with harmonically coupled modes.
+\newblock Mechanical Systems and Signal Processing. 2019;120:449--464.
+
+\bibitem{renson2016robust}
+Renson L, Gonzalez-Buelga A, Barton D, Neild S.
+\newblock Robust identification of backbone curves using control-based
+  continuation.
+\newblock Journal of Sound and Vibration. 2016;367:145--158.
+
+\bibitem{renson2016experimental}
+Renson L, Barton D, Neild S.
+\newblock Experimental analysis of a softening-hardening nonlinear oscillator
+  using control-based continuation.
+\newblock In: Nonlinear Dynamics, Volume 1. Springer; 2016. p. 19--27.
+
+\bibitem{barton2017control}
+Barton DA.
+\newblock Control-based continuation: Bifurcation and stability analysis for
+  physical experiments.
+\newblock Mechanical Systems and Signal Processing. 2017;84:54--64.
+
+\bibitem{yu2002simplest}
+Yu P, Leung A.
+\newblock The simplest normal form of Hopf bifurcation.
+\newblock Nonlinearity. 2002;16(1):277.
+
+\bibitem{ashwin1995numerical}
+Ashwin P, B{\"o}hmer K, Mei Z.
+\newblock A numerical Liapunov-Schmidt method with applications to Hopf
+  bifurcation on a square.
+\newblock Mathematics of computation. 1995;64(210):649--670.
+
+\bibitem{doedel2000auto2000}
+Doedel EJ, Paffenroth RC, Champneys AR, Fairgrieve TF, Kuznetsov YA, Oldeman
+  BE, et~al.
+\newblock AUTO2000: Continuation and bifurcation software for ordinary
+  differential equations.
+\newblock Report, Applied Mathematics, Caltech, Pasadena. 2000;.
+
+\bibitem{dankowicz2013recipes}
+Dankowicz H, Schilder F.
+\newblock Recipes for continuation. vol.~11.
+\newblock SIAM; 2013.
+
+\bibitem{brown2011time}
+Brown G, Postlethwaite CM, Silber M.
+\newblock Time-delayed feedback control of unstable periodic orbits near a
+  subcritical Hopf bifurcation.
+\newblock Physica D: Nonlinear Phenomena. 2011;240(9-10):859--871.
+
+\bibitem{postlethwaite2013feedback}
+Postlethwaite C, Brown G, Silber M.
+\newblock Feedback control of unstable periodic orbits in equivariant Hopf
+  bifurcation problems.
+\newblock Philosophical Transactions of the Royal Society A: Mathematical,
+  Physical and Engineering Sciences. 2013;371(1999):20120467.
+
+\bibitem{golubitsky2009feed}
+Golubitsky M, Shiau L, Postlethwaite C, Zhang Y.
+\newblock The feed-forward chain as a filter-amplifier motif.
+\newblock In: Coherent behavior in neuronal networks. Springer; 2009. p.
+  95--120.
+
+\bibitem{carr2012applications}
+Carr J.
+\newblock Applications of centre manifold theory. vol.~35.
+\newblock Springer Science \& Business Media; 2012.
+
+\bibitem{kuznetsov2013elements}
+Kuznetsov YA.
+\newblock Elements of applied bifurcation theory. vol. 112.
+\newblock Springer Science \& Business Media; 2013.
+
+\bibitem{bi1999symbolic}
+Bi Q, Yu P.
+\newblock Symbolic computation of normal forms for semi-simple cases.
+\newblock Journal of Computational and Applied Mathematics.
+  1999;102(2):195--220.
+
+\bibitem{algaba1998hypernormal}
+Algaba A, Freire E, Gamero E.
+\newblock Hypernormal form for the Hopf-zero bifurcation.
+\newblock International Journal of Bifurcation and Chaos.
+  1998;8(10):1857--1887.
+
+\bibitem{yu1998computation}
+Yu P.
+\newblock Computation of normal forms via a perturbation technique.
+\newblock Journal of Sound and Vibration. 1998;211(1):19--38.
+
+\bibitem{golubitsky2012feed}
+Golubitsky M, Postlethwaite C.
+\newblock Feed-forward networks, center manifolds, and forcing.
+\newblock Discrete Contin Dyn Syst. 2012;32(8):2913--35.
+
+\bibitem{elphick1987normal}
+Elphick C, Iooss G, Tirapegui E.
+\newblock Normal form reduction for time-periodically driven differential
+  equations.
+\newblock Physics Letters A. 1987;120(9):459--463.
+
+\bibitem{guckenheimer1983nonlinear}
+Guckenheimer J, Holmes P. Nonlinear oscillations, dynamical systems, and
+  bifurcation of vector fields.
+\newblock Springer-Verlag, Berlin Heidelberg New York; 1983.
+
+\bibitem{zhang2011periodically}
+Zhang Y, Golubitsky M.
+\newblock Periodically forced Hopf bifurcation.
+\newblock SIAM Journal on Applied Dynamical Systems. 2011;10(4):1272--1306.
+
+\bibitem{wiser2015bifurcations}
+Wiser J, Golubitsky M.
+\newblock Bifurcations in forced response curves.
+\newblock SIAM Journal on Applied Dynamical Systems. 2015;14(4):2013--2029.
+
+\bibitem{irene}
+Tartaruga I.
+\newblock Experimental Identification of Unstable LCOs in a Wing Profile.
+\newblock NODYCON 2019 PROCEEDINGS. 2019;.
+
+\bibitem{dimitriadis2017introduction}
+Dimitriadis G.
+\newblock Introduction to Nonlinear Aeroelasticity.
+\newblock John Wiley \& Sons; 2017.
+
+\bibitem{jacobs1933characteristics}
+Jacobs EN, Ward KE, Pinkerton RM.
+\newblock The characteristics of 78 related airfoil sections from tests in the
+  variable-density wind tunnel. 1933;.
+
+\bibitem{rtc2}
+Barton DAW. A real-time controller (RTC) based on the Beaglebone Black; 20018
+  (accessed Sep, 2018).
+\newblock Available from: \url{https://github.com/dawbarton/rtc}.
+
+\bibitem{bohlin2006practical}
+Bohlin TP.
+\newblock Practical grey-box process identification: theory and applications.
+\newblock Springer Science \& Business Media; 2006.
+
+\bibitem{abdelkefi2013analytical}
+Abdelkefi A, Vasconcellos R, Nayfeh AH, Hajj MR.
+\newblock An analytical and experimental investigation into limit-cycle
+  oscillations of an aeroelastic system.
+\newblock Nonlinear Dynamics. 2013;71(1-2):159--173.
+
+\bibitem{strganac2000identification}
+Strganac TW, Ko J, Thompson DE.
+\newblock Identification and control of limit cycle oscillations in aeroelastic
+  systems.
+\newblock Journal of Guidance, Control, and Dynamics. 2000;23(6):1127--1133.
+
+\bibitem{ruzzene1997natural}
+Ruzzene M, Fasana A, Garibaldi L, Piombo B.
+\newblock Natural frequencies and dampings identification using wavelet
+  transform: application to real data.
+\newblock Mechanical systems and signal processing. 1997;11(2):207--218.
+
+\bibitem{pintelon2012system}
+Pintelon R, Schoukens J.
+\newblock System identification: a frequency domain approach.
+\newblock John Wiley \& Sons; 2012.
+
+\bibitem{ljung2001system}
+Ljung L.
+\newblock System identification.
+\newblock Wiley Encyclopedia of Electrical and Electronics Engineering. 2001;.
+
+\bibitem{char1986tutorial}
+Char BW, Fee GJ, Geddes KO, Gonnet GH, Monagan MB.
+\newblock A tutorial introduction to Maple.
+\newblock Journal of Symbolic Computation. 1986;2(2):179--200.
+
+\end{thebibliography}
