@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  9 AUG 2019 14:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  9 AUG 2019 15:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1035,7 +1035,7 @@ Package epstopdf Info: Source file: <./images/flutter_rig.eps>
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_rig-eps-converted-to.pdf ./images/flutter_rig.eps>
 (epstopdf)             \includegraphics on input line 517.
 Package epstopdf Info: Output file is already uptodate.
-<./images/flutter_rig-eps-converted-to.pdf, id=306, 1042.89626pt x 660.4675pt>
+<./images/flutter_rig-eps-converted-to.pdf, id=304, 1042.89626pt x 660.4675pt>
 File: ./images/flutter_rig-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_rig-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/flutter_rig-eps-converted-to.pdf  used on input line 517.
@@ -1049,7 +1049,7 @@ Package epstopdf Info: Source file: <./images/flutter_pic.eps>
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_pic-eps-converted-to.pdf ./images/flutter_pic.eps>
 (epstopdf)             \includegraphics on input line 521.
 Package epstopdf Info: Output file is already uptodate.
-<./images/flutter_pic-eps-converted-to.pdf, id=307, 3031.325pt x 2707.11375pt>
+<./images/flutter_pic-eps-converted-to.pdf, id=305, 3031.325pt x 2707.11375pt>
 File: ./images/flutter_pic-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_pic-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/flutter_pic-eps-converted-to.pdf  used on input line 521.
@@ -1101,7 +1101,7 @@ Package epstopdf Info: Source file: <./images/flutter_diagram.eps>
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_diagram-eps-converted-to.pdf ./images/flutter_diagram.eps>
 (epstopdf)             \includegraphics on input line 776.
 Package epstopdf Info: Output file is already uptodate.
-<./images/flutter_diagram-eps-converted-to.pdf, id=380, 1272.755pt x 818.05624pt>
+<./images/flutter_diagram-eps-converted-to.pdf, id=378, 1272.755pt x 818.05624pt>
 File: ./images/flutter_diagram-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_diagram-eps-converted-to.pdf>
 Package pdftex.def Info: ./images/flutter_diagram-eps-converted-to.pdf  used on input line 776.
@@ -1186,7 +1186,7 @@ Overfull \hbox (19.73158pt too wide) detected at line 1244
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
  [20]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 186.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 181.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1211,19 +1211,19 @@ Package rerunfilecheck Info: File `RSPA_Author_tex.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1272.
  ) 
 Here is how much of TeX's memory you used:
- 35551 strings out of 492609
- 833102 string characters out of 6132818
- 1288482 words of memory out of 5000000
- 38451 multiletter control sequences out of 15000+600000
+ 35547 strings out of 492609
+ 832973 string characters out of 6132818
+ 1288466 words of memory out of 5000000
+ 38448 multiletter control sequences out of 15000+600000
  116985 words of font info for 287 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
  78i,19n,136p,1894b,2359s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2019/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on RSPA_Author_tex.pdf (22 pages, 1406608 bytes).
+Output written on RSPA_Author_tex.pdf (22 pages, 1406077 bytes).
 PDF statistics:
- 621 PDF objects out of 1000 (max. 8388607)
- 538 compressed objects within 6 object streams
- 165 named destinations out of 1000 (max. 500000)
+ 619 PDF objects out of 1000 (max. 8388607)
+ 536 compressed objects within 6 object streams
+ 164 named destinations out of 1000 (max. 500000)
  37552 words of extra memory for PDF output out of 42996 (max. 10000000)
 

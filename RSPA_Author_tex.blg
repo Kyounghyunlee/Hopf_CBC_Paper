@@ -7,51 +7,50 @@ Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: ref.bib
-Warning--empty author and editor in guckenheimer1983nonlinear
 `journal' is a missing field, not a string, for entry jacobs1933characteristics
 while executing---line 1865 of file vancouver.bst
 Warning--empty journal in jacobs1933characteristics
 Warning--empty author and editor in rtc2
 Warning--missing publisher in rtc2
-You've used 40 entries,
+You've used 39 entries,
             3170 wiz_defined-function locations,
-            878 strings with 11224 characters,
-and the built_in function-call counts, 60992 in all, are:
-= -- 7900
-> -- 420
+            873 strings with 11048 characters,
+and the built_in function-call counts, 60137 in all, are:
+= -- 7801
+> -- 412
 < -- 5
-+ -- 213
-- -- 105
-* -- 4826
-:= -- 6462
-add.period$ -- 149
-call.type$ -- 40
++ -- 209
+- -- 103
+* -- 4763
+:= -- 6366
+add.period$ -- 147
+call.type$ -- 39
 change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 44
-duplicate$ -- 5895
-empty$ -- 5752
-format.name$ -- 134
-if$ -- 14468
+cite$ -- 42
+duplicate$ -- 5824
+empty$ -- 5666
+format.name$ -- 131
+if$ -- 14266
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 390
-newline$ -- 200
-num.names$ -- 40
-pop$ -- 739
+int.to.str$ -- 39
+missing$ -- 382
+newline$ -- 196
+num.names$ -- 39
+pop$ -- 717
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 683
+skip$ -- 666
 stack$ -- 0
-substring$ -- 10795
-swap$ -- 868
+substring$ -- 10663
+swap$ -- 853
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 4
-while$ -- 337
-width$ -- 42
-write$ -- 431
+warning$ -- 3
+while$ -- 332
+width$ -- 41
+write$ -- 422
 (There was 1 error message)
