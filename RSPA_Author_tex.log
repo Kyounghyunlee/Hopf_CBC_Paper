@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  9 AUG 2019 13:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  9 AUG 2019 14:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -752,21 +752,21 @@ File: tikzlibrarypositioning.code.tex 2019/07/12 v3.1.4 (3.1.4)
  (./RSPA_Author_tex.aux)
 \openout1 = `RSPA_Author_tex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 107.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 106.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -794,9 +794,9 @@ Package grfext Info: Graphics extension search list:
  (c:/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package crop Info: requested driver: `' on input line 107.
-Package crop Info: detected driver: `pdftex' on input line 107.
-Package crop Info: using `pdftex' graphics driver on input line 107.
+Package crop Info: requested driver: `' on input line 106.
+Package crop Info: detected driver: `pdftex' on input line 106.
+Package crop Info: using `pdftex' graphics driver on input line 106.
  (c:/texlive/2019/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
 \LTleft=\skip60
@@ -816,7 +816,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
 \LT@p@ftn=\toks72
 )
 \AtBeginShipoutBox=\box77
-Package hyperref Info: Link coloring ON on input line 107.
+Package hyperref Info: Link coloring ON on input line 106.
  (c:/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (c:/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -824,9 +824,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count188
 )
-LaTeX Info: Redefining \ref on input line 107.
-LaTeX Info: Redefining \pageref on input line 107.
-LaTeX Info: Redefining \nameref on input line 107.
+LaTeX Info: Redefining \ref on input line 106.
+LaTeX Info: Redefining \pageref on input line 106.
+LaTeX Info: Redefining \nameref on input line 106.
  (./RSPA_Author_tex.out) (./RSPA_Author_tex.out)
 \@outlinefile=\write5
 \openout5 = `RSPA_Author_tex.out'.
@@ -837,7 +837,7 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2018/08/26 v1.4-95 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 107.
+LaTeX Info: Redefining \microtypecontext on input line 106.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -853,7 +853,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 13.6001pt on input line 139.
+(Font)              scaled to size 13.6001pt on input line 138.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -861,32 +861,32 @@ Package microtype Info: Loading generic protrusion settings for font family
 <PROCEEDINGS_A_RGB.pdf, id=71, 204.97981pt x 18.40877pt>
 File: PROCEEDINGS_A_RGB.pdf Graphic file (type pdf)
 <use PROCEEDINGS_A_RGB.pdf>
-Package pdftex.def Info: PROCEEDINGS_A_RGB.pdf  used on input line 146.
+Package pdftex.def Info: PROCEEDINGS_A_RGB.pdf  used on input line 145.
 (pdftex.def)             Requested size: 118.88835pt x 10.67708pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.47508pt on input line 146.
+(Font)              scaled to size 11.47508pt on input line 145.
 
-Overfull \hbox (14.44972pt too wide) in paragraph at lines 146--146
+Overfull \hbox (14.44972pt too wide) in paragraph at lines 145--145
 [][]\T1/phv/m/n/13.5 rspa.royalsocietypublishing.org[] 
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 15.30011pt on input line 146.
+(Font)              scaled to size 15.30011pt on input line 145.
 <RSTA_OpenAccesslogo_RGB.pdf, id=72, 19.94853pt x 31.63618pt>
 File: RSTA_OpenAccesslogo_RGB.pdf Graphic file (type pdf)
 <use RSTA_OpenAccesslogo_RGB.pdf>
-Package pdftex.def Info: RSTA_OpenAccesslogo_RGB.pdf  used on input line 146.
+Package pdftex.def Info: RSTA_OpenAccesslogo_RGB.pdf  used on input line 145.
 (pdftex.def)             Requested size: 19.94847pt x 31.6361pt.
 <RS_crossmark_logo.pdf, id=74, 37.1508pt x 46.1725pt>
 File: RS_crossmark_logo.pdf Graphic file (type pdf)
 <use RS_crossmark_logo.pdf>
-Package pdftex.def Info: RS_crossmark_logo.pdf  used on input line 146.
+Package pdftex.def Info: RS_crossmark_logo.pdf  used on input line 145.
 (pdftex.def)             Requested size: 37.15071pt x 46.17236pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.50006pt on input line 146.
+(Font)              scaled to size 8.50006pt on input line 145.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.50006pt on input line 146.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 146.
+(Font)              scaled to size 8.50006pt on input line 145.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 145.
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
@@ -894,15 +894,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 146.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 145.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 146.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 145.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 146.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 145.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 ) (c:/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
@@ -910,49 +910,49 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (c:/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+euex on input line 146.
+LaTeX Font Info:    Try loading font information for U+euex on input line 145.
  (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 146.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 145.
  (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 17.00012pt on input line 146.
+(Font)              scaled to size 17.00012pt on input line 145.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.90009pt on input line 146.
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 146.
+(Font)              scaled to size 11.90009pt on input line 145.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.36008> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.40009> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.14006> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.60007> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 
-Overfull \hbox (170.71654pt too wide) in paragraph at lines 146--146
+Overfull \hbox (170.71654pt too wide) in paragraph at lines 145--145
 [] 
  []
 
 
-Overfull \vbox (4.42038pt too high) detected at line 146
+Overfull \vbox (4.42038pt too high) detected at line 145
  []
 
 
-Overfull \hbox (11.48364pt too wide) in paragraph at lines 146--146
+Overfull \hbox (11.48364pt too wide) in paragraph at lines 145--145
 $[]$|  $[]$ 
  []
 
@@ -967,27 +967,27 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 <RS_Pubs_Logo_Line_CMYK.pdf, id=76, 1003.52718pt x 126.95128pt>
 File: RS_Pubs_Logo_Line_CMYK.pdf Graphic file (type pdf)
 <use RS_Pubs_Logo_Line_CMYK.pdf>
-Package pdftex.def Info: RS_Pubs_Logo_Line_CMYK.pdf  used on input line 146.
+Package pdftex.def Info: RS_Pubs_Logo_Line_CMYK.pdf  used on input line 145.
 (pdftex.def)             Requested size: 150.52257pt x 19.04185pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.37505pt on input line 146.
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 146.
+(Font)              scaled to size 6.37505pt on input line 145.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.55003> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <4.50005> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 146.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 145.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 145.
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <7.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 146.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 4.71756pt on input line 146.
+(Font)              scaled to size 4.71756pt on input line 145.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 3.82506pt on input line 146.
+(Font)              scaled to size 3.82506pt on input line 145.
 
 Overfull \hbox (11.22607pt too wide) has occurred while \output is active
 []  [][][][][][] 
@@ -998,7 +998,7 @@ Overfull \hbox (11.22607pt too wide) has occurred while \output is active
 
 {c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./PROCEEDINGS_A_RGB.pdf> <./RSTA_OpenAccesslogo_RGB.pdf> <./RS_crossmark_logo.pdf> <./RS_Pubs_Logo_Line_CMYK.pdf>]
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.65005pt on input line 167.
+(Font)              scaled to size 7.65005pt on input line 166.
 
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
@@ -1010,9 +1010,9 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
  [4]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 320.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 319.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 321.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 320.
 
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
@@ -1027,33 +1027,33 @@ Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
  [8]
 Package epstopdf Info: Source file: <./images/flutter_rig.eps>
-(epstopdf)                    date: 2019-07-30 14:31:08
-(epstopdf)                    size: 107208 bytes
+(epstopdf)                    date: 2019-08-09 13:54:53
+(epstopdf)                    size: 109031 bytes
 (epstopdf)             Output file: <./images/flutter_rig-eps-converted-to.pdf>
-(epstopdf)                    date: 2019-07-30 14:31:41
+(epstopdf)                    date: 2019-08-09 13:54:53
 (epstopdf)                    size: 57618 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_rig-eps-converted-to.pdf ./images/flutter_rig.eps>
-(epstopdf)             \includegraphics on input line 518.
+(epstopdf)             \includegraphics on input line 517.
 Package epstopdf Info: Output file is already uptodate.
 <./images/flutter_rig-eps-converted-to.pdf, id=306, 1042.89626pt x 660.4675pt>
 File: ./images/flutter_rig-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_rig-eps-converted-to.pdf>
-Package pdftex.def Info: ./images/flutter_rig-eps-converted-to.pdf  used on input line 518.
+Package pdftex.def Info: ./images/flutter_rig-eps-converted-to.pdf  used on input line 517.
 (pdftex.def)             Requested size: 230.46965pt x 145.94827pt.
 Package epstopdf Info: Source file: <./images/flutter_pic.eps>
-(epstopdf)                    date: 2019-07-30 14:44:52
-(epstopdf)                    size: 49485629 bytes
+(epstopdf)                    date: 2019-08-09 14:12:28
+(epstopdf)                    size: 24176481 bytes
 (epstopdf)             Output file: <./images/flutter_pic-eps-converted-to.pdf>
-(epstopdf)                    date: 2019-07-30 14:50:38
-(epstopdf)                    size: 1640623 bytes
+(epstopdf)                    date: 2019-08-09 14:12:54
+(epstopdf)                    size: 1054540 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_pic-eps-converted-to.pdf ./images/flutter_pic.eps>
-(epstopdf)             \includegraphics on input line 522.
+(epstopdf)             \includegraphics on input line 521.
 Package epstopdf Info: Output file is already uptodate.
-<./images/flutter_pic-eps-converted-to.pdf, id=307, 3030.32124pt x 2707.11375pt>
+<./images/flutter_pic-eps-converted-to.pdf, id=307, 3031.325pt x 2707.11375pt>
 File: ./images/flutter_pic-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_pic-eps-converted-to.pdf>
-Package pdftex.def Info: ./images/flutter_pic-eps-converted-to.pdf  used on input line 522.
-(pdftex.def)             Requested size: 230.46965pt x 205.87497pt.
+Package pdftex.def Info: ./images/flutter_pic-eps-converted-to.pdf  used on input line 521.
+(pdftex.def)             Requested size: 230.46965pt x 205.79236pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1093,18 +1093,18 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
  [12]
 Package epstopdf Info: Source file: <./images/flutter_diagram.eps>
-(epstopdf)                    date: 2019-07-30 16:35:59
-(epstopdf)                    size: 13576 bytes
+(epstopdf)                    date: 2019-08-09 13:54:53
+(epstopdf)                    size: 13944 bytes
 (epstopdf)             Output file: <./images/flutter_diagram-eps-converted-to.pdf>
-(epstopdf)                    date: 2019-07-30 16:41:21
+(epstopdf)                    date: 2019-08-09 13:54:53
 (epstopdf)                    size: 5047 bytes
 (epstopdf)             Command: <repstopdf --outfile=./images/flutter_diagram-eps-converted-to.pdf ./images/flutter_diagram.eps>
-(epstopdf)             \includegraphics on input line 777.
+(epstopdf)             \includegraphics on input line 776.
 Package epstopdf Info: Output file is already uptodate.
 <./images/flutter_diagram-eps-converted-to.pdf, id=380, 1272.755pt x 818.05624pt>
 File: ./images/flutter_diagram-eps-converted-to.pdf Graphic file (type pdf)
 <use ./images/flutter_diagram-eps-converted-to.pdf>
-Package pdftex.def Info: ./images/flutter_diagram-eps-converted-to.pdf  used on input line 777.
+Package pdftex.def Info: ./images/flutter_diagram-eps-converted-to.pdf  used on input line 776.
 (pdftex.def)             Requested size: 227.62204pt x 146.29509pt.
 
 
@@ -1122,7 +1122,7 @@ PGFPlots: reading {./data/Data3.csv}
 PGFPlots: reading {./data/Data4.csv}
 PGFPlots: reading {./data/Data4.csv}
 
-Underfull \hbox (badness 10000) in paragraph at lines 937--938
+Underfull \hbox (badness 10000) in paragraph at lines 936--937
 
  []
 
@@ -1141,12 +1141,12 @@ PGFPlots: reading {./data/Data_8-2.csv}
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
  [17]
-Overfull \hbox (11.11125pt too wide) detected at line 1116
+Overfull \hbox (11.11125pt too wide) detected at line 1115
 []
  []
 
 
-Overfull \hbox (20.78394pt too wide) detected at line 1150
+Overfull \hbox (20.78394pt too wide) detected at line 1149
 []
  []
 
@@ -1157,17 +1157,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
  [18]
-Overfull \hbox (23.28394pt too wide) detected at line 1177
+Overfull \hbox (23.28394pt too wide) detected at line 1176
 []
  []
 
 
-Overfull \hbox (21.39505pt too wide) detected at line 1203
+Overfull \hbox (21.39505pt too wide) detected at line 1202
 []
  []
 
 
-Overfull \hbox (8.29398pt too wide) detected at line 1224
+Overfull \hbox (8.29398pt too wide) detected at line 1223
 []
  []
 
@@ -1178,7 +1178,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (21.51176pt too high) has occurred while \output is active []
 
  [19]
-Overfull \hbox (19.73158pt too wide) detected at line 1245
+Overfull \hbox (19.73158pt too wide) detected at line 1244
 []
  []
 
@@ -1201,26 +1201,26 @@ Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 Overfull \vbox (21.4162pt too high) has occurred while \output is active []
 
  [22]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1273.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1273.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1272.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1272.
  (./RSPA_Author_tex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1273.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1272.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1272.
 Package rerunfilecheck Info: File `RSPA_Author_tex.out' has not changed.
 (rerunfilecheck)             Checksum: B1967D78FC3C6F5538C9522730801C26;1344.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1273.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1272.
  ) 
 Here is how much of TeX's memory you used:
  35551 strings out of 492609
  833102 string characters out of 6132818
- 1288484 words of memory out of 5000000
+ 1288482 words of memory out of 5000000
  38451 multiletter control sequences out of 15000+600000
  116985 words of font info for 287 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
  78i,19n,136p,1894b,2359s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2019/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on RSPA_Author_tex.pdf (22 pages, 1992695 bytes).
+Output written on RSPA_Author_tex.pdf (22 pages, 1406608 bytes).
 PDF statistics:
  621 PDF objects out of 1000 (max. 8388607)
  538 compressed objects within 6 object streams
