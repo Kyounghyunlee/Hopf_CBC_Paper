@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  9 AUG 2019 15:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.7.18)  12 AUG 2019 13:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1211,19 +1211,19 @@ Package rerunfilecheck Info: File `RSPA_Author_tex.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1272.
  ) 
 Here is how much of TeX's memory you used:
- 35547 strings out of 492609
- 832973 string characters out of 6132818
- 1288466 words of memory out of 5000000
+ 35544 strings out of 492609
+ 832946 string characters out of 6132818
+ 1288464 words of memory out of 5000000
  38448 multiletter control sequences out of 15000+600000
- 116985 words of font info for 287 fonts, out of 8000000 for 9000
+ 116855 words of font info for 285 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
  78i,19n,136p,1894b,2359s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2019/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on RSPA_Author_tex.pdf (22 pages, 1406077 bytes).
+Output written on RSPA_Author_tex.pdf (22 pages, 1406419 bytes).
 PDF statistics:
- 619 PDF objects out of 1000 (max. 8388607)
- 536 compressed objects within 6 object streams
+ 620 PDF objects out of 1000 (max. 8388607)
+ 537 compressed objects within 6 object streams
  164 named destinations out of 1000 (max. 500000)
  37552 words of extra memory for PDF output out of 42996 (max. 10000000)
 
