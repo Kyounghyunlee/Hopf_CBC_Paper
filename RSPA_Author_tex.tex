@@ -7,13 +7,8 @@
 
 \documentclass[openacc]{rsproca_new}%%%%where rsproca is the template name
 \usepackage{anyfontsize}
-\usepackage[british]{babel}         % Use British English
 \usepackage{amsmath}
 \usepackage{amssymb}                % AMS symbols package
-\usepackage{mathptmx}               % Times (Nimbus Roman)
-\usepackage{courier}                % Courier (Nimbus Mono)
-\usepackage{hyperref}               % For decent hyperlinks
-\usepackage{caption}                % Decent captions for floats
 \usepackage{microtype}              % Micro-typography for sorting out spacing
 \usepackage[utf8]{inputenc}
 \usepackage[numbers]{natbib}
@@ -132,40 +127,30 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%% Insert the texts which can accomdate on firstpage in the tag "fmtext" %%%%%
-
-\begin{fmtext}
-\section{Introduction}\label{int}
-Feedback control can be used as a tool to verify the dynamical
-\end{fmtext}
-
-%%%%%%%%%%%%%%% End of first page %%%%%%%%%%%%%%%%%%%%%
-
 \maketitle
-\noindent model or also as an identifying tool when it is noninvasive. Time delyaed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding noninvasive control target that stabilizes unstable periodic orbit of the uncontrolled system.
+
+\section{Introduction}\label{int}
+Feedback control can be used as a tool to verify the dynamical model or also as an identifying tool when it is noninvasive. Time delyaed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding noninvasive control target that stabilizes unstable periodic orbit of the uncontrolled system.
 
 CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of mechanical system experiments, parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
 Limit cycle oscillation (LCO) of self-excited system is also an essential subject for researchers. Hopf bifurcation would be the typical example of self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCOs are either stable(supercritical Hopf bifurcation) or unstable(subcritical Hopf bifurcation) close to Hopf bifurcation, and it can be analyzed analytically by simplifying the dynamical system \cite{yu2002simplest,ashwin1995numerical} or numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Subcritical Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels. Therefore, stabilizing unstable LCOs of subcritical Hopf bifurcation using feedback control is a critical subject for experimentalists. Stabilizability of the feedback controller for subcritical Hopf bifurcation problems using TBD was studied theoretically \cite{brown2011time,postlethwaite2013feedback}. However, there are several difficulties in real experiments using feedback control methods. For TBD, LCO cannot be stabilized if the period of the LCO is unknown. For CBC, input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. Let us say time-periodic control target $x^*(t)$ and time-periodic response $x(t)$ is discretized by $\Phi$ which is a projection of periodic orbit to first three fourier modes as
-
 \begin{align}
- \Phi(x^*(t))=[\hat A_0,\hat A_1,\hat B_1], \: \Phi(x(t))=[A_0,A_1,B_1],
+  \Phi(x^*(t))=[\hat A_0,\hat A_1,\hat B_1], \: \Phi(x(t))=[A_0,A_1,B_1],
 \end{align}
-
-\noindent then, zero problem can be defined at each fourier modes and solved by newton like methods for typical CBC applications that have a bijective input-output map. However, the response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of $[A_0,A_1,B_1]$ can be found with phase difference for Hopf bifurcation for every set of $[\hat A_0,\hat A_1,\hat B_1]$; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used. The aim of this paper is a theoretical explanation of stabilizing feedback control of Hopf bifurcation using CBC and developing an effective scheme that is applicable to experimental bifurcation analysis.
+then, zero problem can be defined at each fourier modes and solved by newton like methods for typical CBC applications that have a bijective input-output map. However, the response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of $[A_0,A_1,B_1]$ can be found with phase difference for Hopf bifurcation for every set of $[\hat A_0,\hat A_1,\hat B_1]$; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used. The aim of this paper is a theoretical explanation of stabilizing feedback control of Hopf bifurcation using CBC and developing an effective scheme that is applicable to experimental bifurcation analysis.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed for a dynamical system that has small frequency variance while multiple measurements of phase-locked periodic orbits are taken with fixed amplitude of control target. In the fourth section, the proposed CBC scheme is applied experimentally to flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
 
 \section{Control based continuation (CBC)}\label{CBC}
+
 Let us say proportional derivative control is applied to some dynamical system and control force $\Gamma(t)$ is
-
 \begin{align}
-\Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
+  \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
 \end{align}
-
-\noindent where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes. This projection gives discretized fixed point problem with $2q+1$ equations. Fixed point problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We use proportional derivative control in this research. However, CBC scheme is not restricted to only proportional derivative control.
+where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes. This projection gives discretized fixed point problem with $2q+1$ equations. Fixed point problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We use proportional derivative control in this research. However, CBC scheme is not restricted to only proportional derivative control.
 
 Stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and a scheme to define a zero problem from the input-output map in the next section.
 
@@ -173,80 +158,63 @@ Stabilizing unstable LCO with CBC is not simple because of the complexity of the
 
 
 \section{Stablizing control near the Hopf bifurcation}\label{SNH}
+
 Simplifying the dynamical system using normal form is the most popular way to study the bifurcation problem analytically. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and unfolding parameter rescaling to discuss the stabilizability of the controller.
 
 \subsection{Simplest normal form of Hopf bifurcation}\label{SNF}
+
 Let us consider an autonomous nonlinear parameter-dependent dynamical system that has generic Hopf bifurcation at \(\vec{\lambda}=0\),
-
 \begin{align}\label{eq:1}
-    \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
+  \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
 \end{align}
-
-
-\noindent where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter. We assume \(\vec{F}(0)=0\) and \(\vec{F}\) is a \(C^r\) function with \(r>3\).
-\Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
-
-
+where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter. We assume \(\vec{F}(0)=0\) and \(\vec{F}\) is a \(C^r\) function with \(r>3\). \Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
 \begin{align}\label{eq:2}
   \begin{split}
     \dot{\vec{x}} =\vec{J}_c \vec{x} + \vec{f}(\vec{x},\vec{y},\lambda)\\
     \dot{\vec{y}} =\vec{J}_s \vec{y} +\vec{g}(\vec{x},\vec{y},\lambda)
   \end{split}
 \end{align}
-
-\noindent where \(\vec{x}=[x;\bar{x}]\in \complex^2\) is center subspace with associated Jordan matrix \(\vec{J}_c\) having diagonal term \(\pm\textrm{i}\) and \(\vec{y}\in \complex^{n-2}\) is stable subspace with it's associated Jordan matrix \(\vec{J}_s\) of Jacobian of \(\vec{F}(\vec{z})\) at \(\vec{z}=0\). \(\vec{f}\) and \(\vec{g}\) are \(C^r\) functions with \(\vec{f}(0,0)=0\), \(D\vec{f}(0,0)=0\) and \(\vec{g}(0,0
-)=0\), \(D\vec{g}(0,0)=0\). Centermanifold exists for dynamical system \Eref{eq:2} for small  \(\|\vec{x}\|\) which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed \(\pm\textrm{i}\) for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include \(\dot\lambda=0\) to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small \(\|\lambda\|\)  \cite{kuznetsov2013elements}. power series of centermanifold \(\vec{H}(\vec{x},\lambda)\) can be computed recursively by solving
-
+where \(\vec{x}=[x;\bar{x}]\in \complex^2\) is center subspace with associated Jordan matrix \(\vec{J}_c\) having diagonal term \(\pm\textrm{i}\) and \(\vec{y}\in \complex^{n-2}\) is stable subspace with it's associated Jordan matrix \(\vec{J}_s\) of Jacobian of \(\vec{F}(\vec{z})\) at \(\vec{z}=0\). \(\vec{f}\) and \(\vec{g}\) are \(C^r\) functions with \(\vec{f}(0,0)=0\), \(D\vec{f}(0,0)=0\) and \(\vec{g}(0,0)=0\), \(D\vec{g}(0,0)=0\). Centermanifold exists for dynamical system \Eref{eq:2} for small  \(\|\vec{x}\|\) which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed \(\pm\textrm{i}\) for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include \(\dot\lambda=0\) to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small \(\|\lambda\|\)  \cite{kuznetsov2013elements}. power series of centermanifold \(\vec{H}(\vec{x},\lambda)\) can be computed recursively by solving
 \begin{align}\label{eq:3}
     D\vec{H}({\vec{\hat{x})}}(\vec{\hat{J}}_c\vec{\hat{x}}+\vec{f}(\vec{\hat{x}},\vec{H}(\vec{\hat{x}}))) =\vec{J}_s \vec{H}(\vec{\hat{x}})-\vec{g}(\vec{\hat{x}},\vec{H}(\vec{\hat {x}}))
 \end{align}
-
-\noindent at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\vec{\hat{J}}_c\) is the extended Jordan matrix which zero eigenvalue is added to \(\vec{J}_c\) \cite{bi1999symbolic}. Then, we can compute the reduced dynamics on the centermanifold as a power series which will have a form as
-
+at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\vec{\hat{J}}_c\) is the extended Jordan matrix which zero eigenvalue is added to \(\vec{J}_c\) \cite{bi1999symbolic}. Then, we can compute the reduced dynamics on the centermanifold as a power series which will have a form as
 \begin{align}\label{eq:4}
   \begin{split}
     {}&\dot{x} =\textrm{i} x+\sum_k f_k(x,\bar{x},\lambda)\\
     ,\textrm{where} \; & f_k=\sum_{j+l+m=k}(\vec{a}_{1jlm}+\textrm{i}\vec{a}_{2jlm})x^j\bar{x}^l\lambda^m.
   \end{split}
 \end{align}
-
-\noindent Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
+Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
 Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Unlike the dynamical system without perturbation parameters, SNF cannot be computed using only near identity transformation. P.Yu\cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
-
 \begin{align}\label{eq:5}
-\begin{split}
-&\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
-\textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k.
-\end{split}
+  \begin{split}
+    &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
+    \textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k.
+  \end{split}
 \end{align}
-
-\noindent Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by following near identity transformation
+Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by following near identity transformation
 \(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\),
-
 \begin{align}\label{eq:6}
-\begin{split}
-h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
-t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}[(u+\bar{u})]^j\nu^m\Big)\tau,\\
-\lambda &=\nu+\sum_{j=2}p_j \nu^j.
-\end{split}
+  \begin{split}
+    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
+    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}[(u+\bar{u})]^j\nu^m\Big)\tau,\\
+    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
+  \end{split}
 \end{align}
-
-\noindent Coefficients of \Eref{eq:6} can be computed recursively by solving the following equations \cite{yu2002simplest}:
-
+Coefficients of \Eref{eq:6} can be computed recursively by solving the following equations \cite{yu2002simplest}:
 \begin{align}\label{eq:7}
-\begin{split}
-g_2(\vec{u},\nu) &=f_2(\vec{x},\lambda)+[h_2(\vec{u},\nu),l(\vec{u})]+(T_1(\vec{u},\nu)l(\vec{u})-Dh_1(\vec{u},\nu) L_2(\vec{u},\nu)),\\
-g_3(\vec{u},\nu) &=f_3(\vec{x},\lambda)+[h_3(\vec{u},\nu),l]+(Df_2(\vec{x},\lambda)\tilde h_2(\vec{u},\nu)-Dh_2(\vec{u},\nu)g_2(\vec{u},\nu))\\&+T_1(\vec{u},\nu)(f_2(\vec{x},\lambda)+J_ch_2(\vec{u},\nu)]+(T_2(\vec{u},\nu)l(\vec{u})-Dh_2(\vec{u},\nu)L_2(\vec{u},\nu)),
-\end{split}
+  \begin{split}
+    g_2(\vec{u},\nu) &=f_2(\vec{x},\lambda)+[h_2(\vec{u},\nu),l(\vec{u})]+(T_1(\vec{u},\nu)l(\vec{u})-Dh_1(\vec{u},\nu) L_2(\vec{u},\nu)),\\
+    g_3(\vec{u},\nu) &=f_3(\vec{x},\lambda)+[h_3(\vec{u},\nu),l]+(Df_2(\vec{x},\lambda)\tilde h_2(\vec{u},\nu)-Dh_2(\vec{u},\nu)g_2(\vec{u},\nu))\\&+T_1(\vec{u},\nu)(f_2(\vec{x},\lambda)+J_ch_2(\vec{u},\nu)]+(T_2(\vec{u},\nu)l(\vec{u})-Dh_2(\vec{u},\nu)L_2(\vec{u},\nu)),
+  \end{split}
 \end{align}
-
-\noindent where \(l(\vec{u})=\vec{J}_c\vec{u}\), \(\tilde h_2=[h_2;p_2]\), and \(\big[h_k,l\big]\) is Lie bracket defined as
+where \(l(\vec{u})=\vec{J}_c\vec{u}\), \(\tilde h_2=[h_2;p_2]\), and \(\big[h_k,l\big]\) is Lie bracket defined as
 \begin{align}\label{eq:8}
 \big[h_k,l\big]=Dl\cdot h_k-Dh_k\cdot l.
 \end{align}
-
-\noindent Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq:7} and balancing every coefficient of power series, SNF of Hopf bifurcation is derived as
+Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq:7} and balancing every coefficient of power series, SNF of Hopf bifurcation is derived as
 
 \begin{align}\label{eq:9}
 &\frac{du}{d\tau}=\textrm{i}u+\vec{a}_{1101}\nu u+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})u^2\bar u+\textrm{i}\sum_{m=1}b_{2(2m+1)}u^{m+1}u^m.
