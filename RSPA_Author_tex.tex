@@ -99,7 +99,7 @@
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
 \makeatother
-\graphicspath{ {./images/} }
+\graphicspath{ {./Images/} }
 
 
 
@@ -456,7 +456,7 @@ $S_V$ is constant frequency family of stable phase locked periodic orbit if $\va
 
 Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable and $u_2 \in S_V$ for some constant frequency $S_v$. Then, CBC scheme for this type of dynamical system can be summarized as \Fref{f:1}, where $\Delta$ is step size of $\hat A$ and $\delta$ is the zero tolerance of $\Xi$ for finding a noninvasive periodic solution.
 
-\begin{figure}[!ht]
+\begin{figure}
 \tikzstyle{decision} = [diamond, draw, fill=blue!20,
     text width=7em, text badly centered, inner sep=0pt, minimum height=3em]
 \tikzstyle{decision2} = [diamond, draw, fill=blue!20,
@@ -511,7 +511,7 @@ In this section, we show scheme developed in \Sref{SNH} can be applied to a real
 \subsection{Experiment setup}\label{setup}
 The experiment was performed on flutter rig with a NACA-0015 wing profile \cite{jacobs1933characteristics}. The profile moves in two degrees of freedom, heave, and pitch. Coil springs are installed to add linear stiffness to the heave and pitch motion, and spring plate is installed to add nonlinearity on the pitch stiffness. Measurements are taken at shaft with digital encoder for pitch and heave motion was measured from laser displacement sensor. Data acquisition and real-time control were performed with Beaglebone Black and real-time controller \cite{rtc2}. Control force was applied to heave motion to stabilize unstable LCO with APS Electro-Seis Shaker and schematics of a configuration of the experiment and picture of the rig is presented in \Fref{f:rig}.
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
   \begin{subfigure}[b]{0.6\linewidth}
     \includegraphics[width=\linewidth]{flutter_rig.eps}
@@ -531,7 +531,7 @@ Open-loop tests are performed initially to investigate the dynamics of the syste
 To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit was taken with a different amplitude of target coefficient $\hat A$. Therefore, we assume that the measured phase-locked solution of this system is an element of constant frequency family of stable phase-locked solution. Stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=30pt,xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Amplitude of control target ($m$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -539,24 +539,24 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
   \nextgroupplot[title=(a),ylabel={Frequency ($Hz$)},y label style={at={(-0.1,0.5)}},legend style={at={(0.35,0.98)}},ymin=2,ymax=3,every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt}]
 
   \addplot [mark=o,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data4-1.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-1.csv};
 
   \addplot [mark=triangle,color=red]
-        table [x=a, y=c, col sep=comma] {./data/Data4-2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-2.csv};
 
   \addplot [mark=square,color=green]
-        table [x=a, y=c, col sep=comma] {./data/Data4-3.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-3.csv};
   %Here the blue parabloa is defined
   \nextgroupplot[title=(b),ylabel={Control error $\Xi$ ($m$)},y label style={at={(-0.1,0.5)}},every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt},ymax=0.005]
 
   \addplot [mark=o,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data4-1.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-1.csv};
 
   \addplot [mark=triangle,color=red]
-        table [x=a, y=b, col sep=comma] {./data/Data4-2.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-2.csv};
 
   \addplot [mark=square,color=green]
-        table [x=a, y=b, col sep=comma] {./data/Data4-3.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-3.csv};
   %Here the blue parabloa is defined
 
 
@@ -571,48 +571,48 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 \noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off. \\
 Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the unfolding parameter of the Hopf bifurcation.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.9,0.9)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=3 by 2,every plot/.style={xmin=0,xmax=2},xlabels at=edge bottom,ylabels at=edge left,vertical sep=30pt,horizontal sep=20pt,},width=5.0cm,height=3.5cm,xlabel={Time (sec)},ylabel={Heave (m)},y label style={at={(-0.2,0.5)}},x label style={at={(0.5,-0.2)}}]
 
   \nextgroupplot[title=(a),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data.csv};\label{q1}
+        table [x=a, y=b, col sep=comma] {./Data/Data.csv};\label{q1}
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=c, col sep=comma] {./data/Data.csv};\label{q2}
+      table [x=a, y=c, col sep=comma] {./Data/Data.csv};\label{q2}
   \nextgroupplot[title=(b),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=d, col sep=comma] {./data/Data.csv};
+        table [x=a, y=d, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=e, col sep=comma] {./data/Data.csv};
+      table [x=a, y=e, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(c),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=f, col sep=comma] {./data/Data.csv};
+        table [x=a, y=f, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=g, col sep=comma] {./data/Data.csv};
+      table [x=a, y=g, col sep=comma] {./Data/Data.csv};
 
   \nextgroupplot[title=(d),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=h, col sep=comma] {./data/Data.csv};
+        table [x=a, y=h, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=i, col sep=comma] {./data/Data.csv};
+      table [x=a, y=i, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(e),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=j, col sep=comma] {./data/Data.csv};
+        table [x=a, y=j, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=k, col sep=comma] {./data/Data.csv};
+      table [x=a, y=k, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(f),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=l, col sep=comma] {./data/Data.csv};
+        table [x=a, y=l, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=m, col sep=comma] {./data/Data.csv};
+      table [x=a, y=m, col sep=comma] {./Data/Data.csv};
   \end{groupplot}
   \end{tikzpicture}
   \centering
@@ -621,19 +621,19 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
 \end{figure}
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.9)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=1 by 2,every plot/.style={xmin=0,xmax=7.0},xlabels at=edge bottom,ylabels at=edge left,vertical sep=30pt},width=13cm,height=3.8cm,xlabel={Time (sec)},ylabel={Heave (m)},y label style={at={(-0.04,0.5)}},x label style={at={(0.5,-0.2)}}]
 
   \nextgroupplot[title=(a),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data2.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data2.csv};
 
 
   \nextgroupplot[title=(b),ymin=-1.5e-2,ymax=1.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data2.csv};
 
   \end{groupplot}
   \end{tikzpicture}
@@ -643,7 +643,7 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
 \end{figure}
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=32pt,every plot/.style={xmin=14,xmax=18},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},	scatter/classes={%
@@ -771,7 +771,7 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
   \includegraphics[width=8cm]{flutter_diagram.eps}
   \put(-215,87){$\alpha$}
@@ -850,7 +850,7 @@ $x_\alpha$ & 0.24 & & \\
 
 \noindent The identified linearized model can be verified by comparing flutter speed and flutter frequency obtained from CBC results. If we use \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, we can estimate the flutter speed from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=14,xmax=18.5},xlabels at=edge bottom,vertical sep=30pt},width=7cm,height=7cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -903,7 +903,7 @@ $x_\alpha$ & 0.24 & & \\
 
 If we see the computed eigenvalues of the Jacobian of the identified linearized system (\Fref{f:7}), the comparison between the estimated values from the model and measured values is possible. Note that two eigenvalues with zero imaginary part is neglected in \Fref{f:7} which are unable to measure during the zero wind speed. Estimated futter speed from the model is 17.96 $m/s$ and measured futter speed is 17.89 $m/s$. Estimated futter frequency from the model is 2.46 $Hz$ measured flutter frequency is 2.51 $Hz$, which is quite close enough to say identified linearized dynamical model is sufficiently accurate.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=0,xmax=25},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -911,17 +911,17 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
   \nextgroupplot[title=(a),ylabel={Real eigenvalue},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data3.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data3.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data3.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data3.csv};
   \nextgroupplot[title=(b),ylabel={Imaginary Eigenvalue},y label style={at={(-0.12,0.5)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data4.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data4.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4.csv};
 
   \end{groupplot}
 
@@ -972,7 +972,7 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 
 \noindent For the validation of the results, we compare estimated amplitude via numerical continuation, normal form, and measured amplitude in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes}. Measured heave amplitude and computed heave amplitude from the numerical continuation is in good agreement. Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model and the inaccuracy of the normal form far from the Hopf point. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model, and accuracy of the normal form can be increased by taking higher-order approximation. However, improving the accuracy of the identified model is not the scope of this paper. Also, the identified model show poor agreement in the stable branch of LCO with measurement results, and the reason is not identified yet, which we leave it for future research.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=13.5,xmax=18,ymin=0},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},scatter/classes={%
@@ -982,10 +982,10 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
   \nextgroupplot[title=(a),ylabel={Heave amplitude ($m$)},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data_8-1.csv};\label{p1}
+        table [x=a, y=b, col sep=comma] {./Data/Data_8-1.csv};\label{p1}
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=b, col sep=comma] {./data/Data_8-2.csv};\label{p2}
+        table [x=a, y=b, col sep=comma] {./Data/Data_8-2.csv};\label{p2}
 
   \addplot [only marks,color=blue,mark size=2pt%
 	]
@@ -1009,10 +1009,10 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
   \nextgroupplot[title=(b),ylabel={Pitch amplitude ($rad$)},y label style={at={(-0.12,0.5)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data_8-1.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data_8-1.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data_8-2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data_8-2.csv};
 
   \addplot [scatter,only marks,%
 		scatter src=explicit symbolic]
