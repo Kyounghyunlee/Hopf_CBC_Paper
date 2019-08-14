@@ -123,7 +123,7 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 %%%% Abstract text to be placed here %%%%%%%%%%%%
 \begin{abstract}
- CBC scheme for Hopf bifrucation and it's application on system identification is studied. We consider dynamical system without control has codimension-1 Hopf bifurcation. Then, the dynamical system with proportional derivative feedback control applied to this system has codimension-3 Hopf bifurcation where two control gains are added as an additional unfolding parameter. Bifurcation of the dynamical system that has Hopf bifurcation can be simplified when center manifold theory and normal form theory is applied. If we assume weakly nonlinear transformation between the original coordinates and the normal form coordinates, the limit cycle of the uncontrolled system can be expressed as a single harmonic oscillator in original coordinates, and it can be shown that system with control can be simplified to forced Hopf bifurcation with single harmonic forcing. Stabilizability of the controller can be derived from the stability of the noninvasive periodic solution, which is one of phase-locked periodic solution of the forced Hopf bifurcation. Finding this noninvasive periodic solution can be simplified if the only phase-locked periodic solutions are searched through experiment; therefore, we introduce a scheme to lock the phase between the control target and the response and show that finding noninvasive control target is equivalent to solving zero problems of one-dimensional function in a certain type of dynamical system. Developed CBC scheme is applied to flutter rig that has codimension-1 subcritical Hopf bifurcation. We show flutter frequency and flutter speed can be estimated from the CBC results and can be applied to verify the identified linearized dynamical model. Finally, we show that CBC results can be applied to identify the nonlinear part of the dynamical system if the LCO is parametrized with unknown parameters by computed normal form.
+ Limit cycle oscillation (LCO) of the self-excited system often cause a significant problem in various engineering applications. Therefore, exploring dynamic features such as the family of periodic orbits by experimental methods can help researchers to verify or identify the dynamic model of the self-excited system. In this paper, the control based continuation (CBC) scheme for Hopf bifurcation, which is the most common example of a self-excited system, is developed. CBC is an experimental scheme to explore the features of a dynamical system as the system parameter is varied. Feed-back control plays a critical role in stabilizing the unstable periodic response of the dynamical system. We show theoretically and experimentally how feed-back control can stabilize unstable LCO of the dynamical system near Hopf bifurcation. The scheme is applied to a flutter rig, and the CBC results are applied to verify the linearized dynamical model and to identify the grey-box model.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -187,7 +187,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Unlike the dynamical system without perturbation parameters, SNF cannot be computed using only near identity transformation. P.Yu\cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Unlike the dynamical system without perturbation parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
@@ -203,18 +203,7 @@ Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{
     \lambda &=\nu+\sum_{j=2}p_j \nu^j.
   \end{split}
 \end{align}
-Coefficients of \Eref{eq:6} can be computed recursively by solving the following equations \cite{yu2002simplest}:
-\begin{align}\label{eq:7}
-  \begin{split}
-    g_2(\vec{u},\nu) &=f_2(\vec{x},\lambda)+[h_2(\vec{u},\nu),l(\vec{u})]+(T_1(\vec{u},\nu)l(\vec{u})-Dh_1(\vec{u},\nu) L_2(\vec{u},\nu)),\\
-    g_3(\vec{u},\nu) &=f_3(\vec{x},\lambda)+[h_3(\vec{u},\nu),l]+(Df_2(\vec{x},\lambda)\tilde h_2(\vec{u},\nu)-Dh_2(\vec{u},\nu)g_2(\vec{u},\nu))\\&+T_1(\vec{u},\nu)(f_2(\vec{x},\lambda)+J_ch_2(\vec{u},\nu)]+(T_2(\vec{u},\nu)l(\vec{u})-Dh_2(\vec{u},\nu)L_2(\vec{u},\nu)),
-  \end{split}
-\end{align}
-where \(l(\vec{u})=\vec{J}_c\vec{u}\), \(\tilde h_2=[h_2;p_2]\), and \(\big[h_k,l\big]\) is Lie bracket defined as
-\begin{align}\label{eq:8}
-\big[h_k,l\big]=Dl\cdot h_k-Dh_k\cdot l.
-\end{align}
-Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq:7} and balancing every coefficient of power series, SNF of Hopf bifurcation is derived as
+Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}, SNF of Hopf bifurcation is derived with coefficients of original coordinate as
 
 \begin{align}\label{eq:9}
 &\frac{du}{d\tau}=\textrm{i}u+\vec{a}_{1101}\nu u+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})u^2\bar u+\textrm{i}\sum_{m=1}b_{2(2m+1)}u^{m+1}u^m.
@@ -225,11 +214,11 @@ Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq
 \begin{align}\label{eq:10}
 \begin{split}
 \frac{dR}{d\tau}=&\vec{a}_{1101}\nu R+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})R^3\\
-\frac{d\theta}{d\tau}=&1+b_{23}R^2.
+\frac{d\theta}{d\tau}=&1+b_{23}R^2,
 \end{split}
 \end{align}
 
-\noindent The stability of limit cycle can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) for codimension-1 case.
+\noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) for codimension-1 case.
 
 
 \subsection{Stabilizability of controller}
@@ -903,7 +892,7 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
 
 If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.\\
 
-SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics and solving \Eref{eq:7} at second and third order. SNF in polar coordinates is
+SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics. SNF in polar coordinates is
 \begin{align}\label{eq:2-11}
 \begin{split}
 \frac{dR}{d\tau}=&0.0075\nu R+(- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2)R^3\\
@@ -1213,7 +1202,7 @@ x}^{3}- \\&0.0000100\,i{   k_{\alpha 3}}\,{x}^{3}+ 0.0000000140\,i{{   k_{\alpha
 
 \section{Nonlinear transformations for SNF of  \Eref{eq:2-6} on the center manifold} \label{ap2}
 
-Reduced dynamics \Eref{rd1},\Eref{rd2} can be transformed to \Eref{eq:2-11} if we use \Eref{eq:6}, and the coefficients of nonlinear transformation can be computed by solving \Eref{eq:7}. From \asref{a1}, we assume $C_{1ijk}=C_{2ijk=0}$ for $i+j \geq 0$, and we can have
+Reduced dynamics \Eref{rd1},\Eref{rd2} can be transformed to \Eref{eq:2-11} if we use \Eref{eq:6}. From \asref{a1}, we assume $C_{1ijk}=C_{2ijk=0}$ for $i+j \geq 0$, and we can have
 
 \begin{align}
 C_{1101}=C_{2101}=C_{1011}=C_{2011}=0,
