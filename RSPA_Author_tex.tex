@@ -7,13 +7,8 @@
 
 \documentclass[openacc]{rsproca_new}%%%%where rsproca is the template name
 \usepackage{anyfontsize}
-\usepackage[british]{babel}         % Use British English
 \usepackage{amsmath}
 \usepackage{amssymb}                % AMS symbols package
-\usepackage{mathptmx}               % Times (Nimbus Roman)
-\usepackage{courier}                % Courier (Nimbus Mono)
-\usepackage{hyperref}               % For decent hyperlinks
-\usepackage{caption}                % Decent captions for floats
 \usepackage{microtype}              % Micro-typography for sorting out spacing
 \usepackage[utf8]{inputenc}
 \usepackage[numbers]{natbib}
@@ -99,7 +94,7 @@
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
 \makeatother
-\graphicspath{ {./images/} }
+\graphicspath{ {./Images/} }
 
 
 
@@ -132,40 +127,30 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%% Insert the texts which can accomdate on firstpage in the tag "fmtext" %%%%%
-
-\begin{fmtext}
-\section{Introduction}\label{int}
-Feedback control can be used as a tool to verify the dynamical
-\end{fmtext}
-
-%%%%%%%%%%%%%%% End of first page %%%%%%%%%%%%%%%%%%%%%
-
 \maketitle
-\noindent model or also as an identifying tool when it is noninvasive. Time delyaed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding noninvasive control target that stabilizes unstable periodic orbit of the uncontrolled system.
+
+\section{Introduction}\label{int}
+Feedback control can be used as a tool to verify the dynamical model or also as an identifying tool when it is noninvasive. Time delyaed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding noninvasive control target that stabilizes unstable periodic orbit of the uncontrolled system.
 
 CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of mechanical system experiments, parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
 Limit cycle oscillation (LCO) of self-excited system is also an essential subject for researchers. Hopf bifurcation would be the typical example of self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCOs are either stable(supercritical Hopf bifurcation) or unstable(subcritical Hopf bifurcation) close to Hopf bifurcation, and it can be analyzed analytically by simplifying the dynamical system \cite{yu2002simplest,ashwin1995numerical} or numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Subcritical Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels. Therefore, stabilizing unstable LCOs of subcritical Hopf bifurcation using feedback control is a critical subject for experimentalists. Stabilizability of the feedback controller for subcritical Hopf bifurcation problems using TBD was studied theoretically \cite{brown2011time,postlethwaite2013feedback}. However, there are several difficulties in real experiments using feedback control methods. For TBD, LCO cannot be stabilized if the period of the LCO is unknown. For CBC, input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. Let us say time-periodic control target $x^*(t)$ and time-periodic response $x(t)$ is discretized by $\Phi$ which is a projection of periodic orbit to first three fourier modes as
-
 \begin{align}
- \Phi(x^*(t))=[\hat A_0,\hat A_1,\hat B_1], \: \Phi(x(t))=[A_0,A_1,B_1],
+  \Phi(x^*(t))=[\hat A_0,\hat A_1,\hat B_1], \: \Phi(x(t))=[A_0,A_1,B_1],
 \end{align}
-
-\noindent then, zero problem can be defined at each fourier modes and solved by newton like methods for typical CBC applications that have a bijective input-output map. However, the response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of $[A_0,A_1,B_1]$ can be found with phase difference for Hopf bifurcation for every set of $[\hat A_0,\hat A_1,\hat B_1]$; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used. The aim of this paper is a theoretical explanation of stabilizing feedback control of Hopf bifurcation using CBC and developing an effective scheme that is applicable to experimental bifurcation analysis.
+then, zero problem can be defined at each fourier modes and solved by newton like methods for typical CBC applications that have a bijective input-output map. However, the response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of $[A_0,A_1,B_1]$ can be found with phase difference for Hopf bifurcation for every set of $[\hat A_0,\hat A_1,\hat B_1]$; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used. The aim of this paper is a theoretical explanation of stabilizing feedback control of Hopf bifurcation using CBC and developing an effective scheme that is applicable to experimental bifurcation analysis.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed for a dynamical system that has small frequency variance while multiple measurements of phase-locked periodic orbits are taken with fixed amplitude of control target. In the fourth section, the proposed CBC scheme is applied experimentally to flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
 
 \section{Control based continuation (CBC)}\label{CBC}
+
 Let us say proportional derivative control is applied to some dynamical system and control force $\Gamma(t)$ is
-
 \begin{align}
-\Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
+  \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
 \end{align}
-
-\noindent where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes. This projection gives discretized fixed point problem with $2q+1$ equations. Fixed point problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We use proportional derivative control in this research. However, CBC scheme is not restricted to only proportional derivative control.
+where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes. This projection gives discretized fixed point problem with $2q+1$ equations. Fixed point problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We use proportional derivative control in this research. However, CBC scheme is not restricted to only proportional derivative control.
 
 Stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and a scheme to define a zero problem from the input-output map in the next section.
 
@@ -173,80 +158,63 @@ Stabilizing unstable LCO with CBC is not simple because of the complexity of the
 
 
 \section{Stablizing control near the Hopf bifurcation}\label{SNH}
+
 Simplifying the dynamical system using normal form is the most popular way to study the bifurcation problem analytically. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and unfolding parameter rescaling to discuss the stabilizability of the controller.
 
 \subsection{Simplest normal form of Hopf bifurcation}\label{SNF}
+
 Let us consider an autonomous nonlinear parameter-dependent dynamical system that has generic Hopf bifurcation at \(\vec{\lambda}=0\),
-
 \begin{align}\label{eq:1}
-    \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
+  \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
 \end{align}
-
-
-\noindent where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter. We assume \(\vec{F}(0)=0\) and \(\vec{F}\) is a \(C^r\) function with \(r>3\).
-\Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
-
-
+where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter. We assume \(\vec{F}(0)=0\) and \(\vec{F}\) is a \(C^r\) function with \(r>3\). \Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
 \begin{align}\label{eq:2}
   \begin{split}
     \dot{\vec{x}} =\vec{J}_c \vec{x} + \vec{f}(\vec{x},\vec{y},\lambda)\\
     \dot{\vec{y}} =\vec{J}_s \vec{y} +\vec{g}(\vec{x},\vec{y},\lambda)
   \end{split}
 \end{align}
-
-\noindent where \(\vec{x}=[x;\bar{x}]\in \complex^2\) is center subspace with associated Jordan matrix \(\vec{J}_c\) having diagonal term \(\pm\textrm{i}\) and \(\vec{y}\in \complex^{n-2}\) is stable subspace with it's associated Jordan matrix \(\vec{J}_s\) of Jacobian of \(\vec{F}(\vec{z})\) at \(\vec{z}=0\). \(\vec{f}\) and \(\vec{g}\) are \(C^r\) functions with \(\vec{f}(0,0)=0\), \(D\vec{f}(0,0)=0\) and \(\vec{g}(0,0
-)=0\), \(D\vec{g}(0,0)=0\). Centermanifold exists for dynamical system \Eref{eq:2} for small  \(\|\vec{x}\|\) which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed \(\pm\textrm{i}\) for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include \(\dot\lambda=0\) to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small \(\|\lambda\|\)  \cite{kuznetsov2013elements}. power series of centermanifold \(\vec{H}(\vec{x},\lambda)\) can be computed recursively by solving
-
+where \(\vec{x}=[x;\bar{x}]\in \complex^2\) is center subspace with associated Jordan matrix \(\vec{J}_c\) having diagonal term \(\pm\textrm{i}\) and \(\vec{y}\in \complex^{n-2}\) is stable subspace with it's associated Jordan matrix \(\vec{J}_s\) of Jacobian of \(\vec{F}(\vec{z})\) at \(\vec{z}=0\). \(\vec{f}\) and \(\vec{g}\) are \(C^r\) functions with \(\vec{f}(0,0)=0\), \(D\vec{f}(0,0)=0\) and \(\vec{g}(0,0)=0\), \(D\vec{g}(0,0)=0\). Centermanifold exists for dynamical system \Eref{eq:2} for small  \(\|\vec{x}\|\) which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed \(\pm\textrm{i}\) for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include \(\dot\lambda=0\) to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small \(\|\lambda\|\)  \cite{kuznetsov2013elements}. power series of centermanifold \(\vec{H}(\vec{x},\lambda)\) can be computed recursively by solving
 \begin{align}\label{eq:3}
     D\vec{H}({\vec{\hat{x})}}(\vec{\hat{J}}_c\vec{\hat{x}}+\vec{f}(\vec{\hat{x}},\vec{H}(\vec{\hat{x}}))) =\vec{J}_s \vec{H}(\vec{\hat{x}})-\vec{g}(\vec{\hat{x}},\vec{H}(\vec{\hat {x}}))
 \end{align}
-
-\noindent at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\vec{\hat{J}}_c\) is the extended Jordan matrix which zero eigenvalue is added to \(\vec{J}_c\) \cite{bi1999symbolic}. Then, we can compute the reduced dynamics on the centermanifold as a power series which will have a form as
-
+at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\vec{\hat{J}}_c\) is the extended Jordan matrix which zero eigenvalue is added to \(\vec{J}_c\) \cite{bi1999symbolic}. Then, we can compute the reduced dynamics on the centermanifold as a power series which will have a form as
 \begin{align}\label{eq:4}
   \begin{split}
     {}&\dot{x} =\textrm{i} x+\sum_k f_k(x,\bar{x},\lambda)\\
     ,\textrm{where} \; & f_k=\sum_{j+l+m=k}(\vec{a}_{1jlm}+\textrm{i}\vec{a}_{2jlm})x^j\bar{x}^l\lambda^m.
   \end{split}
 \end{align}
-
-\noindent Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
+Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
 Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Unlike the dynamical system without perturbation parameters, SNF cannot be computed using only near identity transformation. P.Yu\cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
-
 \begin{align}\label{eq:5}
-\begin{split}
-&\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
-\textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k.
-\end{split}
+  \begin{split}
+    &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
+    \textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k.
+  \end{split}
 \end{align}
-
-\noindent Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by following near identity transformation
+Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by following near identity transformation
 \(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\),
-
 \begin{align}\label{eq:6}
-\begin{split}
-h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
-t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}[(u+\bar{u})]^j\nu^m\Big)\tau,\\
-\lambda &=\nu+\sum_{j=2}p_j \nu^j.
-\end{split}
+  \begin{split}
+    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
+    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}[(u+\bar{u})]^j\nu^m\Big)\tau,\\
+    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
+  \end{split}
 \end{align}
-
-\noindent Coefficients of \Eref{eq:6} can be computed recursively by solving the following equations \cite{yu2002simplest}:
-
+Coefficients of \Eref{eq:6} can be computed recursively by solving the following equations \cite{yu2002simplest}:
 \begin{align}\label{eq:7}
-\begin{split}
-g_2(\vec{u},\nu) &=f_2(\vec{x},\lambda)+[h_2(\vec{u},\nu),l(\vec{u})]+(T_1(\vec{u},\nu)l(\vec{u})-Dh_1(\vec{u},\nu) L_2(\vec{u},\nu)),\\
-g_3(\vec{u},\nu) &=f_3(\vec{x},\lambda)+[h_3(\vec{u},\nu),l]+(Df_2(\vec{x},\lambda)\tilde h_2(\vec{u},\nu)-Dh_2(\vec{u},\nu)g_2(\vec{u},\nu))\\&+T_1(\vec{u},\nu)(f_2(\vec{x},\lambda)+J_ch_2(\vec{u},\nu)]+(T_2(\vec{u},\nu)l(\vec{u})-Dh_2(\vec{u},\nu)L_2(\vec{u},\nu)),
-\end{split}
+  \begin{split}
+    g_2(\vec{u},\nu) &=f_2(\vec{x},\lambda)+[h_2(\vec{u},\nu),l(\vec{u})]+(T_1(\vec{u},\nu)l(\vec{u})-Dh_1(\vec{u},\nu) L_2(\vec{u},\nu)),\\
+    g_3(\vec{u},\nu) &=f_3(\vec{x},\lambda)+[h_3(\vec{u},\nu),l]+(Df_2(\vec{x},\lambda)\tilde h_2(\vec{u},\nu)-Dh_2(\vec{u},\nu)g_2(\vec{u},\nu))\\&+T_1(\vec{u},\nu)(f_2(\vec{x},\lambda)+J_ch_2(\vec{u},\nu)]+(T_2(\vec{u},\nu)l(\vec{u})-Dh_2(\vec{u},\nu)L_2(\vec{u},\nu)),
+  \end{split}
 \end{align}
-
-\noindent where \(l(\vec{u})=\vec{J}_c\vec{u}\), \(\tilde h_2=[h_2;p_2]\), and \(\big[h_k,l\big]\) is Lie bracket defined as
+where \(l(\vec{u})=\vec{J}_c\vec{u}\), \(\tilde h_2=[h_2;p_2]\), and \(\big[h_k,l\big]\) is Lie bracket defined as
 \begin{align}\label{eq:8}
 \big[h_k,l\big]=Dl\cdot h_k-Dh_k\cdot l.
 \end{align}
-
-\noindent Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq:7} and balancing every coefficient of power series, SNF of Hopf bifurcation is derived as
+Eliminating noncritical terms by applying \Eref{eq:6} transformation to \Eref{eq:7} and balancing every coefficient of power series, SNF of Hopf bifurcation is derived as
 
 \begin{align}\label{eq:9}
 &\frac{du}{d\tau}=\textrm{i}u+\vec{a}_{1101}\nu u+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})u^2\bar u+\textrm{i}\sum_{m=1}b_{2(2m+1)}u^{m+1}u^m.
@@ -456,7 +424,7 @@ $S_V$ is constant frequency family of stable phase locked periodic orbit if $\va
 
 Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable and $u_2 \in S_V$ for some constant frequency $S_v$. Then, CBC scheme for this type of dynamical system can be summarized as \Fref{f:1}, where $\Delta$ is step size of $\hat A$ and $\delta$ is the zero tolerance of $\Xi$ for finding a noninvasive periodic solution.
 
-\begin{figure}[!ht]
+\begin{figure}
 \tikzstyle{decision} = [diamond, draw, fill=blue!20,
     text width=7em, text badly centered, inner sep=0pt, minimum height=3em]
 \tikzstyle{decision2} = [diamond, draw, fill=blue!20,
@@ -511,7 +479,7 @@ In this section, we show scheme developed in \Sref{SNH} can be applied to a real
 \subsection{Experiment setup}\label{setup}
 The experiment was performed on flutter rig with a NACA-0015 wing profile \cite{jacobs1933characteristics}. The profile moves in two degrees of freedom, heave, and pitch. Coil springs are installed to add linear stiffness to the heave and pitch motion, and spring plate is installed to add nonlinearity on the pitch stiffness. Measurements are taken at shaft with digital encoder for pitch and heave motion was measured from laser displacement sensor. Data acquisition and real-time control were performed with Beaglebone Black and real-time controller \cite{rtc2}. Control force was applied to heave motion to stabilize unstable LCO with APS Electro-Seis Shaker and schematics of a configuration of the experiment and picture of the rig is presented in \Fref{f:rig}.
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
   \begin{subfigure}[b]{0.6\linewidth}
     \includegraphics[width=\linewidth]{flutter_rig.eps}
@@ -531,7 +499,7 @@ Open-loop tests are performed initially to investigate the dynamics of the syste
 To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit was taken with a different amplitude of target coefficient $\hat A$. Therefore, we assume that the measured phase-locked solution of this system is an element of constant frequency family of stable phase-locked solution. Stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=30pt,xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Amplitude of control target ($m$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -539,24 +507,24 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
   \nextgroupplot[title=(a),ylabel={Frequency ($Hz$)},y label style={at={(-0.1,0.5)}},legend style={at={(0.35,0.98)}},ymin=2,ymax=3,every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt}]
 
   \addplot [mark=o,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data4-1.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-1.csv};
 
   \addplot [mark=triangle,color=red]
-        table [x=a, y=c, col sep=comma] {./data/Data4-2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-2.csv};
 
   \addplot [mark=square,color=green]
-        table [x=a, y=c, col sep=comma] {./data/Data4-3.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4-3.csv};
   %Here the blue parabloa is defined
   \nextgroupplot[title=(b),ylabel={Control error $\Xi$ ($m$)},y label style={at={(-0.1,0.5)}},every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt},ymax=0.005]
 
   \addplot [mark=o,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data4-1.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-1.csv};
 
   \addplot [mark=triangle,color=red]
-        table [x=a, y=b, col sep=comma] {./data/Data4-2.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-2.csv};
 
   \addplot [mark=square,color=green]
-        table [x=a, y=b, col sep=comma] {./data/Data4-3.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4-3.csv};
   %Here the blue parabloa is defined
 
 
@@ -571,48 +539,48 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 \noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off. \\
 Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the unfolding parameter of the Hopf bifurcation.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.9,0.9)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=3 by 2,every plot/.style={xmin=0,xmax=2},xlabels at=edge bottom,ylabels at=edge left,vertical sep=30pt,horizontal sep=20pt,},width=5.0cm,height=3.5cm,xlabel={Time (sec)},ylabel={Heave (m)},y label style={at={(-0.2,0.5)}},x label style={at={(0.5,-0.2)}}]
 
   \nextgroupplot[title=(a),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data.csv};\label{q1}
+        table [x=a, y=b, col sep=comma] {./Data/Data.csv};\label{q1}
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=c, col sep=comma] {./data/Data.csv};\label{q2}
+      table [x=a, y=c, col sep=comma] {./Data/Data.csv};\label{q2}
   \nextgroupplot[title=(b),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=d, col sep=comma] {./data/Data.csv};
+        table [x=a, y=d, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=e, col sep=comma] {./data/Data.csv};
+      table [x=a, y=e, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(c),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=f, col sep=comma] {./data/Data.csv};
+        table [x=a, y=f, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=g, col sep=comma] {./data/Data.csv};
+      table [x=a, y=g, col sep=comma] {./Data/Data.csv};
 
   \nextgroupplot[title=(d),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=h, col sep=comma] {./data/Data.csv};
+        table [x=a, y=h, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=i, col sep=comma] {./data/Data.csv};
+      table [x=a, y=i, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(e),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=j, col sep=comma] {./data/Data.csv};
+        table [x=a, y=j, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=k, col sep=comma] {./data/Data.csv};
+      table [x=a, y=k, col sep=comma] {./Data/Data.csv};
   \nextgroupplot[title=(f),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=l, col sep=comma] {./data/Data.csv};
+        table [x=a, y=l, col sep=comma] {./Data/Data.csv};
 
   \addplot [no marks,color=red,dashed]
-      table [x=a, y=m, col sep=comma] {./data/Data.csv};
+      table [x=a, y=m, col sep=comma] {./Data/Data.csv};
   \end{groupplot}
   \end{tikzpicture}
   \centering
@@ -621,19 +589,19 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
 \end{figure}
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.9)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=1 by 2,every plot/.style={xmin=0,xmax=7.0},xlabels at=edge bottom,ylabels at=edge left,vertical sep=30pt},width=13cm,height=3.8cm,xlabel={Time (sec)},ylabel={Heave (m)},y label style={at={(-0.04,0.5)}},x label style={at={(0.5,-0.2)}}]
 
   \nextgroupplot[title=(a),ymin=-3.5e-2,ymax=3.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data2.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data2.csv};
 
 
   \nextgroupplot[title=(b),ymin=-1.5e-2,ymax=1.5e-2]
   \addplot [no marks,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data2.csv};
 
   \end{groupplot}
   \end{tikzpicture}
@@ -643,7 +611,7 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
 \end{figure}
 
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=32pt,every plot/.style={xmin=14,xmax=18},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},	scatter/classes={%
@@ -771,7 +739,7 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
   \includegraphics[width=8cm]{flutter_diagram.eps}
   \put(-215,87){$\alpha$}
@@ -850,7 +818,7 @@ $x_\alpha$ & 0.24 & & \\
 
 \noindent The identified linearized model can be verified by comparing flutter speed and flutter frequency obtained from CBC results. If we use \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, we can estimate the flutter speed from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=14,xmax=18.5},xlabels at=edge bottom,vertical sep=30pt},width=7cm,height=7cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -903,7 +871,7 @@ $x_\alpha$ & 0.24 & & \\
 
 If we see the computed eigenvalues of the Jacobian of the identified linearized system (\Fref{f:7}), the comparison between the estimated values from the model and measured values is possible. Note that two eigenvalues with zero imaginary part is neglected in \Fref{f:7} which are unable to measure during the zero wind speed. Estimated futter speed from the model is 17.96 $m/s$ and measured futter speed is 17.89 $m/s$. Estimated futter frequency from the model is 2.46 $Hz$ measured flutter frequency is 2.51 $Hz$, which is quite close enough to say identified linearized dynamical model is sufficiently accurate.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=0,xmax=25},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
@@ -911,17 +879,17 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
   \nextgroupplot[title=(a),ylabel={Real eigenvalue},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data3.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data3.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data3.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data3.csv};
   \nextgroupplot[title=(b),ylabel={Imaginary Eigenvalue},y label style={at={(-0.12,0.5)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data4.csv};
+        table [x=a, y=b, col sep=comma] {./Data/Data4.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data4.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data4.csv};
 
   \end{groupplot}
 
@@ -933,7 +901,7 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
 
 \subsection{Parameter identification of the nonlinear model}\label{nonlinear}
 
-If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
+If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.\\
 
 SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics and solving \Eref{eq:7} at second and third order. SNF in polar coordinates is
 \begin{align}\label{eq:2-11}
@@ -952,10 +920,10 @@ R=\frac{0.0075\nu}{- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{
 \noindent We define prediction error of LCO amplitude by
 
 \begin{align}\label{eq:2-13}
-\hat{V}(\theta_n)=\sum_M (R(\nu_M,\theta_n)-R_M)^2,
+\hat{V}(\theta_n)=\sum_M (R(\nu_M,\theta_n)-R_m)^2,
 \end{align}
 
-\noindent where $M$ is index of measurement points of CBC, $R_M$ is measured amplitude of LCO, and $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ is vector of unknown nonlinear parameters. Note that normal form theory is valid only at unstable LCOs since topological equivalence cannot be provided by nonlinear transformations \Eref{eq:6} after the fold point; therefore, only unstable LCO results are used. These parameters can be estimated similarly with linearized system identification by
+\noindent where $M$ is index of measurement points of CBC, $R_m$ is measured amplitude of LCO, and $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ is vector of unknown nonlinear parameters. Note that normal form theory is valid only at unstable LCOs since topological equivalence cannot be provided by nonlinear transformations \Eref{eq:6} after the fold point; therefore, only unstable LCO results are used. These parameters can be estimated similarly with linearized system identification by
 
 \begin{align}\label{eq:2-14}
 \begin{split}
@@ -964,7 +932,7 @@ S=&- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2,
 \end{split}
 \end{align}
 
-\noindent where $S>0$ is the constraint to keep the type of Hopf bifurcation to subcritical which is our experimental case. Solving \Eref{eq:2-14}, we have
+\noindent where $S>0$ is the constraint to keep the type of Hopf bifurcation to subcritical which is our experimental case. Solving \Eref{eq:2-14}, we heave
 
 \begin{align}\label{eq:2-15}
 k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
@@ -972,7 +940,7 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 
 \noindent For the validation of the results, we compare estimated amplitude via numerical continuation, normal form, and measured amplitude in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes}. Measured heave amplitude and computed heave amplitude from the numerical continuation is in good agreement. Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model and the inaccuracy of the normal form far from the Hopf point. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model, and accuracy of the normal form can be increased by taking higher-order approximation. However, improving the accuracy of the identified model is not the scope of this paper. Also, the identified model show poor agreement in the stable branch of LCO with measurement results, and the reason is not identified yet, which we leave it for future research.
 
-\begin{figure}[!ht]
+\begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
   \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=13.5,xmax=18,ymin=0},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},scatter/classes={%
@@ -982,10 +950,10 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
   \nextgroupplot[title=(a),ylabel={Heave amplitude ($m$)},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./data/Data_8-1.csv};\label{p1}
+        table [x=a, y=b, col sep=comma] {./Data/Data_8-1.csv};\label{p1}
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=b, col sep=comma] {./data/Data_8-2.csv};\label{p2}
+        table [x=a, y=b, col sep=comma] {./Data/Data_8-2.csv};\label{p2}
 
   \addplot [only marks,color=blue,mark size=2pt%
 	]
@@ -1009,10 +977,10 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
   \nextgroupplot[title=(b),ylabel={Pitch amplitude ($rad$)},y label style={at={(-0.12,0.5)}}]
 
   \addplot [no marks,color=blue]
-        table [x=a, y=c, col sep=comma] {./data/Data_8-1.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data_8-1.csv};
   %Here the blue parabloa is defined
   \addplot [no marks,color=red,dashed]
-        table [x=a, y=c, col sep=comma] {./data/Data_8-2.csv};
+        table [x=a, y=c, col sep=comma] {./Data/Data_8-2.csv};
 
   \addplot [scatter,only marks,%
 		scatter src=explicit symbolic]
