@@ -133,29 +133,52 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 Limit cycle oscillation (LCO) of the self-excited system is an essential subject for researchers. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCOs are either stable(supercritical Hopf bifurcation) or unstable(subcritical Hopf bifurcation) close to Hopf bifurcation. Specifically, subcritical Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} would be a devastating example of subcritical Hopf bifurcation. Analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical  continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Therefore, extracting dynamical features from the experimental results and building a robust mathematical model, well known as system identification, would interest researchers in various fields working on dynamical systems with Hopf bifurcation.
 
-Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well suited for problems with bifurcation behavior. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental} modal analysis is utilized to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical,thothadri2005nonlinear}. However, measurement of unstable LCO, which can extract various properties of the dynamical system if measured, is impossible in experiments without stabilizing the LCO.
+Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well applicable to problems with bifurcation behavior \cite{thothadri2005nonlinear}. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is utilized to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}. However, unstable LCOs were not measured in other studies of system identification of dynamical systems with bifurcation behavior. Measurement of unstable LCO can extract various properties of the dynamical system; however, it is impossible to measure in experiments without stabilizing the LCO.
 
-Feedback control can be used as a tool to stabilize the unstable periodic response of the dynamical system when it is noninvasive. Time delayed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system.
-
-CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of mechanical system experiments, parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
+Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time delayed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
-Stabilizability of the feedback controller for subcritical Hopf bifurcation problems using TBD was studied theoretically \cite{brown2011time,postlethwaite2013feedback}. However, there are several difficulties in real experiments using feedback control methods. For TBD, LCO cannot be stabilized if the period of the LCO is unknown. For CBC, input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. Let us say time-periodic control target $x^*(t)$ and time-periodic response $x(t)$ is discretized by $\Phi$ which is a projection of periodic orbit to first three fourier modes as
-\begin{align}
-  \Phi(x^*(t))=[\hat A_0,\hat A_1,\hat B_1], \: \Phi(x(t))=[A_0,A_1,B_1],
-\end{align}
-then, zero problem can be defined at each fourier modes and solved by newton like methods for typical CBC applications that have a bijective input-output map. However, the response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of $[A_0,A_1,B_1]$ can be found with phase difference for Hopf bifurcation for every set of $[\hat A_0,\hat A_1,\hat B_1]$; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used. The aim of this paper is a theoretical explanation of stabilizing feedback control of Hopf bifurcation using CBC and developing an effective scheme that is applicable to experimental bifurcation analysis.
+If we look close to stabilizing LCO for Hopf bifurcation, theoretical studies of stabilizing feedback control can be found from several studies. Specifically, stabilizability of the feedback controller for subcritical Hopf bifurcation problems using TBD was studied \cite{brown2011time,postlethwaite2013feedback}. However, there are difficulties in real experiments using feedback control methods in Hopf bifurcation problems. For TBD, LCO cannot be stabilized if the period of the LCO is unknown, and dealing with delayed signal produces many difficulties in practical applications. For CBC, the input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. The response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of response can be found with phase difference for Hopf bifurcation for every set of target coefficient; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used which will be discussed in detail in the later section. However, CBC scheme would be the easiest method to stabilize unstable LCOs in nonlinear dynamic experiments if the zero problem is well defined to find the noninvasive control. Hence, the aim of this paper is developing CBC scheme which is directly applicable to investigating features of a dynamical system with Hopf bifurcation by experiments.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed for a dynamical system that has small frequency variance while multiple measurements of phase-locked periodic orbits are taken with fixed amplitude of control target. In the fourth section, the proposed CBC scheme is applied experimentally to flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
 
 \section{Control based continuation (CBC)}\label{CBC}
 
-Let us say proportional derivative control is applied to some dynamical system and control force $\Gamma(t)$ is
+Numerical continuation tracks a branch of solution of the zero problem given by
+
+\begin{align} \label{eq:nc}
+  \vec{f}(\vec{x},\lambda)=0,
+\end{align}
+
+\noindent where $\vec{x}\in \real ^n$ is state variables and $\lambda \in \real ^m$ is control parameters. Function $\vec f$ can be defined for equilibrium or periodic solutions and can be tracked with well-established algorithms. However, two challenges should be solved to apply a similar idea to experimental bifurcation analysis. Firstly, it is not possible to measure all state variables of the dynamical system in general. Secondly, the steady-state of the dynamical system should be stable to be measured.
+
+In order to address these challenges, the feedback controller is utilized to stabilize the unstable periodic solutions of the dynamical system.
+For instance, feedback control signal $\Gamma(t)$ with proportional derivative control can be typically expressed as
+
 \begin{align}
   \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
 \end{align}
-where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes. This projection gives discretized fixed point problem with $2q+1$ equations. Fixed point problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We use proportional derivative control in this research. However, CBC scheme is not restricted to only proportional derivative control.
+
+\noindent where $x(t)$ is a scalar output of the system and $x^*(t)$ is a scalar control target. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can be solved by projecting $x^*(t)$ and $x(t)$ to first $2q+1$ fourier modes as
+
+\begin{align}
+  \begin{split}
+  x(t)=&A_0/2+  \sum_{j=1}^{q} A_j \cos (j\omega t)+B_j \sin (j\omega t),\\
+  x^*(t)=&A_0^*/2+  \sum_{j=1}^{q} A^*_j \cos (j\omega t)+B^*_j \sin (j\omega t).
+\end{split}
+\end{align}
+
+\noindent This projection gives discretized fixed point problem with $2q+1$ equations as
+
+\begin{align}\label{eq:zp}
+  \begin{split}
+  A_j=&A^*_j \; \textrm{for} \; j=0,1,\ldots,q\\
+  B_j=&B^*_j,\; \textrm{for} \; j=1,2,\ldots,q
+\end{split}
+\end{align}
+
+\noindent \Eref{eq:zp} allows us to define zero problem for multidimensional systems even if we are using scalar input $x^*(t)$ and output $x(t)$ when the feedback control is stabilizing the response. Fixed point problem of CBC can be solved using any zero problem solving methods such as Newton-like methods \cite{schilder2015experimental} or Picard iteration \cite{barton2013systematic}. Also, zero problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We also use proportional derivative control in this research as the example case. However, CBC scheme is not restricted to only proportional derivative control.
 
 Stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and a scheme to define a zero problem from the input-output map in the next section.
 
@@ -166,20 +189,52 @@ Stabilizing unstable LCO with CBC is not simple because of the complexity of the
 
 Simplifying the dynamical system using normal form is the most popular way to study the bifurcation problem analytically. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and unfolding parameter rescaling to discuss the stabilizability of the controller.
 
-\subsection{Simplest normal form of Hopf bifurcation}\label{SNF}
+\subsection{Hopf bifurcation and the normal form}\label{SNF}
 
 Let us consider an autonomous nonlinear parameter-dependent dynamical system that has generic Hopf bifurcation at \(\vec{\lambda}=0\),
 \begin{align}\label{eq:1}
   \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
 \end{align}
-where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter. We assume \(\vec{F}(0)=0\) and \(\vec{F}\) is a \(C^r\) function with \(r>3\). \Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
+where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter and we assume \(\vec{F}(0)=0\). For generic Hopf bifurcation, a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at $\lambda=0$, and family of LCO is created from the bifurcation point. Typical bifurcation diagram of generic codimension-1 Hopf bifurcation is presented in \Fref{f:TH}. \Fref{f:TH} (a) shows the supercritical case and Hopf bifurcation point and Hopf frequency is experimentally measurable since there is no stable LCO near the stable equilibrium $\lambda < 0$. However, as shown in \Fref{f:TH} (b), there is stable branch of LCO near the stable LCO which makes even small perturbations to stable equilibrium can be atrracted to stable LCO. Moreover, important dynamical features like Hopf bifurcation point and Hopf frequency cannot be measured experimentally if the unstable LCO is not stabilized for subcritical case.
+
+\begin{figure}
+  \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
+  \begin{tikzpicture}
+  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=-5,xmax=0.3,ymin=0,ymax=3},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={$\lambda$},x label style={at={(0.5,-0.1)}},scatter/classes={%
+  		a={mark=*,mark size=2pt,blue},%
+  		b={mark=o,mark size=2pt,red}},legend style={at={(0.33,0.95)}}]
+
+  \nextgroupplot[title=(a),ylabel={Amplitude of LCO},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}},xmin=-0.3,xmax=5]
+
+  \addplot [no marks,color=blue]
+        table [x=d, y=b, col sep=comma] {./Data/Data_10-1.csv};\label{ps}
+  %Here the blue parabloa is defined
+  \addplot [no marks,color=red,dashed]
+        table [x=d, y=b, col sep=comma] {./Data/Data_10-2.csv};\label{pu}
+
+  \nextgroupplot[title=(b),ylabel={Amplitude of LCO},y label style={at={(-0.05,0.5)}}]
+
+  \addplot [no marks,color=blue]
+        table [x=a, y=b, col sep=comma] {./Data/Data_10-2.csv};
+  %Here the blue parabloa is defined
+  \addplot [no marks,color=red,dashed]
+        table [x=a, y=b, col sep=comma] {./Data/Data_10-1.csv};
+  \end{groupplot}
+  \end{tikzpicture}
+  \centering
+\caption{ Typical bifurcation diagram of Hopf bifurcation. (a) Supercritical (b) Subcritical. (\ref{ps}) is stable LCO, (\ref{pu}) is unstable LCO.}
+\label{f:TH}
+\end{figure}
+
+To simpify the dynamics near the Hopf bifurcation, \Eref{eq:1} can be transformed to Jordan normal form as a partioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
 \begin{align}\label{eq:2}
   \begin{split}
     \dot{\vec{x}} =\vec{J}_c \vec{x} + \vec{f}(\vec{x},\vec{y},\lambda)\\
     \dot{\vec{y}} =\vec{J}_s \vec{y} +\vec{g}(\vec{x},\vec{y},\lambda)
   \end{split}
 \end{align}
-where \(\vec{x}=[x;\bar{x}]\in \complex^2\) is center subspace with associated Jordan matrix \(\vec{J}_c\) having diagonal term \(\pm\textrm{i}\) and \(\vec{y}\in \complex^{n-2}\) is stable subspace with it's associated Jordan matrix \(\vec{J}_s\) of Jacobian of \(\vec{F}(\vec{z})\) at \(\vec{z}=0\). \(\vec{f}\) and \(\vec{g}\) are \(C^r\) functions with \(\vec{f}(0,0)=0\), \(D\vec{f}(0,0)=0\) and \(\vec{g}(0,0)=0\), \(D\vec{g}(0,0)=0\). Centermanifold exists for dynamical system \Eref{eq:2} for small  \(\|\vec{x}\|\) which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed \(\pm\textrm{i}\) for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include \(\dot\lambda=0\) to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small \(\|\lambda\|\)  \cite{kuznetsov2013elements}. power series of centermanifold \(\vec{H}(\vec{x},\lambda)\) can be computed recursively by solving
+where $\vec{x}=[x;\bar{x}]\in \complex^2$ is center subspace with associated Jordan matrix $\vec{J}_c$ having diagonal term $\pm\textrm{i}$ and $\vec{y}\in \complex^{n-2}$ is stable subspace with it's associated Jordan matrix $\vec{J}_s$ of Jacobian of $\vec{F}(\vec{z})$ at $\vec{z}=0$.
+$\vec{f}$ and $\vec{g}$ are functions with $\vec{f}(0,0)=0$, $D\vec{f}(0,0)=0$ and $\vec{g}(0,0)=0$, $D\vec{g}(0,0)=0$. Centermanifold exists for dynamical system \Eref{eq:2} for small  $\|\vec{x}\|$ which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed $\pm\textrm{i}$ for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include $\dot\lambda=0$ to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small $\|\lambda\|$  \cite{kuznetsov2013elements}. power series of centermanifold $\vec{H}(\vec{x},\lambda)$ can be computed recursively by solving
 \begin{align}\label{eq:3}
     D\vec{H}({\vec{\hat{x})}}(\vec{\hat{J}}_c\vec{\hat{x}}+\vec{f}(\vec{\hat{x}},\vec{H}(\vec{\hat{x}}))) =\vec{J}_s \vec{H}(\vec{\hat{x}})-\vec{g}(\vec{\hat{x}},\vec{H}(\vec{\hat {x}}))
 \end{align}
@@ -192,7 +247,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Unlike the dynamical system without perturbation parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
@@ -234,13 +289,13 @@ We will consider linear proportional derivative control acting on a single coord
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu}).
 \end{align}
 
-\noindent where, $\mu\in \real$ is an unfolding parameter, and we assume $z_{j+1}=\dot z_j$ for all odd $j$. To stabilize the unstable periodic orbit near the Hopf bifurcation point, we add a proportional derivative feed-back control to \Eref{eq:0}. Let us assume that the control force is applied in the direction of the one principle coordinates to \Eref{eq:0},
+\noindent where, $\mu\in \real$ is an unfolding parameter, and we assume $z_{j+1}=\dot z_j$ for all odd $j$. To stabilize the unstable periodic orbit near the Hopf bifurcation point, we add a proportional derivative feed-back control to \Eref{eq:0}. Let us assume that the control force is applied in the direction of the one principle coordinates to \Eref{eq:0} as
 
 \begin{align}\label{eq:11}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
 \end{align}
 
-\noindent where, $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $K_p$ is the proportional control gain, $K_d$ is the derivative control gain, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time periodic forcing $e_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
+\noindent where, $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $K_p$ is the proportional control gain, $K_d$ is the derivative control gain, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
 
 \begin{align}\label{eq:12}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
@@ -276,11 +331,7 @@ We will consider linear proportional derivative control acting on a single coord
     [x^*(t),\bar {x^*}(t)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
 \end{align}
 
-\noindent
-
-\begin{definition}\label{d1}
-\textbf{Noninvasive periodic solution} is a periodic solution of dynamical system where control force is zero.
-\end{definition}
+\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:13} where control force $\vec{e}_{j+1}(K_pz_j+K_d z_{j+1})$ is zero, noninvasive periodic solution of \Eref{eq:13} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates between the control target and the noninvasive periodic solution.
 
 \begin{lemma}\label{l1}
 $z(t)=\vec{\Sigma}^{-1}x^*(t)\vec{\Sigma}$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=p_c x^*(t)$.
@@ -325,7 +376,7 @@ z^*(t)=&p_cx^*(t)=p_cR_0e^{\textrm{i}\omega_0 t}.
 [x,\bar x]^T=\Psi_2(u,\bar u)=[h(u,\bar u,\nu_2),\bar h(u,\bar u,\nu_2)]^T.
 \end{align}
 
-\noindent Note that $\nu_2$ can be computed as $\nu_2=p(\lambda_2)$. Under \asref{a1}, $u_2(\tau)$ is a single harmonic oscillator which is phase locked with $\epsilon e^{\textrm{i}\omega_2\tau}$.
+\noindent Note that $\nu_2$ can be computed as $\nu_2=p(\lambda_2)$. Under \asref{a1}, $u_2(\tau)$ is a single harmonic oscillator which is phase locked with $\epsilon e^{\textrm{i}\omega_2\tau}$. Stability condition of noninvasive periodic solution can be derived as following lemma.
 
 \begin{lemma}\label{t1}
 Noninvasive periodic solution $u_2(\tau)$ is stable if the amplitude of the solution $R_2$ satisfies
@@ -389,34 +440,21 @@ z_{j+1}(t)=&-\dot\phi A(t)\sin{\phi}
 z^*(t)=&\hat A\cos{\phi}=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Big) \Big),
 \end{align}
 
-\noindent where $\hat A$ is the amplitude of the control target, if we update $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state, final steady-state solution is one of the stable phase-locked solution of \Eref{eq:18}. Note that $\epsilon=\epsilon(\hat A)$ can be rescaled from $\hat A$ in normal form coordinates. We cannot adjust the frequency of the target if we use this scheme; however, we make the finding noninvasive periodic solution problem solvable on a certain type of dynamical systems. First, we define the family of stable phase-locked periodic solutions by solutions of \Eref{eq:24} with $\hat A \in V$ on normal form coordinates, where $V \subset \real$ is some set containing small amplitude of control targets. Family of phase-locked periodic solutions with fixed $\epsilon(\hat A)$ lies on two-dimensional space $(R,\omega)$ consisting amplitude and frequency, which is a solution of \Eref{eq:24}. We can define the family of stable phase-locked solution as
+\noindent where $\hat A$ is the amplitude of the control target, if we update $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state, final steady-state solution is one of the stable phase-locked solution of \Eref{eq:18}. Note that $\epsilon=\epsilon(\hat A)$ can be rescaled from $\hat A$ in normal form coordinates. Now, we will show zero problem derived from input output map of forced Hopf bifurcation can be defined as a one-dimensional function of $\hat A$. First, we define the family of stable phase-locked periodic solutions by solutions of \Eref{eq:24} with fixed $\hat A$ on normal form coordinates. Family of phase-locked periodic solutions with fixed $\epsilon(\hat A)$ lies on two-dimensional space $(R,\omega)$ consisting amplitude and frequency, which is a solution of \Eref{eq:24}. We can define the family of stable phase-locked solution with fixed control target $S_{\hat A}$ as
 
-\begin{definition}\label{d2}
-Family of stable phase locked periodic solutions on $\hat A \in V$
-\begin{align}\label{eq:27}
-  \begin{split}
-S_{\hat A}=&\{\:(R,\omega)\in \real^2| P(R)=0;\:P_R(R)<0;\:\epsilon=\epsilon(\hat A)\},\\
-S_{V}=&\bigcup_{\hat A \in V} S_{\hat A}.
-\end{split}
+\begin{align}\label{eq:27-1}
+S_{\hat A}:=&\{\:(R,\omega)\in \real^2| P(R)=0;\:P_R(R)<0;\:\epsilon=\epsilon(\hat A)\}.
 \end{align}
-\end{definition}
 
-\noindent Note that experimentally measured phase-locked solution with fixed $\hat A$ is an element of $S_{\hat A}$, and we assume for $(R,\omega)\in S_{V}$, $R$ is a smooth function of $\omega$ and $\epsilon(\hat A)$. Based on our experimental observations, we define a certain type of $S_{V}$ that has small frequency variance while taking multiple sets of measurements with $\hat A \in V$, and we define this type of $S_{V}$ as
+\noindent Note that experimentally measured phase-locked solution with fixed $\hat A$ is an element of $S_{\hat A}$. However, there is an interesting characteristic of forced Hopf bifurcation, namely the narrow bandwidth band-pass filter. Golubitsky \cite{golubitsky2009feed} showed that the forced Hopf bifurcation could be used as a narrow bandwidth band-pass filter which utilizes the fact that forced response of Hopf bifurcation has a very high peak near the Hopf frequency. Also, Reit \cite{reit2014class} showed that resonance frequency depends on the amplitude of the forcing for Hopf bifurcation. Based on input-output relations of forced Hopf bifurcation and our experimental observations, we make the following assumption.
 
-\begin{definition}\label{d3}
-$S_V$ is constant frequency family of stable phase locked periodic orbit if $\varpi=\sup \{( \|\omega_a- \omega_b\| | \omega_a \in W_{\hat A}  \; and \;  \omega_b\in W_{\hat A}\}$ is sufficiently small for all $\hat A \in V$, where
+\begin{assumption}\label{a2}
+Phase locked response that frequency is far from resonance is attenuated and cannot be measured from the experiment. Moreover, measured output phase locked response with fixed $\hat A$ is response near resonance.
+\end{assumption}
 
-\begin{align}\label{eq:28}
-  \begin{split}
-&W_{\hat A}=\{\Omega(R,\omega)|(R,\omega) \in S_{\hat A}\},\\
-&\Omega(R,\omega):=\omega.
-\end{split}
-\end{align}
-\end{definition}
+\noindent  Under \asref{a2}, we can say amplitude of phase-locked periodic solution depends only on $\hat A$. Now, zero problem can be defined with simple input $\hat A$ output $A$ map by control error $\Xi=\hat A - A$. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k$ crosses zero for some $A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
 
-\noindent Golubitsky \cite{golubitsky2009feed} showed that maximum of $R(\omega)$ is bounded at fixed forcing amplitude; therefore, $R(\omega)$ is bounded in a very small interval at every fixed $\hat A \in V$ for constant frequency $S_V$. We assume that amplitude of phase-locked periodic solution depends only on forcing amplitude, i.e. $R=R(\epsilon(\hat A))$, for constant frequency $S_V$. Now zero problem can be defined with simple input $\hat A$ output $A$ map by control error $\Xi=\hat A - A$ for constant frequency $S_V$. We can say the controller is stabilizable for the noninvasive periodic solution and $u_2 \in S_V$ if the sequence of control error $\Xi_k$ crosses zero for some $A_k$ for constant frequency $S_v$.
-
-Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable and $u_2 \in S_V$ for some constant frequency $S_v$. Then, CBC scheme for this type of dynamical system can be summarized as \Fref{f:1}, where $\Delta$ is step size of $\hat A$ and $\delta$ is the zero tolerance of $\Xi$ for finding a noninvasive periodic solution.
+Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. This procedure to find zero error $\Xi=0$ can be summarized as \Fref{f:1}.
 
 \begin{figure}
 \tikzstyle{decision} = [diamond, draw, fill=blue!20,
@@ -428,7 +466,7 @@ Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, whi
 \tikzstyle{block2} = [rectangle, draw, fill=blue!20,
         text width=13em, text centered, rounded corners, minimum height=3em]
 \tikzstyle{block3} = [rectangle, draw, fill=blue!20,
-                text width=6em, text centered, rounded corners, minimum height=3em]
+                text width=8em, text centered, rounded corners, minimum height=3em]
 \tikzstyle{block4} = [rectangle, draw, fill=blue!20,
                 text width=4em, text centered, rounded corners, minimum height=3em]
 \tikzstyle{line} = [draw, -latex']
@@ -490,7 +528,7 @@ The experiment was performed on flutter rig with a NACA-0015 wing profile \cite{
 \subsection{Experiment results}\label{results}
 
 Open-loop tests are performed initially to investigate the dynamics of the system. Below the wind speed approximately 15 $m/sec$, equilibrium is stable and transient response ends with equilibrium state when the large perturbation is applied to equilibrium. However, above the wind speed approximately 15 $m/sec$, transient response ends with stable LCO when even small perturbation is applied to equilibrium. From this observation, we assume that the dynamical system has subcritical Hopf bifurcation and family of LCO has a fold at approximately around 15 $m/sec$.\\
-To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit was taken with a different amplitude of target coefficient $\hat A$. Therefore, we assume that the measured phase-locked solution of this system is an element of constant frequency family of stable phase-locked solution. Stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
+To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit were taken with a different amplitude of target coefficient $\hat A$. Therefore, can say \asref{a2} is reasonable and stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
 
 
 \begin{figure}
@@ -895,7 +933,7 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
 
 \subsection{Parameter identification of the nonlinear model}\label{nonlinear}
 
-If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.\\
+If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
 
 SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics. SNF in polar coordinates is
 \begin{align}\label{eq:2-11}
@@ -917,7 +955,7 @@ R=\frac{0.0075\nu}{- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{
 \hat{V}(\theta_n)=\sum_M (R(\nu_M,\theta_n)-R_m)^2,
 \end{align}
 
-\noindent where $M$ is index of measurement points of CBC, $R_m$ is measured amplitude of LCO, and $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ is vector of unknown nonlinear parameters. Note that normal form theory is valid only at unstable LCOs since topological equivalence cannot be provided by nonlinear transformations \Eref{eq:6} after the fold point; therefore, only unstable LCO results are used. These parameters can be estimated similarly with linearized system identification by
+\noindent where $M$ is index of measurement points of CBC, $R_M$ is measured amplitude of LCO, and $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ is vector of unknown nonlinear parameters. Note that only unstable LCO results are used since the centermanifold theory is only valid in low amplitude responses near equilibrium. These parameters can be estimated similarly with linearized system identification by
 
 \begin{align}\label{eq:2-14}
 \begin{split}
@@ -1000,7 +1038,7 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 \end{figure}
 
 \section{Conclusion}
-CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation.  Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if the response of the controlled system is an element of constant frequency family of phase-locked periodic solution and phase-locking between the control target and the response is forced by the real-time controller. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function.  Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model.
+CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller and resonace response is assumed. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model.
 
 To apply CBC to more general Hopf bifurcation problems, frequency of the phase-locked periodic solutions in \Eref{eq:26} should be controllable. Also, a methodology to decrease the influence of the measurement noise should be considered to increase the accuracy of the CBC results. \vskip6pt
 
@@ -1021,13 +1059,13 @@ To apply CBC to more general Hopf bifurcation problems, frequency of the phase-l
 \gdef\thesection{Appendix \Alph{section}}
 
 \section{Center manifold and reduced dynamics of \Eref{eq:2-6}} \label{ap1}
-Jordan normal form of \Eref{eq:2-6} can be derived as
+Equation should be transformed in the form of \Eref{eq:2} to compute the centermanifold of \Eref{eq:2-6}. Hence, linearization of \Eref{eq:2-6} should be transformed to Jordan normal form, and \Eref{eq:2-6} can be rewritten at $U=U_f$ as
 
 \begin{align} \label{A1}
-\dot X=JX+\vec{\Sigma}^{-1} \vec{N}_0(\vec{\Sigma} X),
+\dot X=\vec{J}X+\vec{\Sigma}^{-1} \vec{N}_0(\vec{\Sigma} X),
 \end{align}
 
-\noindent where, $\vec{\Sigma}$ is coordinate transformation matrix whose columns are eigenvectors of eigenvalues of $\vec{B}(U)$ and satisfies $\vec{J}=\vec{\Sigma}^{-1}\vec{B}(U)\vec{\Sigma}$
+\noindent where, $\vec{\Sigma}$ is coordinate transformation matrix whose columns are eigenvectors of eigenvalues of $\vec{B}(U_f)$ and satisfies $\vec{J}=\vec{\Sigma}^{-1}\vec{B}(U_f)\vec{\Sigma}$. Jordan normal form which has two purely imaginary, two complex conjugate, and two real eigenvlaues can be computed with the parameters given in \Tref{t2} as
 
 \begin{align}
 \vec{J}=
@@ -1038,10 +1076,10 @@ Jordan normal form of \Eref{eq:2-6} can be derived as
     0       & 0 & 0 & -3.22-16.43\textrm{i} & 0 & 0\\
     0       & 0 & 0 & 0 & -35.42 & 0\\
     0       & 0 & 0 & 0 & 0 & -5.4133\\
-\end{bmatrix},
+\end{bmatrix}.
 \end{align}
 
-\noindent Let $\vec{x}=[x,\bar x]^T$ be the centerspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed effective algorithm for solving coefficients recursively. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
+\noindent Let $\vec{x}=[x,\bar x]^T$ be the centerspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed recursive algorithm for solving coefficients recursively. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
 
 
 \begin{align}
@@ -1050,29 +1088,29 @@ Jordan normal form of \Eref{eq:2-6} can be derived as
   0.000117\,i ) { \mu}^{2}\bar {x}+ (  0.264- 1.02\,i ) \times\\
   &(  0.00000172\,i{  k_{\alpha 2}}+ 0.000000772\,{  k_{\alpha 2}} )  \mu\,{
   x}^{2}+ (  0.193+ 0.882\,i )  ( - 0.00000455\,{  k_{\alpha 2}
-  }- 0.00000315\,i{  k_{\alpha 2}} )  \mu\,x\bar {x}\\
-  &+(  0.0248+ 0.323\,i)
+  }\\
+  &- 0.00000315\,i{  k_{\alpha 2}} )  \mu\,x\bar {x}+(  0.0248+ 0.323\,i)
   (  0.0000000969\,i{  k_{\alpha 2}}+ 0.00000292\,{  k_{\alpha 2}}
-  )  \mu\,{\bar {x}}^{2}+ (  0.0635- 0.513\,i ) \times \\
-&  (
+  )  \mu\,{\bar {x}}^{2}+\\
+& (  0.0635- 0.513\,i )  (
   0.00000196\,{  k_{\alpha 3}}- 0.00000000226\,{{  k_{\alpha 2}}}^{2}- 0.000000654\,i
-  {  k_{\alpha 3}}- 0.00000000199\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ \\
-&  (
+  {  k_{\alpha 3}}-\\
+& 0.00000000199\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+   (
   3.77+ 1.30\,i )  (  0.00000262\,i{  k_{\alpha 3}}+ 0.00000000900
-  \,i{{  k_{\alpha 2}}}^{2}\-0.00000588\,{  k_{\alpha 3}}+ 0.0000000108\,{{  k_{\alpha 2}}}^{
+  \,i{{  k_{\alpha 2}}}^{2}\-0.00000588\,{  k_{\alpha 3}}\\&+ 0.0000000108\,{{  k_{\alpha 2}}}^{
   2} ) \times
-  {x}^{2}\bar {x}+ \\&(  0.0540+ 0.474\,i )  ( -
-  0.00000262\,i{  k_{\alpha 3}}- 0.00000000522\,i{{  k_{\alpha 2}}}^{2}+ 0.00000588\,
-  {  k_{\alpha 3}}-0.00000000588\,{{  k_{\alpha 2}}}^{2} )\\
-  &x{\bar {x}}^{2}+(
+  {x}^{2}\bar {x}+ (  0.0540+ 0.474\,i )  ( -
+  0.00000262\,i{  k_{\alpha 3}}- 0.00000000522\,i{{  k_{\alpha 2}}}^{2}+ \\
+  & 0.00000588\,
+  {  k_{\alpha 3}}-0.00000000588\,{{  k_{\alpha 2}}}^{2} )x{\bar {x}}^{2}+(
   0.0142+ 0.244\,i )  ( - 0.00000196\,{  k_{\alpha 3}}-
-  0.00000000274\,{{  k_{\alpha 2}}}^{2}- 0.00000000163\,i{{  k_{\alpha 2}}}^{2}+
-  \\&0.000000654\,i{  k_{\alpha 3}} ) {\bar {x}}^{3}- (  0.0202+ 0.0419\,i
-  )  \mu\,x- (  0.00325- 0.00293\,i )  \mu\,\bar {x}+ (
-  0.264- 1.02\,i ) \times \\& ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
-    k_{\alpha 2}} ) {x}^{2}+ (  0.193+ 0.882\,i )  (
-  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar {x}+\\&(0.0248+ 0.323\,i )  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i
-  {  k_{\alpha 2}} ) {\bar {x}}^{2},
+  \\&0.00000000274\,{{  k_{\alpha 2}}}^{2}- 0.00000000163\,i{{  k_{\alpha 2}}}^{2}+
+  0.000000654\,i{  k_{\alpha 3}} ) {\bar {x}}^{3}- (  0.0202+ 0.0419\,i
+  )  \mu\,x-\\& (  0.00325- 0.00293\,i )  \mu\,\bar {x}+ (
+  0.264- 1.02\,i ) \times  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
+    k_{\alpha 2}} ) {x}^{2}+ \\&(  0.193+ 0.882\,i )  (
+  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar {x}+(0.0248+ 0.323\,i )\times  \\&( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i
+ {  k_{\alpha 2}} ) {\bar {x}}^{2},
 \end{split}
 \end{align}
 \begin{align}
@@ -1082,29 +1120,29 @@ Jordan normal form of \Eref{eq:2-6} can be derived as
   ( - 0.00000163\,{k_{\alpha 2}}+\\
    &0.00000244\,i{k_{\alpha 2}} ) \mu\,{
   x}^{2}+ (  0.193- 0.882\,i )  ( - 0.00000551\,i{
-  k_{\alpha 2}}+ 0.000000118\,{k_{\alpha 2}} ) \mu\,x\bar x+ (  0.264+ 1.02\,i
+  k_{\alpha 2}}+ 0.000000118\,{k_{\alpha 2}} ) \mu\,x\bar x+\\& (  0.264+ 1.02\,i
   ) \times
-  \\&(  0.000000957\,{k_{\alpha 2}}+ 0.00000167\,i{k_{\alpha 2}}
-  ) \mu\,{\bar x}^{2}+ (  0.0142- 0.244\,i )  (
-  0.00000196\,{k_{\alpha 3}}+ 0.00000000243\,{{k_{\alpha 2}}}^{2}\\
-  &- 0.000000654\,i
-  {k_{\alpha 3}}+ 0.00000000209\,i{{k_{\alpha 2}}}^{2} ) {x}^{3}+ (
+  (  0.000000957\,{k_{\alpha 2}}+ 0.00000167\,i{k_{\alpha 2}}
+  ) \mu\,{\bar x}^{2}+ (  0.0142- 0.244\,i )\times \\
+  & (
+  0.00000196\,{k_{\alpha 3}}+ 0.00000000243\,{{k_{\alpha 2}}}^{2}- 0.000000654\,i
+  {k_{\alpha 3}}+ 0.00000000209\,i{{k_{\alpha 2}}}^{2} ) {x}^{3}+ \\
+  & (
   0.0540- 0.474\,i )  (  0.00000262\,i{k_{\alpha 3}}- 0.00000588
-  \,{k_{\alpha 3}}+ \\
-  &0.00000000379\,i{{k_{\alpha 2}}}^{2}+ 0.00000000691\,{{k_{\alpha 2}
+  \,{k_{\alpha 3}}+ 0.00000000379\,i{{k_{\alpha 2}}}^{2}+\\& 0.00000000691\,{{k_{\alpha 2}
   }}^{2} ) {x}^{2}\bar x+ (  3.77- 1.30\,i )  ( -
-  0.00000262\,i{k_{\alpha 3}}- \\&0.00000000749\,i{{k_{\alpha 2}}}^{2}+0.00000588\,
+  0.00000262\,i{k_{\alpha 3}}- 0.00000000749\,i{{k_{\alpha 2}}}^{2}+\\& 0.00000588\,
   {k_{\alpha 3}}- 0.0000000119\,{{k_{\alpha 2}}}^{2} ) x{\bar x}^{2}+ (
   0.0635+ 0.513\,i )  ( - 0.00000196\,{k_{\alpha 3}}+\\&
   0.00000000263\,{{k_{\alpha 2}}}^{2}+
   0.00000000146\,i{{k_{\alpha 2}}}^{2}+
   0.000000654\,i{k_{\alpha 3}} ) {\bar x}^{3}- (  0.00325+ 0.00293\,i
-  ) \mu\,x- \\&(  0.0202- 0.0419\,i ) \mu\,\bar x+(
+  ) \mu\,x- \\& (  0.0202- 0.0419\,i ) \mu\,\bar x+(
   0.0248- 0.323\,i ) \times
    ( - 0.0000163\,{k_{\alpha 2}}- 0.0000314\,i
-  {k_{\alpha 2}} ) {x}^{2}+(  0.193- 0.882\,i )\\& \times  (
+  {k_{\alpha 2}} ) {x}^{2}+\\&(  0.193- 0.882\,i ) \times  (
   0.0000320\,{k_{\alpha 2}}+ 0.0000634\,i{k_{\alpha 2}} ) x\bar x+
-   (  0.264
+  \\& (  0.264
   + 1.02\,i )  ( - 0.0000163\,{k_{\alpha 2}}- 0.0000314\,i{k_{\alpha 2}
   } ) {\bar x}^{2},
   \end{split}
@@ -1116,49 +1154,49 @@ Jordan normal form of \Eref{eq:2-6} can be derived as
   (  0.00000241\,i{  k_{\alpha 2}}+ \\&0.00000399\,{  k_{\alpha 2}} ) \mu\,{x
   }^{2}+ (  0.375- 0.0\,i )  ( - 0.0000156\,{  k_{\alpha 2}}-
   0.0000309\,i{  k_{\alpha 2}} ) \mu\,x\bar x+ (  0.240+ 0.180\,i
-  ) \times \\&(  0.00000469\,i{  k_{\alpha 2}}- 0.000000325\,{  k_{\alpha 2}}
+  ) \\& \times (  0.00000469\,i{  k_{\alpha 2}}- 0.000000325\,{  k_{\alpha 2}}
   ) \mu\,{\bar x}^{2}+ (  0.166- 0.186\,i )  (
-  0.00000196\,{  k_{\alpha 3}}+ 0.000000000962\,{{  k_{\alpha 2}}}^{2}\\
-  &- 0.000000654\,
+  0.00000196\,{  k_{\alpha 3}}+ \\
+  & 0.000000000962\,{{  k_{\alpha 2}}}^{2}- 0.000000654\,
   i{  k_{\alpha 3}}+ 0.000000000926\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ (
-  0.329- 0.123\,i )  (  0.00000262\,i{  k_{\alpha 3}}+\\&
+  0.329- 0.123\,i ) \times \\&(  0.00000262\,i{  k_{\alpha 3}}+
   0.00000000407\,i{{  k_{\alpha 2}}}^{2}-0.00000588\,{  k_{\alpha 3}}+ 0.00000000599
-  \,{{  k_{\alpha 2}}}^{2} ) {x}^{2}\bar x+ (  0.329+ 0.123\,i )
-  ( - 0.00000262\,i{  k_{\alpha 3}}\\&- 0.00000000438\,i{{  k_{\alpha 2}}}^{2}+0.00000588\,{  k_{\alpha 3}}- 0.00000000575\,{{  k_{\alpha 2}}}^{2} ) x{\bar x}^{2
-  }+ (  0.166+ 0.186\,i )  ( - 0.00000196\,{  k_{\alpha 3}}\\&-
-  0.00000000119\,{{  k_{\alpha 2}}}^{2}-0.000000000617\,i{{  k_{\alpha 2}}}^{2}+
+  \,{{  k_{\alpha 2}}}^{2} ) {x}^{2}\bar x+ (  0.329\\&+ 0.123\,i )
+  ( - 0.00000262\,i{  k_{\alpha 3}}- 0.00000000438\,i{{  k_{\alpha 2}}}^{2}+0.00000588\,{  k_{\alpha 3}}- 0.00000000575\,{{  k_{\alpha 2}}}^{2} ) \\& \times x{\bar x}^{2
+  }+ (  0.166+ 0.186\,i )  ( - 0.00000196\,{  k_{\alpha 3}}
+  0.00000000119\,{{  k_{\alpha 2}}}^{2}-0.000000000617\,i{{  k_{\alpha 2}}}^{2}+ \\&
   0.000000654\,i{  k_{\alpha 3}} ) {\bar x}^{3}- (  0.00186- 0.00128\,i
-  ) \mu\,x- \\&(  0.00186+ 0.00128\,i ) \mu\,\bar x+ (
-  0.240- 0.180\,i )  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
-    k_{\alpha 2}} ) {x}^{2}+ (  0.375- 0.0\,i ) \times \\&(
-  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+(  0.240
+  ) \mu\,x-(  0.00186+ 0.00128\,i ) \mu\,\bar x+ (
+  0.240- 0.180\,i ) \times  \\&( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
+    k_{\alpha 2}} ) {x}^{2}+ (  0.375- 0.0\,i )(
+  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+\\&(  0.240
   + 0.180\,i )  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
   k_{\alpha 2}} ) {\bar x}^{2},
   \end{split}
   \end{align}
   \begin{align}
   \begin{split}
-  y_4=&(  0.0000561- 0.0000151\,i ) {\mu}^{2}x+ (  0.0000561
-  + 0.0000151\,i ) {\mu}^{2}\bar x+ (  0.0976- 0.480\,i )
-  (  0.00000355\,i{  k_{\alpha 2}}+ \\&0.00000107\,{  k_{\alpha 2}} ) \mu\,{x
-  }^{2}+ (  2.46- 0.0\,i )  ( - 0.00000989\,i{  k_{\alpha 2}}-
-  0.00000502\,{  k_{\alpha 2}} ) \mu\,x\bar x+ (  0.0976+ 0.480\,i
+  y_4=&(  0.000056- 0.000015\,i ) {\mu}^{2}x+ (  0.000056
+  + 0.000015\,i ) {\mu}^{2}\bar x+ (  0.097- 0.48\,i )
+  (  0.0000035\,i{  k_{\alpha 2}}+ \\&0.00000107\,{  k_{\alpha 2}} ) \mu\,{x
+  }^{2}+ (  2.46- 0.0\,i )  ( - 0.0000099\,i{  k_{\alpha 2}}-
+  0.000005\,{  k_{\alpha 2}} ) \mu\,x\bar x+ (  0.097+ 0.48\,i
   ) \times \\&(  0.00000295\,i{  k_{\alpha 2}}+ 0.00000225\,{  k_{\alpha 2}}
-  ) \mu\,{\bar x}^{2}+ (  0.0444- 0.327\,i )  (
-  0.00000196\,{  k_{\alpha 3}}- 0.00000000292\,{{  k_{\alpha 2}}}^{2}- \\&0.000000654\,i
-  {  k_{\alpha 3}}+ 0.00000000504\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ (
-  0.349- 0.858\,i )  (  0.00000262\,i{  k_{\alpha 3}}- 0.00000588\,
+  ) \mu\,{\bar x}^{2}+ (  0.044- 0.33\,i )  (
+  0.00000196\,{  k_{\alpha 3}}- 0.0000000029\,{{  k_{\alpha 2}}}^{2}- \\&0.00000065\,i
+  {  k_{\alpha 3}}+ 0.000000005\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ (
+  0.35- 0.86\,i )  (  0.0000026\,i{  k_{\alpha 3}}- 0.00000588\,
   {  k_{\alpha 3}}+ \\&0.000000000884\,i{{  k_{\alpha 2}}}^{2}+ 0.0000000112\,{{  k_{\alpha 2}}}
   ^{2} ) {x}^{2}\bar x+ (  0.349+ 0.858\,i )  ( -
-  0.00000262\,i{  k_{\alpha 3}}- \\&0.0000000102\,i{{  k_{\alpha 2}}}^{2}+ 0.00000588\,{
-    k_{\alpha 3}}- 0.00000000419\,{{  k_{\alpha 2}}}^{2} ) x{\bar x}^{2}+ (
-  0.0444+ 0.327\,i )  ( - 0.00000196\,{  k_{\alpha 3}}-\\&
-  0.00000000384\,{{  k_{\alpha 2}}}^{2}+ 0.00000000436\,i{{  k_{\alpha 2}}}^{2}+
-  0.000000654\,i{  k_{\alpha 3}} ) {\bar x}^{3}+ (  0.00000808+ 0.000696
+  0.00000262\,i{  k_{\alpha 3}}- \\&0.00000001\,i{{  k_{\alpha 2}}}^{2}+ 0.0000059\,{
+    k_{\alpha 3}}- 0.0000000042\,{{  k_{\alpha 2}}}^{2} ) x{\bar x}^{2}+ (
+  0.044+ 0.33\,i )  ( - 0.000002\,{  k_{\alpha 3}}-\\&
+  0.0000000038\,{{  k_{\alpha 2}}}^{2}+ 0.0000000043\,i{{  k_{\alpha 2}}}^{2}+
+  0.00000065\,i{  k_{\alpha 3}} ) {\bar x}^{3}+ (  0.0000081+ 0.00069
   \,i ) \mu\,x+ \\&(  0.00000808- 0.000696\,i ) \mu\,\bar x+
   (  0.0976- 0.480\,i ) \times   ( - 0.0000163\,{  k_{\alpha 2}}-
-  0.0000314\,i{  k_{\alpha 2}} ) {x}^{2}+ (  2.46- 0.0\,i )\\&
-  \times (  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+(  0.0976+ 0.480\,i ) \times  ( - 0.0000163\,{  k_{\alpha 2}}-
+  0.0000314\,i{  k_{\alpha 2}} ) {x}^{2}+ 2.46\\&
+  \times (  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+(  0.0976+ 0.480\,i )\\& \times  ( - 0.0000163\,{  k_{\alpha 2}}-
   0.0000314\,i{  k_{\alpha 2}} ) {\bar x}^{2}.
   \end{split}
   \end{align}
@@ -1167,11 +1205,11 @@ Jordan normal form of \Eref{eq:2-6} can be derived as
 \begin{split}
 \dot x=&15.3 i  x- 0.125\,\bar x\mu- 0.0563\,i\bar x\mu- 0.000249
 \,{   k_{\alpha 2}}\,{\bar x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{\bar x}^{2}+ 0.115\,x\mu+
-0.0571\,ix\mu+ \\&0.000970\,i{   k_{\alpha 2}}\,x\bar x+ 0.000490\,{   k_{\alpha 2}}\,x\bar x-
-0.000249\,{   k_{\alpha 2}}\,{x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.00203
-\,\bar x{\mu}^{2}- 0.00453\,i\bar x{\mu}^{2}+ \\&0.00000233\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
-+ 0.0000381\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.0000000208\,{{   k_{\alpha 2}}}^{2}{\bar x}^{
-3}- 0.0000000176\,i{{   k_{\alpha 2}}}^{2}{\bar x}^{3}- \\&0.0000300\,{   k_{\alpha 3}}\,{\bar x}^{
+0.0571\,ix\mu+ \\&0.00097\,i{   k_{\alpha 2}}\,x\bar x+ 0.00049\,{   k_{\alpha 2}}\,x\bar x-
+0.00025\,{   k_{\alpha 2}}\,{x}^{2}- 0.00048\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.002
+\,\bar x{\mu}^{2}- 0.0045\,i\bar x{\mu}^{2}+ \\&0.0000023\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
++ 0.000038\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.00000002\,{{   k_{\alpha 2}}}^{2}{\bar x}^{
+3}- 0.000000017\,i{{   k_{\alpha 2}}}^{2}{\bar x}^{3}- \\&0.00003\,{   k_{\alpha 3}}\,{\bar x}^{
 3}+0.0000100\,i{   k_{\alpha 3}}\,{\bar x}^{3}+ 0.00223\,x{\mu}^{2}- 0.00415\,ix{
 \mu}^{2}+ 0.00000171\,{   k_{\alpha 2}}\,x\bar x\mu- \\&0.0000361\,i{   k_{\alpha 2}}\,x\bar x\mu-0.0000000508\,i{{   k_{\alpha 2}}}^{2}x{\bar x}^{2}- 0.0000000744\,{{   k_{\alpha 2}}}^{2}
 x{\bar x}^{2}- 0.0000401\,i{   k_{\alpha 3}}\,x{\bar x}^{2}+\\& 0.0000900\,{   k_{\alpha 3}}\,x{\bar x}^
@@ -1187,11 +1225,11 @@ x}^{2}\bar x+ 0.0000000236\,{{   k_{\alpha 2}}}^{2}{x}^{3}+\\&0.0000000140\,i{{
 \begin{align}\label{rd2}
 \begin{split}
 \dot {\bar x}=&- 15.3 i  \bar x+ 0.115\,\bar x\mu- 0.0571\,i\bar x\mu- 0.000249\,{   k_{\alpha 2}}\,{\bar x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{\bar x}^{2}- 0.125\,x\mu+
-0.0563\,ix\mu+\\& 0.000970\,i{   k_{\alpha 2}}\,x\bar x+ 0.000490\,{   k_{\alpha 2}}\,x\bar x-
-0.000249\,{   k_{\alpha 2}}\,{x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.00223
-\,\bar x{\mu}^{2}+ 0.00415\,i\bar x{\mu}^{2}+ \\&0.00000586\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
-+ 0.0000502\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.0000300\,{   k_{\alpha 3}}\,{\bar x}^{3}-
-0.0000000208\,{{   k_{\alpha 2}}}^{2}{\bar x}^{3}+ 0.0000100\,i{   k_{\alpha 3}}\,{\bar x}^{3}-\\&
+0.0563\,ix\mu+\\& 0.00097\,i{   k_{\alpha 2}}\,x\bar x+ 0.0005\,{   k_{\alpha 2}}\,x\bar x-
+0.00025\,{   k_{\alpha 2}}\,{x}^{2}- 0.00048\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.002
+\,\bar x{\mu}^{2}+ 0.0041\,i\bar x{\mu}^{2}+ \\&0.0000058\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
++ 0.00005\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.00003\,{   k_{\alpha 3}}\,{\bar x}^{3}-
+0.00000002\,{{   k_{\alpha 2}}}^{2}{\bar x}^{3}+ 0.00001\,i{   k_{\alpha 3}}\,{\bar x}^{3}-\\&
 0.0000000176\,i{{   k_{\alpha 2}}}^{2}{\bar x}^{3}+ 0.00203\,x{\mu}^{2}+ 0.00453\,
 ix{\mu}^{2}- 0.0000306\,{   k_{\alpha 2}}\,x\bar x\mu- 0.0000197\,i{   k_{\alpha 2}}\,x\bar x\mu
 \\&- 0.0000401\,i{   k_{\alpha 3}}\,x{\bar x}^{2}- 0.0000000508\,i{{   k_{\alpha 2}}}^{2}x{\bar x}^
