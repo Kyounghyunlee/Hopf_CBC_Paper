@@ -131,14 +131,16 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 \section{Introduction}\label{int}
 
-Limit cycle oscillation (LCO) of the self-excited system is an essential subject for researchers. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCOs are either stable(supercritical Hopf bifurcation) or unstable(subcritical Hopf bifurcation) close to Hopf bifurcation. Specifically, subcritical Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} would be a devastating example of subcritical Hopf bifurcation. Analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical  continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Therefore, extracting dynamical features from the experimental results and building a robust mathematical model, well known as system identification, would interest researchers in various fields working on dynamical systems with Hopf bifurcation.
+Limit cycle oscillation (LCO) of the self-excited system is an essential subject for researchers. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCO is either stable(supercritical Hopf bifurcation) or unstable(subcritical Hopf bifurcation) close to Hopf bifurcation. Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} and Facebook's Aquila UAV crash would be the devastating example of Hopf bifurcation.
+
+The scenario of Hopf bifurcation is theoretically well established and can be found in the standard dynamical system textbooks \cite{kuznetsov2013elements}, and analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Therefore, extracting dynamical features from the experimental results and building a robust mathematical model, well known as system identification, would interest researchers in various fields working on dynamical systems with Hopf bifurcation.
 
 Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well applicable to problems with bifurcation behavior \cite{thothadri2005nonlinear}. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is utilized to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}. However, unstable LCOs were not measured in other studies of system identification of dynamical systems with bifurcation behavior. Measurement of unstable LCO can extract various properties of the dynamical system; however, it is impossible to measure in experiments without stabilizing the LCO.
 
-Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time delayed feedback (TBD) \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of delayed feedback by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
+Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time-delayed feedback control \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of time-delayed feedback control by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
-If we look close to stabilizing LCO for Hopf bifurcation, theoretical studies of stabilizing feedback control can be found from several studies. Specifically, stabilizability of the feedback controller for subcritical Hopf bifurcation problems using TBD was studied \cite{brown2011time,postlethwaite2013feedback}. However, there are difficulties in real experiments using feedback control methods in Hopf bifurcation problems. For TBD, LCO cannot be stabilized if the period of the LCO is unknown, and dealing with delayed signal produces many difficulties in practical applications. For CBC, the input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. The response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of response can be found with phase difference for Hopf bifurcation for every set of target coefficient; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used which will be discussed in detail in the later section. However, CBC scheme would be the easiest method to stabilize unstable LCOs in nonlinear dynamic experiments if the zero problem is well defined to find the noninvasive control. Hence, the aim of this paper is developing CBC scheme which is directly applicable to investigating features of a dynamical system with Hopf bifurcation by experiments.
+If we look close to stabilizing LCO for Hopf bifurcation, theoretical studies of stabilizing feedback control can be found from several studies. Specifically, stabilizability of the feedback controller for subcritical Hopf bifurcation problems using time-delayed feedback control was studied \cite{brown2011time,postlethwaite2013feedback}. However, there are difficulties in real experiments using feedback control methods in Hopf bifurcation problems. For time-delayed feedback control, LCO cannot be stabilized if the period of the LCO is unknown, and dealing with delayed signal produces many difficulties in practical applications. For CBC, the input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. The response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of response can be found with phase difference for Hopf bifurcation for every set of target coefficient; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used which will be discussed in detail in the later section. However, CBC scheme would be the easiest method to stabilize unstable LCOs in nonlinear dynamic experiments if the zero problem is well defined to find the noninvasive control. Hence, the aim of this paper is developing CBC scheme which is directly applicable to investigating features of a dynamical system with Hopf bifurcation by experiments.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed for a dynamical system that has small frequency variance while multiple measurements of phase-locked periodic orbits are taken with fixed amplitude of control target. In the fourth section, the proposed CBC scheme is applied experimentally to flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
@@ -151,7 +153,7 @@ Numerical continuation tracks a branch of solution of the zero problem given by
   \vec{f}(\vec{x},\lambda)=0,
 \end{align}
 
-\noindent where $\vec{x}\in \real ^n$ is state variables and $\lambda \in \real ^m$ is control parameters. Function $\vec f$ can be defined for equilibrium or periodic solutions and can be tracked with well-established algorithms. However, two challenges should be solved to apply a similar idea to experimental bifurcation analysis. Firstly, it is not possible to measure all state variables of the dynamical system in general. Secondly, the steady-state of the dynamical system should be stable to be measured.
+\noindent where $\vec{x}\in \real ^n$ is state variables and $\lambda \in \real ^m$ is unfolding parameters. Function $\vec f$ can be defined for equilibrium or periodic solutions and can be tracked with well-established algorithms. However, two challenges should be solved to apply a similar idea to experimental bifurcation analysis. Firstly, it is not possible to measure all state variables of the dynamical system in general. Secondly, the steady-state of the dynamical system should be stable to be measured.
 
 In order to address these challenges, the feedback controller is utilized to stabilize the unstable periodic solutions of the dynamical system.
 For instance, feedback control signal $\Gamma(t)$ with proportional derivative control can be typically expressed as
@@ -178,7 +180,7 @@ For instance, feedback control signal $\Gamma(t)$ with proportional derivative c
 \end{split}
 \end{align}
 
-\noindent \Eref{eq:zp} allows us to define zero problem for multidimensional systems even if we are using scalar input $x^*(t)$ and output $x(t)$ when the feedback control is stabilizing the response. Fixed point problem of CBC can be solved using any zero problem solving methods such as Newton-like methods \cite{schilder2015experimental} or Picard iteration \cite{barton2013systematic}. Also, zero problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We also use proportional derivative control in this research as the example case. However, CBC scheme is not restricted to only proportional derivative control.
+\noindent \Eref{eq:zp} allows us to define zero problem for multidimensional systems even if we are using scalar input $x^*(t)$ and output $x(t)$ when the feedback control is stabilizing the response. Fixed point problem of CBC can be solved using any zero problem solving methods such as Newton-like methods \cite{schilder2015experimental} or Picard iteration \cite{barton2013systematic}. Also, zero problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We only use proportional derivative control in this research ; however, CBC scheme is not restricted to only proportional derivative control.
 
 Stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and a scheme to define a zero problem from the input-output map in the next section.
 
@@ -195,7 +197,7 @@ Let us consider an autonomous nonlinear parameter-dependent dynamical system tha
 \begin{align}\label{eq:1}
   \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
 \end{align}
-where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a control parameter and we assume \(\vec{F}(0)=0\). For generic Hopf bifurcation, a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at $\lambda=0$, and family of LCO is created from the bifurcation point. Typical bifurcation diagram of generic codimension-1 Hopf bifurcation is presented in \Fref{f:TH}. \Fref{f:TH} (a) shows the supercritical case and Hopf bifurcation point and Hopf frequency is experimentally measurable since there is no stable LCO near the stable equilibrium $\lambda < 0$. However, as shown in \Fref{f:TH} (b), there is stable branch of LCO near the stable LCO which makes even small perturbations to stable equilibrium can be atrracted to stable LCO. Moreover, important dynamical features like Hopf bifurcation point and Hopf frequency cannot be measured experimentally if the unstable LCO is not stabilized for subcritical case.
+where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a unfolding parameter and we assume \(\vec{F}(0)=0\). For generic Hopf bifurcation, a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at $\lambda=0$, and family of LCO is created from the bifurcation point. Typical bifurcation diagram of generic codimension-1 Hopf bifurcation with a saddle-node bifurcation at higher amplitude response, where equilibria is stable at $\lambda < 0$ and unstable  at $\lambda >0$, is presented in \Fref{f:TH}. \Fref{f:TH} (a) shows the supercritical case and Hopf bifurcation point and Hopf frequency is experimentally measurable since there is no stable LCO near the stable equilibrium. However, as shown in \Fref{f:TH} (b), there is stable branch of LCO near the stable LCO which makes even small perturbations to equilibrium can be atrracted to stable LCO. Moreover, important dynamical features like Hopf bifurcation point($\lambda=0$) and Hopf frequency(eigenvalue of the unstable mode) cannot be measured experimentally if the unstable LCO is not stabilized for subcritical case.
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -247,7 +249,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without unfolding parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\sum_k g_k(u,\bar{u}),\\
@@ -283,19 +285,19 @@ Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by
 
 \subsection{Stabilizability of controller}
 
-We will consider linear proportional derivative control acting on a single coordinate vector which will be the most simple case to setup a nonlinear dynamic experiment in various applications. We will consider the autonomous dynamical system that has codimension-1 generic subcritical Hopf bifurcation at $\mu=0$,
+We will consider linear proportional derivative control acting on a single coordinate vector which will be the most simple case to setup a nonlinear dynamic experiment in various applications. Equation of motion of autonomous dynamical system that has codimension-1 generic subcritical Hopf bifurcation at $\mu=0$ can be expressed as
 
 \begin{align}\label{eq:0}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu}).
 \end{align}
 
-\noindent where, $\mu\in \real$ is an unfolding parameter, and we assume $z_{j+1}=\dot z_j$ for all odd $j$. To stabilize the unstable periodic orbit near the Hopf bifurcation point, we add a proportional derivative feed-back control to \Eref{eq:0}. Let us assume that the control force is applied in the direction of the one principle coordinates to \Eref{eq:0} as
+\noindent where $\mu\in \real$ is an unfolding parameter, and we assume $z_{j+1}=\dot z_j$ for all odd $j$. To stabilize the unstable periodic orbit near the Hopf bifurcation point, we add a proportional derivative feed-back control to \Eref{eq:0}. Let us assume that the control force is applied in the direction of the one principle coordinates to \Eref{eq:0} as
 
 \begin{align}\label{eq:11}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
 \end{align}
 
-\noindent where, $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $K_p$ is the proportional control gain, $K_d$ is the derivative control gain, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
+\noindent where $\mu\in \real$ is an unfolding parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $K_p$ is the proportional control gain, $K_d$ is the derivative control gain, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
 
 \begin{align}\label{eq:12}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
@@ -331,7 +333,7 @@ We will consider linear proportional derivative control acting on a single coord
     [x^*(t),\bar {x^*}(t)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
 \end{align}
 
-\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:13} where control force $\vec{e}_{j+1}(K_pz_j+K_d z_{j+1})$ is zero, noninvasive periodic solution of \Eref{eq:13} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates between the control target and the noninvasive periodic solution.
+\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:13} where control force $\vec{e}_{j+1}(K_pz_j+K_d z_{j+1})$ is zero, noninvasive periodic solution of \Eref{eq:13} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
 
 \begin{lemma}\label{l1}
 $z(t)=\vec{\Sigma}^{-1}x^*(t)\vec{\Sigma}$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=p_c x^*(t)$.
@@ -348,7 +350,7 @@ If $z^*(t)=p_cx^*(t)$, by inserting $z(t)=\Sigma^{-1}x^*(t)\Sigma$ to \Eref{eq:1
 For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, we assume coefficients of near identity transformation in \Eref{eq:6} $c_{1ijlm}$, $c_{2ijlm}$ is very samll for $i+j\geq 2$.
 \end{assumption}
 
-\noindent  If we use \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, using the result of \Lref{l1} we can write limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ as a single harmonic oscillator,
+\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, using the result of \Lref{l1}, we can write limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ as a single harmonic oscillator,
 
 \begin{align}\label{eq:17}
     \begin{split}
@@ -696,21 +698,17 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
 \end{figure}
 
 
-
-
-
-
 \section{Application of CBC for system identification}
-System identification is building a mathematical model from the results of an experiment which can provide valuable physical insights to researchers. We will show CBC can be utilized to verify the linearized dynamical model and used as a tool to identify the grey-box model \cite{bohlin2006practical} in this section. First, parameters associated with the linearized part of the equation of motion is identified with linear system identification method, and the Hopf point and Hopf frequency of the model is compared with the CBC results. Parameters associated with the nonlinear part of the equation of motion is identified using normal form theory to minimize the prediction error of the LCO amplitudes.
+System identification is building a mathematical model from the results of an experiment which can provide valuable physical insights to researchers. We will show CBC can be utilized to verify the linearized dynamical model and used as a tool to identify the grey-box model \cite{bohlin2006practical} in this section.
 
 \subsection{Physical model for dynamical system}\label{model}
-There are many physical models describing flutter; however, we use a simplified 2D model since the wing profile of the flutter rig has a simple shape. To take account of wake effects on the aerodynamic loads, we use unsteady formulation \cite{abdelkefi2013analytical}, which is much more accurate compared to quasi-static model \cite{strganac2000identification}. The damping force of the system is assumed as linear viscous damping in both pitch and heave motion, and we assume that spring plate is the only source of nonlinearity in this system. We omit the detailed derivation of unsteady formulation, but a detailed explanation can be found in \cite{abdelkefi2013analytical}. General equation of motion is,
+There are many physical models describing flutter; however, we use a simplified 2D model since the wing profile of the flutter rig has a simple shape. To take account of wake effects on the aerodynamic loads, we use unsteady formulation \cite{abdelkefi2013analytical}, which is more accurate compared to quasi-static model \cite{strganac2000identification}. The damping force of the system is assumed as linear viscous damping in both pitch and heave motion, and we assume that spring plate is the only source of nonlinearity in this system. We omit the detailed derivation of unsteady formulation, but a detailed explanation can be found in \cite{abdelkefi2013analytical}. General equation of motion is,
 
 \begin{align}\label{eq:2-1}
 \vec{M} \ddot{\vec{p}} + \vec{D} \dot{\vec{p}} +\vec{K_p} \vec{p} + \vec{N}(\vec{p}) =0.
 \end{align}
 
-\noindent where,
+\noindent where
 
 \begin{align}\label{eq:2-2}
 \vec{p}=&[h,\alpha,w]^T, \; \vec{N}(\vec{p})=[0,k_{\alpha 2}\alpha^2+k_{\alpha 3}\alpha^3,0]^T,
@@ -791,7 +789,7 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 \dot{\vec{z}}= \vec{B}(U)\vec{z}+\vec{N_0}(\vec{z}),
 \end{align}
 
-\noindent where, $\vec{B}(U)$ is the Jacobian of the equation of motion at the equilibruum ($\vec z=0$) which can be computed by rearraging \Eref{eq:2-1} -  \Eref{eq:2-5} to \Eref{eq:2-6}
+\noindent where $\vec{B}(U)$ is the Jacobian of the equation of motion at the equilibruum ($\vec z=0$) which can be computed by rearraging \Eref{eq:2-1} -  \Eref{eq:2-5} to \Eref{eq:2-6}
 , and $\vec{N_0}(\vec{z})$ is the nonlinear part of the equation which can be easilly trasformed from $\vec{N}(\vec{p})$.
 
 
@@ -808,7 +806,7 @@ Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot
 \end{split}
 \end{align}
 
-\noindent where, $\vec{C}=diag(1,0,1,0)$ is matrix that relates state variable and measured output$\vec{y}$, $\vec{w}$ is measurement noise, and $\vec{A}_{T_s}$ can be computed as
+\noindent where $\vec{C}=diag(1,0,1,0)$ is matrix that relates state variable and measured output $\vec{y}$, $\vec{w}$ is measurement noise, and $\vec{A}_{T_s}$ can be computed as
 
 \begin{align}\label{eq:2-8}
 \vec{A}_{T_s}(\theta)=e^{\vec{B}(\theta)T_s}.
@@ -821,13 +819,13 @@ Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot
 \vec{\hat \epsilon}(k,\theta)=\vec{y}(k)-\hat{\vec{y}}(k|\theta),
 \end{align}
 
-\noindent where, $\hat{\vec{y}}(k|\theta)$ is predicted response from \Eref{eq:27}. Parameters that minimize the prediction error $\hat \theta$ can be estimated by
+\noindent where $\hat{\vec{y}}(k|\theta)$ is predicted response from \Eref{eq:2-7}. Parameters that minimize the prediction error $\hat \theta$ can be estimated by
 
 \begin{align}\label{eq:2-10}
 \hat{\theta}=\underset{\theta \in D_m}{\arg\min} \: V_N(\theta,\vec{Z}^N),
 \end{align}
 
-\noindent where, $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. Values of identified parameters and measured parameters are given in \Tref{t2}.
+\noindent where $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. Values of identified parameters and measured parameters are given in \Tref{t2}.
 
 \begin{table}[!ht]
 \caption{Values of parameters of linearized model}%%%Table caption goes here
@@ -848,7 +846,7 @@ $x_\alpha$ & 0.24 & & \\
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\noindent The identified linearized model can be verified by comparing flutter speed and flutter frequency obtained from CBC results. If we use \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, we can estimate the flutter speed from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
+\noindent The identified linearized model can be verified by comparing flutter speed and flutter frequency with the CBC results. under \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, flutter speed can be estimated from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -901,7 +899,7 @@ $x_\alpha$ & 0.24 & & \\
 \label{f:6}
 \end{figure}
 
-If we see the computed eigenvalues of the Jacobian of the identified linearized system (\Fref{f:7}), the comparison between the estimated values from the model and measured values is possible. Note that two eigenvalues with zero imaginary part is neglected in \Fref{f:7} which are unable to measure during the zero wind speed. Estimated futter speed from the model is 17.96 $m/s$ and measured futter speed is 17.89 $m/s$. Estimated futter frequency from the model is 2.46 $Hz$ measured flutter frequency is 2.51 $Hz$, which is quite close enough to say identified linearized dynamical model is sufficiently accurate.
+The computed eigenvalues of the Jacobian of the identified linearized system are given in \Fref{f:7}, and the comparison between the estimated values from the model and measured values is possible. Note that two eigenvalues with zero imaginary part are neglected in \Fref{f:7} which are nonharmonic modes. Estimated futter speed from the model is 17.96 $m/s$ and measured futter speed is 17.89 $m/s$. Estimated futter frequency from the model is 2.46 $Hz$ measured flutter frequency is 2.51 $Hz$, which is quite close enough to say identified linearized dynamical model is sufficiently accurate in the sense of predicting flutter speed and frequency from the mathematical model.
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -933,7 +931,7 @@ If we see the computed eigenvalues of the Jacobian of the identified linearized 
 
 \subsection{Parameter identification of the nonlinear model}\label{nonlinear}
 
-If we define $\mu=U_f-U$ and insert $U=U_f-\mu$ to \Eref{eq:2-6}, where $U_f$ is the flutter speed, \Eref{eq:2-6} has codim-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. We used symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} to compute the center manifold and normal form. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
+If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has codimension-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} is used to compute the center manifold and normal form in this research. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
 
 SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics. SNF in polar coordinates is
 \begin{align}\label{eq:2-11}
@@ -964,13 +962,16 @@ S=&- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2,
 \end{split}
 \end{align}
 
-\noindent where $S>0$ is the constraint to keep the type of Hopf bifurcation to subcritical which is our experimental case. Solving \Eref{eq:2-14}, we heave
-
+\noindent where $S>0$ is the constraint to keep the type of Hopf bifurcation to subcritical which is our experimental case. By solving \Eref{eq:2-14}, nonlinear parameters $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ are identified near $\theta_n=0$ as
 \begin{align}\label{eq:2-15}
 k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 \end{align}
 
-\noindent For the validation of the results, we compare estimated amplitude via numerical continuation, normal form, and measured amplitude in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes}. Measured heave amplitude and computed heave amplitude from the numerical continuation is in good agreement. Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model and the inaccuracy of the normal form far from the Hopf point. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model, and accuracy of the normal form can be increased by taking higher-order approximation. However, improving the accuracy of the identified model is not the scope of this paper. Also, the identified model show poor agreement in the stable branch of LCO with measurement results, and the reason is not identified yet, which we leave it for future research.
+Computed amplitude via numerical continuation, normal form, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using same parameters with the normal form computation. Measured heave amplitude and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using normal form theory-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
+
+Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model. The difference between normal form and numerical continuation results far from the Hopf point is due to the inaccuracy of the center-manifold computation which is valid near equilibrium. Higher-order approximation of center-manifold should be computed to increase the validate region of the normal form. Moreover, a more delicate aerodynamic model that takes account of a higher order of $U$ in the equation of motion can be utilized to improve the accuracy of the stable branch estimation. However, increasing the accuracy of the model is not the scope of this paper.
+
+
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -1038,7 +1039,7 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 \end{figure}
 
 \section{Conclusion}
-CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller and resonace response is assumed. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model.
+CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller and resonace response is assumed. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model of a self-excited system.
 
 To apply CBC to more general Hopf bifurcation problems, frequency of the phase-locked periodic solutions in \Eref{eq:26} should be controllable. Also, a methodology to decrease the influence of the measurement noise should be considered to increase the accuracy of the CBC results. \vskip6pt
 
@@ -1065,7 +1066,7 @@ Equation should be transformed in the form of \Eref{eq:2} to compute the centerm
 \dot X=\vec{J}X+\vec{\Sigma}^{-1} \vec{N}_0(\vec{\Sigma} X),
 \end{align}
 
-\noindent where, $\vec{\Sigma}$ is coordinate transformation matrix whose columns are eigenvectors of eigenvalues of $\vec{B}(U_f)$ and satisfies $\vec{J}=\vec{\Sigma}^{-1}\vec{B}(U_f)\vec{\Sigma}$. Jordan normal form which has two purely imaginary, two complex conjugate, and two real eigenvlaues can be computed with the parameters given in \Tref{t2} as
+\noindent where $\vec{\Sigma}$ is coordinate transformation matrix whose columns are eigenvectors of eigenvalues of $\vec{B}(U_f)$ and satisfies $\vec{J}=\vec{\Sigma}^{-1}\vec{B}(U_f)\vec{\Sigma}$. Jordan normal form which has two purely imaginary, two complex conjugate, and two real eigenvlaues can be computed with the parameters given in \Tref{t2} as
 
 \begin{align}
 \vec{J}=
@@ -1080,8 +1081,6 @@ Equation should be transformed in the form of \Eref{eq:2} to compute the centerm
 \end{align}
 
 \noindent Let $\vec{x}=[x,\bar x]^T$ be the centerspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed recursive algorithm for solving coefficients recursively. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
-
-
 \begin{align}
 \begin{split}
   y_1=&( - 0.00208+ 0.00245\,i ) { \mu}^{2}x+ (  0.000114-
@@ -1113,6 +1112,7 @@ Equation should be transformed in the form of \Eref{eq:2} to compute the centerm
  {  k_{\alpha 2}} ) {\bar {x}}^{2},
 \end{split}
 \end{align}
+
 \begin{align}
 \begin{split}
   y_2=&(  0.000114+ 0.000117\,i ) {\mu}^{2}x- (  0.00208+
@@ -1147,6 +1147,7 @@ Equation should be transformed in the form of \Eref{eq:2} to compute the centerm
   } ) {\bar x}^{2},
   \end{split}
   \end{align}
+
   \begin{align}
   \begin{split}
   y_3=&(  0.000150+ 0.000122\,i ) {\mu}^{2}x+ (  0.000150-
