@@ -123,7 +123,7 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 %%%% Abstract text to be placed here %%%%%%%%%%%%
 \begin{abstract}
- Limit cycle oscillation (LCO) of the self-excited system often cause a significant problem in various engineering applications. Therefore, exploring dynamic features such as the family of periodic orbits by experimental methods can help researchers to verify or identify the dynamic model of the self-excited system. In this paper, the control based continuation (CBC) scheme for Hopf bifurcation, which is the most common example of a self-excited system, is developed. CBC is an experimental scheme to explore the features of a dynamical system as the system parameter is varied. Feed-back control plays a critical role in stabilizing the unstable periodic response of the dynamical system. We show theoretically and experimentally how feed-back control can stabilize unstable LCO of the dynamical system near Hopf bifurcation. The scheme is applied to a flutter rig, and the CBC results are applied to verify the linearized dynamical model and to identify the grey-box model.
+ Limit cycle oscillation (LCO) of the self-excited system often cause a significant problem in various engineering applications. Therefore, exploring dynamic features such as the family of periodic orbits by experimental methods can help researchers to verify or identify the dynamic model of the self-excited system. In this paper, the control based continuation (CBC) scheme for Hopf bifurcation, which is the most common example of a self-excited system, is developed. CBC is an experimental scheme to explore the features of a dynamical system as the system parameter is varied. Feed-back control plays a critical role in stabilizing the unstable periodic response of the dynamical system. We show theoretically and experimentally how feed-back control can stabilize unstable LCO of the dynamical system near Hopf bifurcation. The scheme is applied to a flutter rig, and the CBC results are utilized to verify the linearized dynamical model and to identify the grey-box model.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -142,7 +142,7 @@ Feedback control can be used as a tool to stabilize the unstable LCO of the dyna
 
 If we look close to stabilizing LCO for Hopf bifurcation, theoretical studies of stabilizing feedback control can be found from several studies. Specifically, stabilizability of the feedback controller for subcritical Hopf bifurcation problems using time-delayed feedback control was studied \cite{brown2011time,postlethwaite2013feedback}. However, there are difficulties in real experiments using feedback control methods in Hopf bifurcation problems. For time-delayed feedback control, LCO cannot be stabilized if the period of the LCO is unknown, and dealing with delayed signal produces many difficulties in practical applications. For CBC, the input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. The response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of response can be found with phase difference for Hopf bifurcation for every set of target coefficient; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used which will be discussed in detail in the later section. However, CBC scheme would be the easiest method to stabilize unstable LCOs in nonlinear dynamic experiments if the zero problem is well defined to find the noninvasive control. Hence, the aim of this paper is developing CBC scheme which is directly applicable to investigating features of a dynamical system with Hopf bifurcation by experiments.
 
-Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed for a dynamical system that has small frequency variance while multiple measurements of phase-locked periodic orbits are taken with fixed amplitude of control target. In the fourth section, the proposed CBC scheme is applied experimentally to flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
+Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. Stabilizability of the controller is discussed and CBC scheme to lock the phase between the control target and the output response is proposed. Effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed. In the fourth section, the proposed CBC scheme is applied experimentally to a flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
 
 \section{Control based continuation (CBC)}\label{CBC}
@@ -202,11 +202,11 @@ where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) i
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
-  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=-5,xmax=0.3,ymin=0,ymax=3},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={$\lambda$},x label style={at={(0.5,-0.1)}},scatter/classes={%
+  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=-5,xmax=0.3,ymin=0,ymax=3},xlabels at=edge bottom,vertical sep=30pt},xtick={0},ytick={0},width=7.1cm,height=7.5cm,xlabel={$\lambda$},x label style={at={(0.5,-0.05)}},scatter/classes={%
   		a={mark=*,mark size=2pt,blue},%
   		b={mark=o,mark size=2pt,red}},legend style={at={(0.33,0.95)}}]
 
-  \nextgroupplot[title=(a),ylabel={Amplitude of LCO},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}},xmin=-0.3,xmax=5]
+  \nextgroupplot[title=(a),ylabel={Amplitude of LCO},y label style={at={(-0.02,0.5)}},legend style={at={(0.35,0.98)}},xmin=-0.3,xmax=5]
 
   \addplot [no marks,color=blue]
         table [x=d, y=b, col sep=comma] {./Data/Data_10-1.csv};\label{ps}
@@ -214,7 +214,7 @@ where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) i
   \addplot [no marks,color=red,dashed]
         table [x=d, y=b, col sep=comma] {./Data/Data_10-2.csv};\label{pu}
 
-  \nextgroupplot[title=(b),ylabel={Amplitude of LCO},y label style={at={(-0.05,0.5)}}]
+  \nextgroupplot[title=(b),ylabel={Amplitude of LCO},y label style={at={(-0.02,0.5)}}]
 
   \addplot [no marks,color=blue]
         table [x=a, y=b, col sep=comma] {./Data/Data_10-2.csv};
@@ -507,7 +507,7 @@ Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, whi
 
 
 \section{Experimental example}
-In this section, we show scheme developed in \Sref{SNH} can be applied to a real-world dynamical system with Hopf bifurcation. We applied the developed scheme to a flutter \cite{dimitriadis2017introduction} rig, where flutter is one of the typical Hopf bifurcation problems in aerodynamics.
+In this section, we show scheme developed in \Sref{SNH} can be applied to a mechanical system with Hopf bifurcation. We applied the developed scheme to a flutter \cite{dimitriadis2017introduction} rig, where flutter is one of the typical Hopf bifurcation problems in aerodynamics.
 
 
 \subsection{Experiment setup}\label{setup}
@@ -530,7 +530,7 @@ The experiment was performed on flutter rig with a NACA-0015 wing profile \cite{
 \subsection{Experiment results}\label{results}
 
 Open-loop tests are performed initially to investigate the dynamics of the system. Below the wind speed approximately 15 $m/sec$, equilibrium is stable and transient response ends with equilibrium state when the large perturbation is applied to equilibrium. However, above the wind speed approximately 15 $m/sec$, transient response ends with stable LCO when even small perturbation is applied to equilibrium. From this observation, we assume that the dynamical system has subcritical Hopf bifurcation and family of LCO has a fold at approximately around 15 $m/sec$.\\
-To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit were taken with a different amplitude of target coefficient $\hat A$. Therefore, can say \asref{a2} is reasonable and stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
+To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the variation of frequency is small when multiple measurements of phase-locked periodic orbit were taken with a different amplitude of target coefficient $\hat A$. Therefore, we can say \asref{a2} is reasonable and stabilizability of the controller can be analyzed from error function $\Xi$. We conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
 
 
 \begin{figure}
@@ -570,8 +570,11 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 \label{f:4}
 \end{figure}
 
-\noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off. \\
-Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the unfolding parameter of the Hopf bifurcation.
+\noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off.
+
+Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. \Fref{f:5} (a) has a similar pattern with typical bifurcation diagram of subcritical Hopf bifurcation in \Fref{f:TH}. Experimentally obtained bifurcation diagram contains valuable features of the dynamical system-- fold point of LCO, flutter speed, flutter frequency-- which can be used as a tool to verify the mathematical model. Also, measured amplitude and frequency can be utilized to identify the parameters of the model, which will be discussed in the next section.   
+
+In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the unfolding parameter of the Hopf bifurcation.
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.9,0.9)}}}
@@ -783,7 +786,7 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 \end{figure}
 
 
-\noindent If we express the equation of motion in state variable $ \vec{z} = [h, \dot h, \alpha, \dot \alpha, w, \dot {w}] ^T $, we obtain the following form:
+\noindent If we express the equation of motion in state variable $ \vec{z} = [h, \dot h, \alpha, \dot \alpha, w, \dot {w}] ^T $, following form can be obtained as
 
 \begin{align}\label{eq:2-6}
 \dot{\vec{z}}= \vec{B}(U)\vec{z}+\vec{N_0}(\vec{z}),
@@ -795,9 +798,9 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 
 \subsection{Parameter identification of the linearized model}\label{linear}
 
-For small-amplitude response, we can neglect the contribution of nonlinear function $\vec{N_0}$ from \Eref{eq:2-6} and the system can be regarded as linear. Linear system parameter identification can be done with various existing methods, wavelet transform \cite{ruzzene1997natural}, frequency-domain methods \cite{pintelon2012system}, and state-space models \cite{ljung2001system}. State-space models provide a direct connection between measurable physical variables and the measured response, while other methods deal with modal properties. Therefore, we use the state-space model to identify the unknown parameters of the experimental rig from the free decay response at low amplitude without flow ($U=0$). Wing semi- chord $b$, the position of the elastic axis relative to the semi-chord $a$, the mass of the wing $m$, the mass of the total wing structure including support $m_T$
+We first show unknown parameters of the linearization of grey-box model can be estimated from the linear system identification method. For small-amplitude response, we can neglect the contribution of nonlinear function $\vec{N_0}$ from \Eref{eq:2-6} and the system can be regarded as a linear function. Linear system parameter identification can be done with various existing methods, wavelet transform \cite{ruzzene1997natural}, frequency-domain methods \cite{pintelon2012system}, and state-space models \cite{ljung2001system}. The state-space model provides a direct connection between measurable physical variables and the measured response, while other methods deal with modal properties. Therefore, we use the state-space model to identify the unknown parameters of the experimental rig from the free decay response at low amplitude without flow ($U=0$). Wing semi- chord $b$, the position of the elastic axis relative to the semi-chord $a$, the mass of the wing $m$, the mass of the total wing structure including support $m_T$
 modal frequency of pitch $\omega_a=\sqrt{k_\alpha / I_\alpha}$ , modal frequency of the heave $\omega_h=\sqrt{k_h/m_T}$ , and nondimensional distance between center of gravity and elastic axis $x_\alpha$ are the coefficients that can be easilly measured.
-Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot h(0),\dot \alpha(0)]^T$ as unknown parameter vector which is much more difficult to measure compared to the known parameters. Note that $\dot h(0)$, $\dot \alpha(0)$ are initial value of unmeasured state variables which are unknown parameters. Since we only use free decay response for zero flow velocity, we rewrite Jacobian of \Eref{eq:2-6} as function of unknown parameters $\vec{B}(\theta)$. State-space representation of linearized part of \Eref{eq:2-6} can be represented as a finite difference equation when sampling time is $T_s$ as
+Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot h(0),\dot \alpha(0)]^T$ as unknown parameter vector which is more difficult to measure compared to the known parameters. Note that $\dot h(0)$, $\dot \alpha(0)$ are initial value of unmeasured state variables which are unknown parameters. Since we only use free decay response for zero flow velocity, we rewrite Jacobian of \Eref{eq:2-6} as function of unknown parameters $\vec{B}(\theta)$. State-space representation of linearized part of \Eref{eq:2-6} can be represented as a finite difference equation when sampling time is $T_s$ as
 
 \begin{align}\label{eq:2-7}
   \begin{split}
@@ -846,7 +849,7 @@ $x_\alpha$ & 0.24 & & \\
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\noindent The identified linearized model can be verified by comparing flutter speed and flutter frequency with the CBC results. under \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, flutter speed can be estimated from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
+\noindent CBC results can be utilized to check if the identified linear model captures important bifurcation characteristics such as flutter speed and flutter frequency. The verification of the linearized model can be done by comparing flutter speed and flutter frequency with the CBC results. Under \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, flutter speed can be estimated from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -1041,7 +1044,7 @@ Less accurate agreement for pitch between the measurement and numerical continua
 \section{Conclusion}
 CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller and resonace response is assumed. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model of a self-excited system.
 
-To apply CBC to more general Hopf bifurcation problems, frequency of the phase-locked periodic solutions in \Eref{eq:26} should be controllable. Also, a methodology to decrease the influence of the measurement noise should be considered to increase the accuracy of the CBC results. \vskip6pt
+To apply CBC to more general Hopf bifurcation problems, frequency of the phase-locked periodic solutions in \Eref{eq:26} should be controllable. Also, a methodology to overcome the influence of the measurement noise should be considered to increase the accuracy of the CBC results. \vskip6pt
 
 
 \enlargethispage{20pt}
