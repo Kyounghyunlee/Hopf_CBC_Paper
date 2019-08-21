@@ -346,7 +346,7 @@ where $\vec{\Sigma}$is a coordinate transformation matrix to Jordan normal form 
 If $z^*(t)=p_cx^*(t)$, by inserting $z(t)=\Sigma^{-1}x^*(t)\Sigma$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and $z^*(t)-z_j=0$. For the only if part, lets assume $z(t)=\Sigma^{-1}x^*(t)\Sigma$ is a noninvasive periodic solution. Then, $z^*(t)=p_cx^*(t)$ since the solution is noninvasive.
 \end{proof}
 
-\noindent Let $\lambda_2=[\mu,K_p,K_d]$ and stability of the noninvasive periodic solution $z(t)=\Sigma^{-1}x^*(t)\Sigma$ with control target $z^*(t)=p_cx^*(t)$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the coefficients of $h(\vec{u},\nu)$ to simplify the problem and develop a scheme that is practically applicable in experiments.
+\noindent Let $\lambda_2=[\mu,K_p,K_d]$ and stability of the noninvasive periodic solution $z(t)=\Sigma^{-1}x^*(t)\Sigma$ with control target $z^*(t)=p_cx^*(t)$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the coefficients of $h(u,\bar u,\nu)$ to simplify the problem and develop a scheme that is practically applicable in experiments.
 
 \begin{assumption}\label{a1}
 For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1ijlm}$, $c_{2ijlm}$ is very small, and therefore neglectable for $i+j\geq 2$.
@@ -402,7 +402,7 @@ If we look \Eref{eq:18} in the rotating coordinates defined by
   \dot v=(\alpha_1+\textrm{i}(\beta_1-\omega_2))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
 \end{align}
 
-\noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution with the forcing of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$,
+\noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution with the forcing of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
 
 \begin{align}\label{eq:23}
   ((\alpha_1+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_2)+\beta_2 R^2)))v=-\epsilon.
@@ -438,13 +438,13 @@ z_{j+1}(t)=&-\dot\phi A(t)\sin{\phi}
 \end{split}
 \end{align}
 
-\noindent where $A(t)$ is the instantaneous amplitude, $\phi$ is the instantaneous phase of the response, $\dot\phi$ is the frequency of the response which is constant if the system is at the steady-state. To lock the phase, we can set the target coefficient as
+\noindent where $A(t)$ is the instantaneous amplitude, $\phi$ is the instantaneous phase of the response, $\dot\phi$ is the frequency of the response which is constant if the system is at the steady-state. If we set target coefficient as
 
 \begin{align}\label{eq:26}
-z^*(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Big) \Big)=\hat A\cos{\phi},
+z^*(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Big) \Big),
 \end{align}
 
-\noindent where $\hat A$ is the amplitude of the control target. If we update $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state near the equilibrium, phase of the control target is locked with the phase of the response which is equivalent to $\dot v=0$ in \Eref{eq:22}. Moreover, final steady-state response is the fixed point of $P(R)$ if $P_R<0$. Note that $\epsilon=\epsilon(\hat A)$ can be rescaled from $\hat A$ in normal form coordinates in \Eref{eq:24}. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A$ where $A$ is amplitude of response in original coordinates which can be transformed from $R$ by $\Psi_2$. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
+\noindent where $\hat A$ is the amplitude of the control target, phase of the target is locked with the response since single harmonic response is assumed. Specifically, phase is locked by updating $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state. This phase locked condition is equivalent to $\dot v=0$ in \Eref{eq:22} and we have $z^*(t)=\hat A\cos{\phi}$. Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A$ where $A$ is amplitude of response in original coordinates which can be transformed from $R$ by $\Psi_2$. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
 
 Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. This procedure to find zero error $\Xi=0$ can be summarized as \Fref{f:1}.
 
@@ -526,7 +526,7 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
-  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=30pt,xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Amplitude of control target ($m$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
+  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=35pt,xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=7.5cm,xlabel={Amplitude of control target ($m$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}}]
 
   \nextgroupplot[title=(a),ylabel={Frequency ($Hz$)},y label style={at={(-0.1,0.5)}},legend style={at={(0.35,0.98)}},ymin=2,ymax=3,every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt}]
 
@@ -539,7 +539,7 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
   \addplot [mark=square,color=green]
         table [x=a, y=c, col sep=comma] {./Data/Data4-3.csv};
   %Here the blue parabloa is defined
-  \nextgroupplot[title=(b),ylabel={Control error $\Xi$ ($m$)},y label style={at={(-0.1,0.5)}},every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt},ymax=0.005]
+  \nextgroupplot[title=(b),ylabel={Control error $\Xi$ ($m$)},y label style={at={(-0.12,0.5)}},every x tick scale label/.style={at={(rel axis cs:0.9,-0.1)},anchor=south west,inner sep=1pt},ymax=0.005]
 
   \addplot [mark=o,color=blue]
         table [x=a, y=b, col sep=comma] {./Data/Data4-1.csv};
@@ -1034,7 +1034,7 @@ Less accurate agreement for pitch between the measurement and numerical continua
 \section{Conclusion}
 CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model of a self-excited system.
 
-To apply PP-CBC to more general problems, frequency of the phase-locked periodic solutions in \Eref{eq:26} should be controllable. Also, a methodology to overcome the influence of the measurement noise should be considered to improve the accuracy of the CBC results. \vskip6pt
+To apply PP-CBC to more general problems, phase locking scheme for multiharmonic response should be developed. Also, a methodology to overcome the influence of the measurement noise should be considered to improve the accuracy of the CBC results. \vskip6pt
 
 
 \enlargethispage{20pt}
