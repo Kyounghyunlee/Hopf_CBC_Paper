@@ -421,15 +421,18 @@ If we look \Eref{eq:18} in the rotating coordinates defined by
 
 \subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
 
-In many nonlinear dynamic experiments, information about the dynamical system is not given; therefore, noninvasive periodic solution and stabilizability of the control cannot be determined from the equation as in \Sref{SNF}. We will discuss effective scheme to find noninvasive periodic solutions near the Hopf bifurcation in this subsection. The response of system with control \Eref{eq:20} is very complicated. There are multiple periodic solutions at given forcing frequency $\omega_2$ and forcing amplitude $\epsilon$, see \cite{zhang2011periodically,wiser2015bifurcations} for detailed bifurcation diagram of this type of oscillator. It is clear that noninvasive periodic solution is in phase with the forcing frequency; however, solutions of \Eref{eq:20} are not necessarily to be in phase with forcing frequency. For example, if we set rotating coordinates of \Eref{eq:21} $v=ue^{\textrm{i}(\omega_2 \tau-\theta)}$, where $\theta$ is an arbitrary phase shift, we can rewrite \Eref{eq:18}
+In many nonlinear dynamic experiments, information about the dynamical system is not given; therefore, noninvasive periodic solution and stabilizability of the control cannot be determined from the equation as in \Sref{SNF}. We will discuss effective scheme to find noninvasive periodic solutions near the Hopf bifurcation in this subsection.
+
+Phase-locked response with the forcing should be tracked from the response of forced Hopf bifurcation, see \cite{zhang2011periodically,wiser2015bifurcations} for detailed bifurcation diagram, to find the noninvasive periodic solution. However, solutions of \Eref{eq:20} are not necessarily to be in phase with forcing frequency. For example, if we set rotating coordinates of \Eref{eq:21} $v=ue^{\textrm{i}(\omega_2 \tau-\theta)}$, where $\theta$ is an arbitrary phase shift, we can rewrite \Eref{eq:18}
 as
 
 \begin{align}\label{eq:ps}
 \frac{du}{d\tau}=(\alpha_1+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2 \bar u+\epsilon e^{\textrm{i}\theta}.
 \end{align}
 
-\noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.\\
-We use a phase plane based CBC (PP-CBC) to achieve phase locking between target coefficients $z^*(t)$ with the response in \Eref{eq:11}. This is equivalent to phase-locking between force and response in \Eref{eq:20}, which was first proposed in \cite{irene}. We assume that monitored signals $z_j$, $z_{j+1}$ can be expressed as an analytic signal,
+\noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.
+
+We use a phase plane based CBC (PP-CBC) to achieve phase locking between target coefficients $z^*(t)$ with the response in \Eref{eq:11}. This is equivalent to phase-locking between force and response in \Eref{eq:20}, which was first proposed in \cite{irene}. Monitored signals $z_j$, $z_{j+1}$  are assumed as an analytic signal,
 
 \begin{align}\label{eq:25}
 \begin{split}
@@ -444,7 +447,13 @@ z_{j+1}(t)=&-\dot\phi A(t)\sin{\phi}
 z^*(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Big) \Big),
 \end{align}
 
-\noindent where $\hat A$ is the amplitude of the control target, phase of the target is locked with the response since single harmonic response is assumed. Specifically, phase is locked by updating $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state. This phase locked condition is equivalent to $\dot v=0$ in \Eref{eq:22} and we have $z^*(t)=\hat A\cos{\phi}$. Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A$ where $A$ is amplitude of the response in original coordinates which can be transformed from $R$ by $\Psi_2$. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
+\noindent where $\hat A$ is the amplitude of the control target, phase of the target is locked with the response since single harmonic response is assumed. Specifically, phase is locked by updating $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state. This phase-locked condition is equivalent to $\dot v=0$ in \Eref{eq:22} and as a result control target has a form:
+
+\begin{align}\label{eq:tg}
+ z^*(t)=\hat A\cos{\phi}.
+\end{align}
+
+\noindent Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A$ where $A$ is amplitude of the response in original coordinates. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
 
 Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. This procedure to find zero error $\Xi=0$ can be summarized as \Fref{f:1}.
 
