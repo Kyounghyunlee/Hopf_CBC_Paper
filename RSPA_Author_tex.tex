@@ -236,7 +236,7 @@ Simplifying the dynamical system is a powerful tool to understand the dynamics o
   \end{split}
 \end{align}
 where $\vec{x}=[x;\bar{x}]\in \complex^2$ is center subspace with associated Jordan matrix $\vec{J}_\textrm{c}$ having diagonal term $\pm\textrm{i}$ and $\vec{y}\in \complex^{n-2}$ is stable subspace with it's associated Jordan matrix $\vec{J}_\textrm{s}$ of Jacobian of $\vec{F}(\vec{z})$ at $\vec{z}=0$.
-$\vec{f}$ and $\vec{g}$ are functions with $\vec{f}(0,0)=0$, $D\vec{f}(0,0)=0$ and $\vec{g}(0,0)=0$, $D\vec{g}(0,0)=0$. Centermanifold exists for dynamical system \Eref{eq:2} for small  $\|\vec{x}\|$ which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed $\pm\textrm{i}$ for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include $\dot\lambda=0$ to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small $\|\lambda\|$  \cite{kuznetsov2013elements}. power series of centermanifold $\vec{H}(\vec{x},\lambda)$ can be computed recursively by solving
+$\vec{f}$ and $\vec{g}$ are functions with $\vec{f}(0,0)=0$, $D\vec{f}(0,0)=0$ and $\vec{g}(0,0)=0$, $D\vec{g}(0,0)=0$. Centermanifold exists for dynamical system \Eref{eq:2} for small  $\|\vec{x}\|$ which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed $\pm\textrm{i}$ for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include $\dot\lambda=0$ to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small $\|\lambda\|$  \cite{kuznetsov2013elements}. Power series of centermanifold $\vec{H}(\vec{x},\lambda)$ can be computed recursively by solving
 \begin{align}\label{eq:3}
     D\vec{H}({\vec{\hat{x})}}(\vec{\hat{J}}_\textrm{c}\vec{\hat{x}}+\vec{f}(\vec{\hat{x}},\vec{H}(\vec{\hat{x}}))) =\vec{J}_\textrm{s} \vec{H}(\vec{\hat{x}})-\vec{g}(\vec{\hat{x}},\vec{H}(\vec{\hat {x}}))
 \end{align}
@@ -249,7 +249,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form(SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without unfolding parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without unfolding parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\textrm{i}\sum_k g_k(u,\bar{u}),\\
@@ -335,7 +335,7 @@ Now, stabilizability of unstable limit cycle of the uncontroled system at $\lamb
     [x^*(t),\bar {x^*}(t)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
 \end{align}
 
-\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:13} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:13} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
+\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
 
 \begin{lemma}\label{l1}
 $z(t)=\vec{\Sigma}^{-1}x^*(t)\vec{\Sigma}$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=p_c x^*(t)$.
@@ -343,13 +343,13 @@ where $\vec{\Sigma}$is a coordinate transformation matrix to Jordan normal form 
 \end{lemma}
 
 \begin{proof}
-If $z^*(t)=p_cx^*(t)$, by inserting $z(t)=\Sigma^{-1}x^*(t)\Sigma$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and $z^*(t)-z_j=0$. For the only if part, lets assume $z(t)=\Sigma^{-1}x^*(t)\Sigma$ is a noninvasive periodic solution. Then, $z^*(t)=p_cx^*(t)$ since the solution is noninvasive.
+If $z^*(t)=p_cx^*(t)$, by inserting $z(t)=\Sigma^{-1}x^*(t)\Sigma$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and the control force is zero. For the only if part, lets assume $z(t)=\Sigma^{-1}x^*(t)\Sigma$ is a noninvasive periodic solution. Then, $z^*(t)=p_cx^*(t)$ since the solution is noninvasive.
 \end{proof}
 
 \noindent Let $\lambda_2=[\mu,K_p,K_d]$ and stability of the noninvasive periodic solution $z(t)=\Sigma^{-1}x^*(t)\Sigma$ with control target $z^*(t)=p_cx^*(t)$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the coefficients of $h(u,\bar u,\nu)$ to simplify the problem and develop a scheme that is practically applicable in experiments.
 
 \begin{assumption}\label{a1}
-For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1ijlm}$, $c_{2ijlm}$ is very small, and therefore neglectable for $i+j\geq 2$.
+For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1ijlm}$, $c_{2ijlm}$ is sufficiently small, and therefore neglectable for $i+j\geq 2$.
 \end{assumption}
 
 \noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator by using the result of \Lref{l1}.
@@ -453,7 +453,7 @@ z^*(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Bi
  z^*(t)=\hat A\cos{\phi}.
 \end{align}
 
-\noindent Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A$ where $A$ is amplitude of the response in original coordinates. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
+\noindent Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A(\hat A)$ where $A$ is amplitude of the response in original coordinates. We can say the controller is stabilizable for the noninvasive periodic solution if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
 
 Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. This procedure to find zero error $\Xi=0$ can be summarized as \Fref{f:1}.
 
@@ -704,7 +704,7 @@ In this research, zero problems were not embedded in the pseudo arclength contin
 System identification is building a mathematical model from the results of an experiment which can provide valuable physical insights to researchers. We will show CBC can be utilized to verify the linearized dynamical model and used as a tool to identify the grey-box model \cite{bohlin2006practical} in this section.
 
 \subsection{Physical model for dynamical system}\label{model}
-There are many physical models describing flutter; however, we use a simplified 2D model since the wing profile of the flutter rig has a simple shape. To take account of wake effects on the aerodynamic loads, we use unsteady formulation \cite{abdelkefi2013analytical}, which is more accurate compared to quasi-static model \cite{strganac2000identification}. The damping force of the system is assumed as linear viscous damping in both pitch and heave motion, and we assume that spring plate is the only source of nonlinearity in this system. We omit the detailed derivation of unsteady formulation, but a detailed explanation can be found in \cite{abdelkefi2013analytical}. General equation of motion is,
+There are many physical models describing flutter; however, we use a simplified 2D model since the wing profile of the flutter rig has a simple shape. To take account of wake effects on the aerodynamic loads, we use unsteady formulation \cite{abdelkefi2013analytical}, which is more accurate compared to quasi-static model \cite{strganac2000identification}. The damping force of the system is assumed as linear viscous damping in both pitch and heave motion, and we assume that spring plate is the only source of nonlinearity in the stiffness. We omit the detailed derivation of unsteady formulation, but a detailed explanation can be found in \cite{abdelkefi2013analytical}. General equation of motion is,
 
 \begin{align}\label{eq:2-1}
 \vec{M} \ddot{\vec{p}} + \vec{D} \dot{\vec{p}} +\vec{K_p} \vec{p} + \vec{N}(\vec{p}) =0.
