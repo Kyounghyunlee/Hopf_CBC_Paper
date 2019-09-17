@@ -26,7 +26,7 @@
 
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
-
+\usetikzlibrary{arrows,shapes,positioning}
 %%%% *** Do not adjust lengths that control margins, column widths, etc. ***
 % Useful shortcuts
 \def\real{\mathbb{R}}
@@ -123,7 +123,7 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 %%%% Abstract text to be placed here %%%%%%%%%%%%
 \begin{abstract}
- Limit cycle oscillation (LCO) of the self-excited system often cause a significant problem in various engineering applications. Therefore, exploring dynamic features such as the family of periodic orbits by experimental methods can help researchers to verify or identify the dynamic model of the self-excited system. In this paper, the control based continuation (CBC) scheme for Hopf bifurcation, which is the most common example of a self-excited system, is developed. CBC is an experimental scheme to explore the features of a dynamical system as the system parameter is varied. Feed-back control plays a critical role in stabilizing the unstable periodic response of the dynamical system in the CBC scheme. We show theoretically and experimentally how feed-back control can stabilize unstable LCO of the dynamical system near Hopf bifurcation. The scheme is applied to a flutter rig, and the CBC results are utilized to verify the linearized dynamical model and to identify the grey-box model.
+ Limit cycle oscillation (LCO) of the self-excited system often cause a significant problem in various engineering applications. Therefore, exploring dynamic features such as the family of periodic orbits by experimental methods can help researchers to verify or identify the dynamic model of the self-excited system. In this paper, the control based continuation (CBC) scheme for Hopf bifurcation, which is the most common example of a self-excited system, is developed. CBC is an experimental scheme to explore the features of a dynamical system as the system parameter is varied. Feed-back control plays a critical role in stabilizing the unstable periodic response of the dynamical system in the CBC scheme. We show theoretically and experimentally how feed-back control can stabilize unstable LCO of the dynamical system near Hopf bifurcation. The scheme is applied to a flutter rig, and the CBC results are used to verify the linearized dynamical model and to identify the grey-box model.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -131,40 +131,108 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 \section{Introduction}\label{int}
 
-Limit cycle oscillation (LCO) of the self-excited system is an essential subject for researchers. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCO is either stable (supercritical Hopf bifurcation) or unstable (subcritical Hopf bifurcation) close to Hopf bifurcation. Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} and Facebook's Aquila UAV crash would be the devastating example of Hopf bifurcation.
+Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} and Facebook's Aquila UAV crash would be the devastating example of Hopf bifurcation. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCO is either stable (supercritical Hopf bifurcation) or unstable (subcritical Hopf bifurcation) close to Hopf bifurcation. The scenario of Hopf bifurcation is theoretically well established and can be found in the standard dynamical system textbooks \cite{kuznetsov2013elements}, and analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}.
 
-The scenario of Hopf bifurcation is theoretically well established and can be found in the standard dynamical system textbooks \cite{kuznetsov2013elements}, and analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}. Therefore, extracting dynamical features from the experimental results and building a robust mathematical model, well known as system identification, would interest researchers in various fields working on dynamical systems with Hopf bifurcation.
-
-Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well applicable to problems with bifurcation behavior \cite{thothadri2005nonlinear}. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is utilized to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}. However, unstable LCOs were not measured in other studies of system identification of dynamical systems with bifurcation behavior. Measurement of unstable LCO can extract various properties of the dynamical system; however, it is impossible to measure in experiments without stabilizing the LCO.
-
-Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time-delayed feedback control \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of time-delayed feedback control by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendlum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
+A dynamical system with Hopf bifurcation is often investigated experimentally to test such as flutter speeds of wing structure of the airplane. However, It is essential to stabilize the unstable LCO, which has valuable information about the system, to investigate the dynamical system. Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time-delayed feedback control \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of time-delayed feedback control by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to a wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendulum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
-If we look close to stabilizing LCO for Hopf bifurcation, theoretical studies of stabilizing feedback control can be found from several studies. Specifically, stabilizability of the feedback controller for subcritical Hopf bifurcation problems using time-delayed feedback control was studied \cite{brown2011time,postlethwaite2013feedback}. However, there are difficulties in real experiments using feedback control methods in Hopf bifurcation problems. For time-delayed feedback control, LCO cannot be stabilized if the period of the LCO is unknown, and dealing with delayed signal produces many difficulties in practical applications. For CBC, the input-output map is more complicated compared to typical forced dynamical systems since the feedback-controlled system is forced Hopf bifurcation. The response of forced Hopf bifurcation has an infinite set of steady-state solutions that has phase difference when a single harmonic force is applied to the system \cite{golubitsky2009feed}. An infinite set of response can be found with phase difference for Hopf bifurcation for every set of target coefficient; therefore, zero problem cannot be defined for Hopf bifurcation problem if typical CBC scheme is used which will be discussed in detail in the later section. However, CBC scheme would be the easiest method to stabilize unstable LCOs in nonlinear dynamic experiments if the zero problem is well defined to find the noninvasive control. Hence, the aim of this paper is developing CBC scheme which is directly applicable to investigating features of a dynamical system with Hopf bifurcation by experiments.
+The experiment of the dynamical system is critical to researchers since it can be used to verify the mathematical model or even building one. Building a mathematical model from the experiment, well known as system identification, is a good way to find a way to improve the design of a system with bifurcation. Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well applicable to problems with bifurcation behavior \cite{thothadri2005nonlinear}. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is used to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}.
+
+The main contribution of this paper is the development of CBC scheme for Hopf bifurcation and providing the theoretical basis of the scheme. In other studies, experimental schemes were only discussed theoretically and numerically \cite{brown2011time,postlethwaite2013feedback}, particularly for the time-delayed feedback control scheme, for the system with Hopf bifurcation since it has limitation in the experimental application when the period of unstable LCO is unknown. However, we provide a novel CBC scheme which is applicable in real experiments to overcome difficulties of time-delayed feedback control in the experiment.
+
+Another contribution of this paper is developing a framework of system identification using the result of CBC. Few studies \cite{abdelkefi2013analytical,thothadri2005nonlinear} can be foundin the context of system identification of system with Hopf bifurcation. However, this is the first research to build a mathematical model from an experiment of a subcritical Hopf bifurcation.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. CBC scheme to lock the phase between the control target and the output response is presented and effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed from the forced Hopf bifurcation. In the fourth section, the proposed CBC scheme is applied experimentally to a flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
+\section{General setting}\label{GS}
+Let us say that we have a suitable mathematical model that represents the dynamics of the physical system under experiment which has the form:
+
+\begin{align}\label{eq:gs}
+  \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
+\end{align}
+
+\noindent where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is control parameter and we assume $\vec{F}$ is smooth and \(\vec{F}(0,0)=0\). Specifically, we will consider the system that has generic subcritical Hopf bifurcation, where a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at critical value of $\lambda$ and family of unstable LCO is generated near the bifurcation point.
+
+For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fig:diagram}), where flutter \cite{dimitriadis2017introduction} is one of the typical self-excited problems in aerodynamics, and suppose dynamics can be represented by the unsteady aeroelastic mathematical model \cite{abdelkefi2013analytical}. In this case, wind speed would be a control parameter, and physical parameters will be dependent parameters for the type of bifurcation. For specific parameter values (values are given in \Tref{t2}), the dynamical system has subcritical Hopf bifurcation (\Fref{f:TH}) at wind speed 17.96 m/s which is so-called flutter speed. Limit cycle has saddle-node bifurcation at higher amplitude response where low amplitude unstable LCO branch and high amplitude stable LCO branch meets. Moreover, equilibrium is stable at wind speed < 17.96 m/s and unstable at wind speed >17.96, which makes even small perturbations to equilibria can be attracted to stable LCO at wind speed > 13.5 m/s. Therefore, critical dynamical features like flutter speed and flutter frequency cannot be estimated experimentally if the unstable LCO is not stabilized for the example case. This is why we need to stabilize the unstable LCO to explore the essential characteristics of the self-excited system which has similar bifurcation diagram with \Fref{f:TH}. In such systems, stabilizing feedback control can play an essential role in exploring dynamical features in the physical experiments. We will focus on CBC, which is one of the stabilizing feedback control experimental scheme to stabilize unstable LCO near the Hopf bifurcation, in the rest of the paper.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=8cm]{flutter_diagram.eps}
+  \put(-215,87){$\alpha$}
+  \put(-165,65){$b$}
+  \put(-70,40){$b$}
+  \put(-130,105){$x_{\alpha}$}
+  \put(-127,95){$a$}
+  \put(-70,78){$h$}
+  \caption{Schematic drawing of simplified aeroelastic model.}
+  \label{fig:diagram}
+\end{figure}
+
+\begin{figure}
+  \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
+  \begin{tikzpicture}
+  \begin{groupplot}[group style={group size=1 by 1,horizontal sep=40pt,every plot/.style={xmin=13,xmax=19,ymin=0,ymax=0.04},xlabels at=edge bottom,vertical sep=30pt},width=12cm,height=7.5cm,xlabel={Wind speed (m/sec)},x label style={at={(0.5,-0.05)}},scatter/classes={%
+  		a={mark=*,mark size=2pt,blue},%
+  		b={mark=o,mark size=2pt,red}},legend style={at={(0.33,0.95)}},every axis plot/.append style={ultra thick}]
+
+  \nextgroupplot[ylabel={Heave Amplitude (m)},y label style={at={(-0.02,0.5)}}]
+          \draw[->] (axis cs:14, 0.014) -- (axis cs:14, 0.005);
+          \draw[->] (axis cs:14, 0.016) -- (axis cs:14, 0.018);
+          \draw[->] (axis cs:14, 0.035) -- (axis cs:14, 0.02);
+          \draw[->] (axis cs:15, 0.012) -- (axis cs:15, 0.005);
+          \draw[->] (axis cs:15, 0.015) -- (axis cs:15, 0.02);
+          \draw[->] (axis cs:15, 0.035) -- (axis cs:15, 0.023);
+          \draw[->] (axis cs:16, 0.010) -- (axis cs:16, 0.005);
+          \draw[->] (axis cs:16, 0.013) -- (axis cs:16, 0.022);
+          \draw[->] (axis cs:16, 0.035) -- (axis cs:16, 0.026);
+          \draw[->] (axis cs:17, 0.0065) -- (axis cs:17, 0.005);
+          \draw[->] (axis cs:17, 0.011) -- (axis cs:17, 0.024);
+          \draw[->] (axis cs:17, 0.035) -- (axis cs:17, 0.029);
+          \draw[->] (axis cs:18, 0.008) -- (axis cs:18, 0.026);
+          \draw[->] (axis cs:18, 0.035) -- (axis cs:18, 0.031);
+  \addplot [no marks,color=blue]
+        table [x=a, y=b, col sep=comma] {./Data/Data_10-2.csv};\label{ps}
+  %Here the blue parabloa is defined
+  \addplot [no marks,color=red,dashed]
+        table [x=a, y=b, col sep=comma] {./Data/Data_10-1.csv};\label{pu}
+  \addplot [no marks,color=blue]
+        table [x=a, y=c, col sep=comma] {./Data/Data_10-4.csv};
+        %Here the blue parabloa is defined
+  \addplot [no marks,color=red,dashed]
+        table [x=a, y=c, col sep=comma] {./Data/Data_10-3.csv};
+
+  \end{groupplot}
+  \end{tikzpicture}
+  \centering
+\caption{ Bifurcation diagram of unsteady aeroelastic model with physical parameters given in \Tref{t2}. (\ref{ps}) is stable LCO and stable equilibria, (\ref{pu}) is unstable LCO and unstable equilibria. Arrows represents projection of phase portrait near the equilibria and LCO.}
+\label{f:TH}
+\end{figure}
 
 \section{Control based continuation (CBC)}\label{CBC}
 
-Numerical continuation tracks a branch of solution of the zero problem given by
+Periodic solutions $\vec{u}(t)$ with period $T$ of \Eref{eq:gs} can be tracked via numerical continuation by defining zero problem as
 
-\begin{align} \label{eq:nc}
-  \vec{f}(\vec{x},\lambda)=0,
+\begin{align}\label{eq:zp2}
+  \begin{split}
+ \vec{u}(T)-\vec{u}(0)&=0,\\
+   \int_{0}^{T} <\dot {\vec{u}}, \vec{u}> dt&=0,
+\end{split}
 \end{align}
 
-\noindent where $\vec{x}\in \real ^n$ is state variables and $\lambda \in \real ^m$ is unfolding parameters. Function $\vec f$ can be defined for equilibrium or periodic solutions and can be tracked with well-established algorithms. However, two challenges should be solved to apply a similar idea to experimental bifurcation analysis. Firstly, it is not possible to measure all state variables of the dynamical system in general. Secondly, the steady-state of the dynamical system should be stable to be measured.
+\noindent where $<\cdot,\cdot>$ denotes inner product of vector. This zero problem has a boundary value problem of periodic motion and phase condition to parametrize the family of periodic orbit as element and the zero problem is solved by suitable methods such as newton methods at each $\lambda$.
 
-In order to address these challenges, the feedback controller is utilized to stabilize the unstable periodic solutions of the dynamical system.
-For instance, feedback control signal $\Gamma(t)$ with proportional derivative control can be typically expressed as
+
+Continuation of a periodic solution in the experiment needs a different approach with numerical continuation. First, the unstable periodic solution should be stabilized by feedback control. $\Gamma(t)$ with proportional derivative control can be expressed as
 
 \begin{align}
   \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
 \end{align}
 
-\noindent where $x(t)$ is a scalar output of the system ,$x^*(t)$ is a scalar control target, $K_p$ is the proportional control gain, and $K_d$ is the derivative control gain. If $K_p$,$K_d$ are selected appropriately to stabilize the unstable periodic orbit of uncontrolled system, zero problem defined by input and output $x^*(t)-x(t)=0$ can derived by expressing $x^*(t)$ and $x(t)$ by fourier series of first $2q+1$ modes as
+\noindent where $x(t)$ is a scalar output of the system (measured signal), $x^*(t)$ is a scalar control target, $K_p$ is the proportional control gain, and $K_d$ is the derivative control gain. Measuring unstable periodic solution is achieving a noninvasive control which means $\Gamma(t)=0$. Then, control target $x^*(t)$ is identical to unstable periodic if $K_p$, $K_d$ are selected appropriately to stabilize the unstable periodic solution of the uncontrolled system.
 
-\begin{align}
+$x^*(t)$ that makes the controller noninvasive can be computed from the experiment by solving zero problem defined by input-output map $x^*(t)-x(t)=0$. For instance, input-output map can be discretized by projecting $x^*(t)$ and $x(t)$ to Fourier series of first $2q+1$ modes for the harmonically forced vibrations as
+
+\begin{align}\label{eq:dis}
   \begin{split}
   x(t)=&A_0/2+  \sum_{j=1}^{q} A_j \cos (j\omega t)+B_j \sin (j\omega t),\\
   x^*(t)=&A_0^*/2+  \sum_{j=1}^{q} A^*_j \cos (j\omega t)+B^*_j \sin (j\omega t).
@@ -180,55 +248,17 @@ For instance, feedback control signal $\Gamma(t)$ with proportional derivative c
 \end{split}
 \end{align}
 
-\noindent \Eref{eq:zp} allows us to define zero problem for multidimensional systems even if we are using scalar input $x^*(t)$ and output $x(t)$ when the feedback control is stabilizing the response. Fixed point problem of CBC can be solved using any zero problem solving methods such as Newton-like methods \cite{schilder2015experimental} or Picard iteration \cite{barton2013systematic}. Also, zero problem of CBC can be embedded to pseudo arclength continuation by including additional zero problem and path-following of the family of periodic orbit can be similarly established with numerical continuation methods. We only use proportional derivative control in this research ; however, CBC scheme is not restricted to only proportional derivative control.
+\noindent \Eref{eq:zp} allows us to define zero problem for multidimensional systems even if we are using scalar input $x^*(t)$ and output $x(t)$ when the feedback control is stabilizing the response. Fixed point problem of CBC can be solved using any zero problem-solving methods such as Newton-like methods \cite{schilder2015experimental} or Picard iteration \cite{barton2013systematic}. Note that CBC is equation-free method and in fact, it can be used to build a mathematical model which will be discussed in the later section.
 
-Stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and define a zero problem from the input-output map in the next section.
-
-
-
+However, stabilizing unstable LCO with CBC is not simple because of the complexity of the input-output map of forced Hopf bifurcation. Zero problem to be solved in the experiment cannot be defined if we use a typical CBC scheme that discretizes periodic orbit with first $2q+1$ fourier coefficients. We will discuss the input-output map of CBC for Hopf bifurcation and define a zero problem from the input-output map in the next section.
 
 \section{Stablizing control near the Hopf bifurcation}\label{SNH}
 
-Simplifying the dynamical system using normal form is the most popular way to study the bifurcation problem analytically. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and unfolding parameter rescaling to discuss the stabilizability of the controller.
+Simplifying the dynamical system using normal form is the most popular way to study the bifurcation problem analytically. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and control parameter rescaling to discuss the stabilizability of the controller. Simplified dynamics of CBC applied to a dynamical system with Hopf bifurcation provides the basis of the developed CBC scheme of this research.
 
 \subsection{Hopf bifurcation and the normal form}\label{SNF}
 
-Let us consider an autonomous nonlinear parameter-dependent dynamical system that has generic Hopf bifurcation at \(\vec{\lambda}=0\),
-\begin{align}\label{eq:1}
-  \dot{\vec{z}} =\vec{F}(\vec{z},\vec{\lambda}),
-\end{align}
-where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is a unfolding parameter and we assume \(\vec{F}(0)=0\). For generic Hopf bifurcation, a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at $\lambda=0$, and family of LCO is created from the bifurcation point. Typical bifurcation diagram of generic codimension-1 Hopf bifurcation with a saddle-node bifurcation at higher amplitude response, where equilibria is stable at $\lambda < 0$ and unstable  at $\lambda >0$, is presented in \Fref{f:TH}. \Fref{f:TH} (a) shows the supercritical case and Hopf bifurcation point and Hopf frequency is experimentally measurable since there is no stable LCO near the stable equilibrium. However, as shown in \Fref{f:TH} (b), there is stable branch of LCO near the stable LCO which makes even small perturbations to equilibrium can be atrracted to stable LCO. Moreover, important dynamical features like Hopf bifurcation point ($\lambda=0$) and Hopf frequency (eigenvalue of the unstable mode) cannot be measured experimentally if the unstable LCO is not stabilized for subcritical case. This is why we need to stabilize the unstable LCO to explore the essential characteristics of self-excited system.
-
-\begin{figure}
-  \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
-  \begin{tikzpicture}
-  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={xmin=-5,xmax=0.3,ymin=0,ymax=3},xlabels at=edge bottom,vertical sep=30pt},xtick={0},ytick={0},width=7.1cm,height=7.5cm,xlabel={$\lambda$},x label style={at={(0.5,-0.05)}},scatter/classes={%
-  		a={mark=*,mark size=2pt,blue},%
-  		b={mark=o,mark size=2pt,red}},legend style={at={(0.33,0.95)}}]
-
-  \nextgroupplot[title=(a),ylabel={Amplitude of LCO},y label style={at={(-0.02,0.5)}},legend style={at={(0.35,0.98)}},xmin=-0.3,xmax=5]
-
-  \addplot [no marks,color=blue]
-        table [x=d, y=b, col sep=comma] {./Data/Data_10-1.csv};\label{ps}
-  %Here the blue parabloa is defined
-  \addplot [no marks,color=red,dashed]
-        table [x=d, y=b, col sep=comma] {./Data/Data_10-2.csv};\label{pu}
-
-  \nextgroupplot[title=(b),ylabel={Amplitude of LCO},y label style={at={(-0.02,0.5)}}]
-
-  \addplot [no marks,color=blue]
-        table [x=a, y=b, col sep=comma] {./Data/Data_10-2.csv};
-  %Here the blue parabloa is defined
-  \addplot [no marks,color=red,dashed]
-        table [x=a, y=b, col sep=comma] {./Data/Data_10-1.csv};
-  \end{groupplot}
-  \end{tikzpicture}
-  \centering
-\caption{ Typical bifurcation diagram of Hopf bifurcation. (a) Supercritical (b) Subcritical. (\ref{ps}) is stable LCO, (\ref{pu}) is unstable LCO.}
-\label{f:TH}
-\end{figure}
-
-Simplifying the dynamical system is a powerful tool to understand the dynamics of the Hopf bifurcation and the CBC. First, \Eref{eq:1} should be transformed to a partitioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
+Simplifying the dynamical system is a powerful tool to understand the dynamics of the Hopf bifurcation and the CBC. First, \Eref{eq:gs} should be transformed to a partitioned system at \(\lambda=0\) by transforming the linearization of \(\vec{F}\) to Jordan normal form as
 \begin{align}\label{eq:2}
   \begin{split}
     \dot{\vec{x}} =\vec{J}_\textrm{c} \vec{x} + \vec{f}(\vec{x},\vec{y},\lambda)\\
@@ -249,7 +279,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without unfolding parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\textrm{i}\sum_k g_k(u,\bar{u}),\\
@@ -280,12 +310,12 @@ Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by
 \end{split}
 \end{align}
 
-\noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is supercritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) and subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}>0\) for codimension-1 case.
+\noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is supercritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) and subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}>0\).
 
 
 \subsection{Stabilizability of the controller}
 
-We will consider linear proportional derivative control acting on a single coordinate vector which will be the most simple case to setup a nonlinear dynamic experiment in various applications. Let the equation of motion of autonomous dynamical system that has codimension-1 generic subcritical Hopf bifurcation at $\mu=0$ be
+We will consider linear proportional derivative control acting on a single coordinate vector which will be the most simple case to setup a nonlinear dynamic experiment in various applications. Let the equation of motion of autonomous dynamical system that has  generic subcritical Hopf bifurcation at $\mu=0$ be
 
 \begin{align}\label{eq:0}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu}).
@@ -297,13 +327,13 @@ We will consider linear proportional derivative control acting on a single coord
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
 \end{align}
 
-\noindent where $\mu\in \real$ is an unfolding parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
+\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
 
 \begin{align}\label{eq:12}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
 \end{align}
 
-\noindent \Eref{eq:12} can be written in the form of \Eref{eq:1} by
+\noindent \Eref{eq:12} can be written in the form of \Eref{eq:gs} by
 
 \begin{align}\label{eq:13}
 \begin{split}
@@ -312,7 +342,7 @@ We will consider linear proportional derivative control acting on a single coord
 \end{split}
 \end{align}
 
-\noindent \Eref{eq:13} has codimension-3 Hopf bifurcation at $\lambda=0$. As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and unfolding parameters.
+\noindent As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
 
 Now, stabilizability of unstable limit cycle of the uncontroled system at $\lambda=\lambda_1=[\mu,0,0]^T$ by using CBC will be studied. Limit cycle ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of \Eref{eq:10} and expressed in normal form coordinates $[u,\bar u]^T$ as
 
@@ -329,7 +359,7 @@ Now, stabilizability of unstable limit cycle of the uncontroled system at $\lamb
     [x,\bar x]^T=\Psi_1(u,\bar u)=&[h(u,\bar u,\nu_1),\bar h(u,\bar u,\nu_1)]^T,
 \end{align}
 
-\noindent  where $\nu_1=p^{-1}(\lambda_1)$ is unfolding parameter reparametrization in the coordinates of the normal form with $p(0)=0$. Limit cycle \Eref{eq:14} in original coordinates $x^*(t)$ can be computed from
+\noindent  where $\nu_1=p^{-1}(\lambda_1)$ is control parameter reparametrization in the coordinates of the normal form with $p(0)=0$. Limit cycle \Eref{eq:14} in original coordinates $x^*(t)$ can be computed from
 
 \begin{align}\label{eq:16}
     [x^*(t),\bar {x^*}(t)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
@@ -506,7 +536,7 @@ Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, whi
 
 
 \section{Experimental example}
-In this section, we show scheme developed in \Sref{SNH} can be applied to a mechanical system with Hopf bifurcation. Developed scheme is applied to a flutter \cite{dimitriadis2017introduction} rig, where flutter is one of the typical Hopf bifurcation problems in aerodynamics.
+In this section, we show scheme developed in \Sref{SNH} can be applied to a mechanical system with Hopf bifurcation. Developed scheme is applied to a flutter rig.
 
 
 \subsection{Experiment setup}\label{setup}
@@ -571,9 +601,9 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 
 \noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off.
 
-Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. \Fref{f:5} (a) has a similar pattern with typical bifurcation diagram of subcritical Hopf bifurcation in \Fref{f:TH}. Experimentally obtained bifurcation diagram contains valuable features of the dynamical system-- saddle-node bifurcation point of LCO, flutter speed, flutter frequency-- which can be used as a tool to verify the mathematical model. Also, measured amplitude and frequency can be utilized to identify the parameters of the model, which will be discussed in the next section.
+Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. \Fref{f:5} (a) has a similar pattern with typical bifurcation diagram of subcritical Hopf bifurcation in \Fref{f:TH}. Experimentally obtained bifurcation diagram contains valuable features of the dynamical system-- saddle-node bifurcation point of LCO, flutter speed, flutter frequency-- which can be used as a tool to verify the mathematical model. Also, measured amplitude and frequency can be used to identify the parameters of the model, which will be discussed in the next section.
 
-In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the unfolding parameter of the Hopf bifurcation.
+In this research, zero problems were not embedded in the pseudo arclength continuation since the wind speed of the wind tunnel was uncontrollable by the real-time controller. However, CBC scheme developed here can be embedded to pseudo arclength continuation if the real-time controller is able to control the control parameter of the Hopf bifurcation.
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.9,0.9)}}}
@@ -701,7 +731,7 @@ In this research, zero problems were not embedded in the pseudo arclength contin
 
 
 \section{Application of CBC for system identification}
-System identification is building a mathematical model from the results of an experiment which can provide valuable physical insights to researchers. We will show CBC can be utilized to verify the linearized dynamical model and used as a tool to identify the grey-box model \cite{bohlin2006practical} in this section.
+System identification is building a mathematical model from the results of an experiment which can provide valuable physical insights to researchers. We will show CBC can be used to verify the linearized dynamical model and used as a tool to identify the grey-box model \cite{bohlin2006practical} in this section.
 
 \subsection{Physical model for dynamical system}\label{model}
 There are many physical models describing flutter; however, we use a simplified 2D model since the wing profile of the flutter rig has a simple shape. To take account of wake effects on the aerodynamic loads, we use unsteady formulation \cite{abdelkefi2013analytical}, which is more accurate compared to quasi-static model \cite{strganac2000identification}. The damping force of the system is assumed as linear viscous damping in both pitch and heave motion, and we assume that spring plate is the only source of nonlinearity in the stiffness. We omit the detailed derivation of unsteady formulation, but a detailed explanation can be found in \cite{abdelkefi2013analytical}. General equation of motion is,
@@ -771,20 +801,6 @@ $x_\alpha$ & Nondimensional distance between center of gravity and elastic axis 
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\begin{figure}
-  \centering
-  \includegraphics[width=8cm]{flutter_diagram.eps}
-  \put(-215,87){$\alpha$}
-  \put(-165,65){$b$}
-  \put(-70,40){$b$}
-  \put(-130,105){$x_{\alpha}$}
-  \put(-127,95){$a$}
-  \put(-70,78){$h$}
-  \caption{Schematic drawing of simplified aeroelastic model.}
-  \label{fig:diagram}
-\end{figure}
-
-
 \noindent If we express the equation of motion in state variable $ \vec{z} = [h, \dot h, \alpha, \dot \alpha, w, \dot {w}] ^T $, following form can be obtained as
 
 \begin{align}\label{eq:2-6}
@@ -848,7 +864,7 @@ $x_\alpha$ & 0.24 & & \\
 \vspace*{-4pt}
 \end{table}%%%End of the table
 
-\noindent CBC results can be utilized to check if the identified linear model captures important bifurcation characteristics such as flutter speed and flutter frequency. The verification of the linearized model can be done by comparing flutter speed and flutter frequency with the CBC results. Under \asref{a1}, the square of LCO amplitude is proportional to the unfolding parameter. Therefore, flutter speed can be estimated from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the unfolding parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
+\noindent CBC results can be used to check if the identified linear model captures important bifurcation characteristics such as flutter speed and flutter frequency. The verification of the linearized model can be done by comparing flutter speed and flutter frequency with the CBC results. Under \asref{a1}, the square of LCO amplitude is proportional to the control parameter. Therefore, flutter speed can be estimated from the linear regression of the square of LCO amplitude crosses zero (\Fref{f:6} (a)), and flutter frequency can be estimated from the relation between the control parameter and the frequency of the LCO from \Eref{eq:10} which is a linear function if we truncate the normal form to the third order (\Fref{f:6} (b)).
 
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
@@ -933,7 +949,7 @@ The computed eigenvalues of the Jacobian of the identified linearized system are
 
 \subsection{Parameter identification of the nonlinear model}\label{nonlinear}
 
-If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has codimension-1 Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} is used to compute the center manifold and normal form in this research. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
+If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} is used to compute the center manifold and normal form in this research. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
 
 SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dynamics. SNF in polar coordinates is
 \begin{align}\label{eq:2-11}
@@ -943,7 +959,7 @@ SNF of \Eref{eq:2-6} can be computed by inserting \Eref{eq:6} to the reduced dyn
 \end{split}
 \end{align}
 
-\noindent where details of nonlinear transformation is given in \ref{ap2}. Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and unfolding parameter $\nu$ which is a nonzero equilibria of \Eref{eq:2-11}
+\noindent where details of nonlinear transformation is given in \ref{ap2}. Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\nu$ which is a nonzero equilibria of \Eref{eq:2-11}
 
 \begin{align}\label{eq:2-12}
 R=\frac{0.0075\nu}{- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2}.
@@ -971,7 +987,7 @@ k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
 
 Computed amplitude via numerical continuation, normal form, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using same parameters with the normal form computation. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using normal form theory-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
 
-Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model. The difference between normal form and numerical continuation results far from the Hopf point is due to the inaccuracy of the center-manifold computation which is valid near equilibrium. Higher-order approximation of center-manifold should be computed to increase the validate region of the normal form. Moreover, a more delicate aerodynamic model that takes account of a higher order of $U$ in the equation of motion can be utilized to improve the accuracy of the stable branch estimation. However, improving the accuracy of the model is not the scope of this paper.
+Less accurate agreement for pitch between the measurement and numerical continuation is due to the inaccuracy of the estimated modal vector from the linearized model. Accuracy of the modal vector can be improved by using input signals such as random excitation in a linear state-space model. The difference between normal form and numerical continuation results far from the Hopf point is due to the inaccuracy of the center-manifold computation which is valid near equilibrium. Higher-order approximation of center-manifold should be computed to increase the validate region of the normal form. Moreover, a more delicate aerodynamic model that takes account of a higher order of $U$ in the equation of motion can be used to improve the accuracy of the stable branch estimation. However, improving the accuracy of the model is not the scope of this paper.
 
 
 
@@ -1041,7 +1057,7 @@ Less accurate agreement for pitch between the measurement and numerical continua
 \end{figure}
 
 \section{Conclusion}
-CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and utilized as an identification tool of the grey-box model of a self-excited system.
+CBC scheme for stabilizing unstable LCOs near Hopf bifurcation is developed. A dynamical system with CBC can be simplified to a Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed during normal form derivation. Input-output map of CBC for Hopf bifurcation can be defined as a one-dimensional map if phase-locking between the control target and the response is forced by the real-time controller. Therefore, finding a noninvasive periodic solution is equivalent to finding a zero solution of the control error function. Developed CBC scheme is applied to a flutter rig, and unstable LCO was stabilized at five different wind speed. This result can be applied to verify the identified linearized dynamical model and used as an identification tool of the grey-box model of a self-excited system.
 
 To apply PP-CBC to more general problems, phase locking scheme for multiharmonic response should be developed. Also, a methodology to overcome the influence of the measurement noise should be considered to improve the accuracy of the CBC results. \vskip6pt
 
