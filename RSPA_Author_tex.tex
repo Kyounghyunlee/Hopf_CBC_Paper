@@ -327,7 +327,7 @@ We will consider linear proportional derivative control acting on a single coord
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
 \end{align}
 
-\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We can rewrite \Eref{eq:11} in autonomous form by droping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
+\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We will show the controlled system can be simplified to forced Hopf bifurcation where the single harmonic forcing is added to a SNF of the unforced equation under a certain assumption. First, we analyze autonomous term of \Eref{eq:11} by dropping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
 
 \begin{align}\label{eq:12}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
@@ -342,9 +342,9 @@ We will consider linear proportional derivative control acting on a single coord
 \end{split}
 \end{align}
 
-\noindent As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
+\noindent As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between center subspace of origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
 
-Now, stabilizability of unstable limit cycle of the uncontroled system at $\lambda=\lambda_1=[\mu,0,0]^T$ by using CBC will be studied. Limit cycle ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of \Eref{eq:10} and expressed in normal form coordinates $[u,\bar u]^T$ as
+Now, stabilizability of unstable limit cycle of the uncontroled system can be studied from normal form of \Eref{eq:12} at $\lambda=\lambda_1=[\mu,0,0]^T$. Unstable limit cycle ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of SNF \Eref{eq:10} and expressed in normal form coordinates $[u,\bar u]^T$ as
 
 \begin{align}\label{eq:14}
   \begin{split}
@@ -362,51 +362,38 @@ Now, stabilizability of unstable limit cycle of the uncontroled system at $\lamb
 \noindent  where $\nu_1=p^{-1}(\lambda_1)$ is control parameter reparametrization in the coordinates of the normal form with $p(0)=0$. Limit cycle \Eref{eq:14} in original coordinates $x^*(t)$ can be computed from
 
 \begin{align}\label{eq:16}
-    [x^*(t),\bar {x^*}(t)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
+    [x^*(\tau),\bar {x^*}(\tau)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
 \end{align}
 
-\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is clearly a solution of \Eref{eq:0}. Moreover, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
+\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is solution of \Eref{eq:0} since $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))=0$. Moreover, by assuming $\| \lambda \|$ is small enough to say small amplitude periodic solution of \Eref{eq:13} is on the center manifold, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
 
 \begin{lemma}\label{l1}
-$\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$,
+$\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$,
 where $\vec{\Sigma}$ is a coordinate transformation matrix to jordan normal matrix $\vec{J}$ satisfying $\vec{J}=\Sigma^{-1}\vec{F}_\vec{z}(0,\lambda) \Sigma$ at $\lambda=0$, and $\pi_j$ is a scalar projection to j-th principle coordinate.
 \end{lemma}
 
 \begin{proof}
-If $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$, by inserting $z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and the control force is zero. For the only if part, lets assume $z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution. Then, $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$ since the solution is noninvasive.
+If $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$, by inserting $\vec z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and the control force is zero. For the only if part, lets assume $z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution. Then, $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$ since the solution is noninvasive.
 \end{proof}
 
 \noindent Let $\lambda_2=[\mu,K_p,K_d]^T$ and stability of the noninvasive periodic solution $\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ with control target $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the coefficients of $h(u,\bar u,\nu)$ and response $\vec{z}(t)$ to develop a scheme that is practically applicable in experiments.
 
 \begin{assumption}\label{a1}
-For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1ijlm}$, $c_{2ijlm}$ is sufficiently small, and therefore neglectable for $i+j\geq 2$. Also, contribution of higher harmonics and static deflection in $\vec{z}(t)$ which is produced from $\vec H(x^*,\bar {x^*},\lambda)$ are neglectable.
+For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1jlm}$, $c_{2jlm}$ is sufficiently small, and therefore neglectable for $j+j+m\geq 2$, i.e., $u \approx x$. Also, amplitude of LCO is small enough to say $\tau \approx t$ and $\vec H(x^*,\bar {x^*},\lambda) \approx 0$.
 \end{assumption}
 
-\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator by using the result of \Lref{l1}. Now, our problem to be solved is Hopf bifurcation with single harmonic forcing. The normal form of forced Hopf bifurcation for small amplitude bounded solution is equivalent to adding force in the direction of the centerspace to the autonomous Hopf normal form \cite{golubitsky2012feed,elphick1987normal}. Therefore, by letting $\epsilon$ as an amplitude of periodic forcing which is rescaled in the normal form coordinates from the $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ projected on the centerspace, normal form with single harmonic forcing at $\lambda=\lambda_2$ can be derived as
+\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator with small amplitude by using the result of \Lref{l1}. Now, our problem to be solved is Hopf bifurcation with single harmonic forcing. The normal form of forced Hopf bifurcation for small amplitude bounded solution is equivalent to adding force in the direction of the center subspace to the autonomous Hopf normal form \cite{golubitsky2012feed,elphick1987normal}. Therefore, by letting $\epsilon$ as an amplitude of periodic forcing which is appropriately rescailed by projecting $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to the center subspace, normal form of \Eref{eq:11} at $\lambda=\lambda_2$ can be derived as
 
 \begin{align}\label{eq:18}
-  \frac{du}{d\tau}=(\alpha_1+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_2\tau},
+  \frac{du}{dt}=(\alpha_1+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_1 t},
 \end{align}
 
-\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from \Eref{eq:9} using the coefficients of reduced dynamics at the centermanifold and $\omega_2$ is rescailed frequency of external forcing in the normal form coordinates at $\lambda=\lambda_2$. Stabilizability of the control can be anlyzed by the stability of the periodic solution of \Eref{eq:18} $u=u_2(\tau)$, where $u_2(\tau)$ is transfromed from $x^*(t)$ by
-
-
-\begin{align}\label{eq:19}
-[u_2(\tau),\bar u_2(\tau)]^T = \Psi_2^{-1}(R_0e^{\textrm{i}\omega_0 t},R_0e^{-\textrm{i}\omega_0 t}),
-\end{align}
-
-\noindent where $R_0$ is amplitude of $x^*(t)$, $\omega_0$ is the frequency in the original coordinates, and homeomorphism ($\Psi_2:\complex\times\complex\rightarrow\complex\times\complex$) is defined at $\lambda=\lambda_2$ as
-
-\begin{align}\label{eq:hm}
-[x,\bar x]^T=\Psi_2(u,\bar u)=[h(u,\bar u,\nu_2),\bar h(u,\bar u,\nu_2)]^T,
-\end{align}
-
-\noindent where $\nu_2$ can be computed from $\nu_2=p(\lambda_2)$. Under \asref{a1}, $u_2(\tau)$ is a single harmonic oscillator which is phase-locked with $\epsilon e^{\textrm{i}\omega_2\tau}$. Stability condition of noninvasive periodic solution can be derived as following lemma.
+\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from \Eref{eq:9} using the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$, and stability condition of noninvasive periodic solution can be derived as following lemma.
 
 \begin{lemma}\label{t1}
-Noninvasive periodic solution $u_2(\tau)$ is stable if the amplitude of the solution $R_2$ satisfies
+Noninvasive periodic solution $u_2(t)$ is stable if the amplitude of the noninvasive periodic solution $R_1$ satisfies
 \begin{align}\label{eq:20}
-3(\alpha_2^2+\beta_2^2)R_2^3+4(\alpha_1+\beta_2(\beta_1-\omega_2))R_2+(\alpha_1^2+(\beta_1-\omega_2)^2)<0.
+3(\alpha_2^2+\beta_2^2)R_1^3+4(\alpha_1+\beta_2(\beta_1-\omega_1))R_1+(\alpha_1^2+(\beta_1-\omega_2)^2)<0.
 \end{align}
 \end{lemma}
 
@@ -414,28 +401,28 @@ Noninvasive periodic solution $u_2(\tau)$ is stable if the amplitude of the solu
 If we look \Eref{eq:18} in the rotating coordinates defined by
 
 \begin{align}\label{eq:21}
-  v=ue^{\textrm{i}\omega_2 \tau},
+  v=ue^{\textrm{i}\omega_1 t},
 \end{align}
 
 \noindent The dynamical system becomes autonomous,
 
 \begin{align}\label{eq:22}
-  \dot v=(\alpha_1+\textrm{i}(\beta_1-\omega_2))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
+  \dot v=(\alpha_1+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
 \end{align}
 
 \noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution with the forcing of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
 
 \begin{align}\label{eq:23}
-  ((\alpha_1+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_2)+\beta_2 R^2)))v=-\epsilon.
+  ((\alpha_1+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon.
 \end{align}
 
 \noindent $P(R)$, where the zeros of $P(R)$ is phase-locked periodic solutions of \Eref{eq:18}, can be derived by taking norm square of both side of \Eref{eq:23} as
 
 \begin{align}\label{eq:24}
-  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1+\beta_2(\beta_1-\omega_2))R^4+(\alpha_1^2+(\beta_1+\omega_2)^2)R^2-\epsilon^2=0.
+  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1+\beta_2(\beta_1-\omega_1))R^4+(\alpha_1^2+(\beta_1+\omega_1)^2)R^2-\epsilon^2=0.
 \end{align}
 
-\noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_2$. Dividing $P_R(R_2)$ by $2R_2^2$, we arrive to the stability condition of the noninvasive periodic solution.
+\noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of P(R). Stability of the noninvasive periodic solution can be analyzed from the stability of this fixed point.Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
 \end{proof}
 
 \noindent The controller is able to stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. For CBC experiments, finding noninvasive control target remains as a problem even if the controller is stabilizable. This will be discussed in the next subsection.
@@ -448,7 +435,7 @@ Phase-locked response with the forcing should be tracked from the response of fo
 as
 
 \begin{align}\label{eq:ps}
-\frac{du}{d\tau}=(\alpha_1+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2 \bar u+\epsilon e^{\textrm{i}\theta}.
+\dot v=(\alpha_1+\textrm{i}\beta_1)v+(\alpha_2+\textrm{i}\beta_2)v^2 \bar v+\epsilon e^{\textrm{i}\theta}.
 \end{align}
 
 \noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.
@@ -540,7 +527,7 @@ The experiment was performed on flutter rig with a NACA-0015 wing profile \cite{
     \caption{Schematic of flutter rig}
   \end{subfigure}
   \begin{subfigure}[b]{0.6\linewidth}
-    \includegraphics[width=\linewidth]{flutter_pic.eps}
+    \includegraphics[width=\linewidth]{rig_pic.png}
     \caption{Picture of flutter rig.}
   \end{subfigure}
   \caption{Schematic drawing and picture of flutter rig.}
@@ -1096,7 +1083,7 @@ Equation should be transformed in the form of \Eref{eq:2} to compute the centerm
 \end{bmatrix}.
 \end{align}
 
-\noindent Let $\vec{x}=[x,\bar x]^T$ be the centerspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed recursive algorithm. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
+\noindent Let $\vec{x}=[x,\bar x]^T$ be the center subspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed recursive algorithm. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
 \begin{align}
 \begin{split}
   y_1=&( - 0.00208+ 0.00245\,i ) { \mu}^{2}x+ (  0.000114-
