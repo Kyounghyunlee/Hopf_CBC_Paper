@@ -131,16 +131,16 @@ K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{1}$}
 
 \section{Introduction}\label{int}
 
-Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} and Facebook's Aquila UAV crash would be the devastating example of Hopf bifurcation. Hopf bifurcation would be the typical example of a self-excited system produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCO is either stable (supercritical Hopf bifurcation) or unstable (subcritical Hopf bifurcation) close to Hopf bifurcation. The scenario of Hopf bifurcation is theoretically well established and can be found in the standard dynamical system textbooks \cite{kuznetsov2013elements}, and analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}.
+The dynamical system that has a non-zero solution where the equation of motion is a function without forcing is called a self-excited system. It is usually a convenient way to mathematically model systems as a self-excited system where multiple fields of physics interact such as in fluid/structure. Oscillations in self-excited system arise from instability incorporated in the model, and the most common example is the Hopf bifurcation. Hopf bifurcation is problematic in many engineering applications such as flutter of aircraft wings and shimmying in wheels, where small perturbation to an equlibrium state can produce large displacement LCO response. Prototype of flying wing Hellios \cite{noll2004investigation} and Facebook's Aquila UAV crash would be the devastating example of Hopf bifurcation. Hopf bifurcation is produced by loss of stability of equilibrium with parameter variation and birth of a family of LCO near the bifurcation point. LCO is either stable (supercritical Hopf bifurcation) or unstable (subcritical Hopf bifurcation) close to Hopf bifurcation. The scenario of Hopf bifurcation is theoretically well established and can be found in the standard dynamical system textbooks \cite{kuznetsov2013elements}, and analysis tool for Hopf bifurcation is well developed for mathematical models such as normal form \cite{yu2002simplest,ashwin1995numerical} and numerical continuation methods \cite{doedel2000auto2000,dankowicz2013recipes}.
 
-A dynamical system with Hopf bifurcation is often investigated experimentally to test such as flutter speeds of wing structure of the airplane. However, It is essential to stabilize the unstable LCO, which has valuable information about the system, to investigate the dynamical system. Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time-delayed feedback control \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of time-delayed feedback control by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to a wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendulum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
+A dynamical system with Hopf bifurcation is often investigated experimentally to test such as flutter of wing structure of the airplane. However, It is essential to stabilize the unstable LCO, which has valuable information about the system, to investigate the dynamical system. Feedback control can be used as a tool to stabilize the unstable LCO of the dynamical system when it is noninvasive. Time-delayed feedback control \cite{pyragas2006delayed,sieber2016generic} is popular feedback control scheme that feeds a signal $x(t)-x(t-T)$ back where $x(t)$ is output of the experiment and $T$ is period of the periodic orbit subject to be stabilized. Control-based continuation (CBC) resembles the approach of time-delayed feedback control by replacing delay signal $x(t-T)$ to time-periodic signal $x^*(t)$ which also reduces difficulties dealing with delayed signals such as memory problems and measurement noise. CBC scheme is generally solving fixed point problem experimentally, which is based on finding a noninvasive control target that stabilizes the unstable periodic orbit of the uncontrolled system. CBC was initially proposed by Sieber and Krauskopf \cite{sieber2008control} and applied to a wide range of experiments, especially mechanical system experiments. It was applied to parametrically excited pendulum \cite{sieber2011control}, impact oscillators \cite{bureau2013experimental,bureau2014experimental}, nonlinear energy harvester \cite{barton2013systematic,barton2011numerical}
 , and cantilever beam with a nonlinear mechanism at its free tip \cite{renson2019application}. Also, CBC has been proved to produce critical information about nonlinear dynamical systems such as nonlinear normal modes \cite{renson2016robust,renson2016experimental} and floquet multipliers \cite{barton2017control} and harmonically coupled modes \cite{renson2019application}.
 
-The experiment of the dynamical system is critical to researchers since it can be used to verify the mathematical model or even building one. Building a mathematical model from the experiment, well known as system identification, is a good way to find a way to improve the design of a system with bifurcation. Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods like nonlinear auto-regressive moving average models with exogenous inputs (NARMAX) are not generally well applicable to problems with bifurcation behavior \cite{thothadri2005nonlinear}. Moreover, nonparametric models are not related to a physical model and computationally expensive to identify compared to parametric models. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is used to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}.
+The experiment of the dynamical system is critical to researchers since it can be used to verify the mathematical model or even building one. Building a mathematical model from the experiment, well known as system identification, is a good way to find a way to improve the design of a system with bifurcation. Many nonparametric and parametric system identification methods have been developed and applied to various nonlinear dynamical systems. However, nonparametric nonlinear system identification methods are not generally well applicable to problems with bifurcation behavior since they are not related to a physical model and computationally expensive \cite{thothadri2005nonlinear}. Hence, parametric methods are typically adopted in system identification of dynamical system with Hopf bifurcation. In \cite{fichera2014experimental}, modal analysis is used to identify the parameters of the equation of motion. Also, experimentally measured LCO response can be used to identify the parameters of the nonlinear equations \cite{abdelkefi2013analytical}.
 
 The main contribution of this paper is the development of CBC scheme for Hopf bifurcation and providing the theoretical basis of the scheme. In other studies, experimental schemes were only discussed theoretically and numerically \cite{brown2011time,postlethwaite2013feedback}, particularly for the time-delayed feedback control scheme, for the system with Hopf bifurcation since it has limitation in the experimental application when the period of unstable LCO is unknown. However, we provide a novel CBC scheme which is applicable in real experiments to overcome difficulties of time-delayed feedback control in the experiment.
 
-Another contribution of this paper is developing a framework of system identification using the result of CBC. Few studies \cite{abdelkefi2013analytical,thothadri2005nonlinear} can be foundin the context of system identification of system with Hopf bifurcation. However, this is the first research to build a mathematical model from an experiment of a subcritical Hopf bifurcation.
+Another contribution of this paper is developing a framework of system identification using the result of CBC and this is the first research to build a mathematical model from an experiment of CBC which can provide accurate bifurcation diagram. Few studies \cite{abdelkefi2013analytical,thothadri2005nonlinear} can be found in the context of system identification of system with Hopf bifurcation. However, there was no research used to build a mathematical model with the help of feedback control.
 
 Rest of the paper is formulated as follows. In the second section, the general idea of CBC scheme is presented. In the third section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation is assumed. CBC scheme to lock the phase between the control target and the output response is presented and effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed from the forced Hopf bifurcation. In the fourth section, the proposed CBC scheme is applied experimentally to a flutter rig that has subcritical Hopf bifurcation. Application of CBC results in linear system verification, and nonlinear parameter identification is presented in the fifth section.
 
@@ -153,7 +153,7 @@ Let us say that we have a suitable mathematical model that represents the dynami
 
 \noindent where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is control parameter and we assume $\vec{F}$ is smooth and \(\vec{F}(0,0)=0\). Specifically, we will consider the system that has generic subcritical Hopf bifurcation, where a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at critical value of $\lambda$ and family of unstable LCO is generated near the bifurcation point.
 
-For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fig:diagram}), where flutter \cite{dimitriadis2017introduction} is one of the typical self-excited problems in aerodynamics, and suppose dynamics can be represented by the unsteady aeroelastic mathematical model \cite{abdelkefi2013analytical}. In this case, wind speed would be a control parameter, and physical parameters will be dependent parameters for the type of bifurcation. For specific parameter values (values are given in \Tref{t2}), the dynamical system has subcritical Hopf bifurcation (\Fref{f:TH}) at wind speed 17.96 m/s which is so-called flutter speed. Limit cycle has saddle-node bifurcation at higher amplitude response where low amplitude unstable LCO branch and high amplitude stable LCO branch meets. Moreover, equilibrium is stable at wind speed < 17.96 m/s and unstable at wind speed >17.96, which makes even small perturbations to equilibria can be attracted to stable LCO at wind speed > 13.5 m/s. Therefore, critical dynamical features like flutter speed and flutter frequency cannot be estimated experimentally if the unstable LCO is not stabilized for the example case. This is why we need to stabilize the unstable LCO to explore the essential characteristics of the self-excited system which has similar bifurcation diagram with \Fref{f:TH}. In such systems, stabilizing feedback control can play an essential role in exploring dynamical features in the physical experiments. We will focus on CBC, which is one of the stabilizing feedback control experimental scheme to stabilize unstable LCO near the Hopf bifurcation, in the rest of the paper.
+For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fig:diagram}), where flutter \cite{dimitriadis2017introduction} is one of the typical self-excited problems in aerodynamics, and suppose dynamics can be represented by the unsteady aeroelastic mathematical model \cite{abdelkefi2013analytical}. In this case, wind speed would be a control parameter, and physical parameters will be dependent parameters for the type of bifurcation. For specific parameter values (values are given in \Tref{t2}), the dynamical system has subcritical Hopf bifurcation (\Fref{f:TH}) at wind speed 17.96 m/s which is so-called flutter speed. Limit cycle has saddle-node bifurcation at higher amplitude response where low amplitude unstable LCO branch and high amplitude stable LCO branch meets. Moreover, equilibrium is stable at wind speed < 17.96 m/s and unstable at wind speed >17.96 m/s. Even small perturbations to stable equilibria can be attracted to stable LCO at wind speed > 13.5 m/s which is a fold point which makes challenging to identify bifurcation diagram experimentally without the help of feedback control. This is why we need to stabilize the unstable LCO to explore the essential characteristics of the self-excited system which has similar bifurcation diagram with \Fref{f:TH}. In such systems, stabilizing feedback control can play an essential role in exploring dynamical features in the physical experiments. We will focus on CBC, which is one of the stabilizing feedback control experimental scheme to stabilize unstable LCO near the Hopf bifurcation, in the rest of the paper.
 
 \begin{figure}
   \centering
@@ -210,25 +210,15 @@ For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fi
 
 \section{Control based continuation (CBC)}\label{CBC}
 
-Periodic solution $\vec{u}(t)$, where $\dot{\vec{u}}(t) =\vec{F}(\vec{u}(t),\vec{\lambda})$ with period $T$ of \Eref{eq:gs}, can be tracked via numerical continuation by defining zero problem as
+Periodic solution $\vec{u}(t)$, where $\dot{\vec{u}}(t) =\vec{F}(\vec{u}(t),\vec{\lambda})$ with period $T$ of \Eref{eq:gs}, can be tracked via numerical continuation by defining zero problem which has boundary value problem of periodic motion and phase condition to parametrize the family of periodic orbit as element. The zero problem is solved by suitable methods such as newton methods at each $\lambda$.
 
-\begin{align}\label{eq:zp2}
-  \begin{split}
- \vec{u}(T)-\vec{u}(0)&=0,\\
-   \int_{0}^{T} <\dot {\vec{u}}, \vec{u}> dt&=0,
-\end{split}
-\end{align}
-
-\noindent where $<\cdot,\cdot>$ denotes inner product of vector. This zero problem has a boundary value problem of periodic motion and phase condition to parametrize the family of periodic orbit as element and the zero problem is solved by suitable methods such as newton methods at each $\lambda$.
-
-
-Continuation of a periodic solution in the experiment needs a different approach with numerical continuation. First, the unstable periodic solution should be stabilized by feedback control. Scalar control force $\Gamma(t)$ with proportional derivative control can be expressed as
+Continuation of a periodic solution in the experiment needs a different approach with numerical continuation since the equation of motion is unknown. First, the unstable periodic solution should be stabilized by feedback control. Scalar control force $\Gamma(t)$ with proportional derivative control can be expressed as
 
 \begin{align}
   \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
 \end{align}
 
-\noindent where $x(t)$ is a scalar output of the system (measured signal), $x^*(t)$ is a scalar control target, $K_p$ is the proportional control gain, and $K_d$ is the derivative control gain. Measuring unstable periodic solution is achieving a noninvasive control which means $\Gamma(t)=0$. Then, control target $x^*(t)$ is identical to unstable periodic if $K_p$, $K_d$ are selected appropriately to stabilize the unstable periodic solution of the uncontrolled system.
+\noindent where $x(t)$ is a scalar output of the system (measured signal), $x^*(t)$ is a scalar control target, $K_p$ is the proportional control gain, and $K_d$ is the derivative control gain. Measuring unstable periodic solution is achieving a noninvasive control which means $\Gamma(t)=0$. Then, controlled system and uncontrolled system has same periodic solution $x(t)$ and the control target $x^*(t)$ is identical to $x(t)$.
 
 $x^*(t)$ that makes the controller noninvasive can be computed from the experiment by solving zero problem defined by input-output map $x^*(t)-x(t)=0$. For instance, input-output map can be discretized by projecting $x^*(t)$ and $x(t)$ to Fourier series of first $2q+1$ modes for the harmonically forced vibrations as
 
@@ -265,7 +255,7 @@ Simplifying the dynamical system is a powerful tool to understand the dynamics o
     \dot{\vec{y}} =\vec{J}_\textrm{s} \vec{y} +\vec{g}(\vec{x},\vec{y},\lambda)
   \end{split}
 \end{align}
-where $\vec{x}=[x;\bar{x}]\in \complex^2$ is center subspace with associated Jordan matrix $\vec{J}_\textrm{c}$ having diagonal term $\pm\textrm{i}$ and $\vec{y}\in \complex^{n-2}$ is stable subspace with it's associated Jordan matrix $\vec{J}_\textrm{s}$ of Jacobian of $\vec{F}(\vec{z})$ at $\vec{z}=0$.
+where $\lambda \in \real ^m$ is the control parameter vector, $\vec{x}=[x;\bar{x}]\in \complex^2$ is center subspace with associated Jordan matrix $\vec{J}_\textrm{c}$ having diagonal term $\pm\textrm{i}$ and $\vec{y}\in \complex^{n-2}$ is stable subspace with it's associated Jordan matrix $\vec{J}_\textrm{s}$ of Jacobian of $\vec{F}(\vec{z})$ at $\vec{z}=0$.
 $\vec{f}$ and $\vec{g}$ are functions with $\vec{f}(0,0)=0$, $D\vec{f}(0,0)=0$ and $\vec{g}(0,0)=0$, $D\vec{g}(0,0)=0$. Centermanifold exists for dynamical system \Eref{eq:2} for small  $\|\vec{x}\|$ which is invariant under the action of dynamical system \cite{carr2012applications}. Note that eigenvalues corresponding to center subspace is assumed $\pm\textrm{i}$ for simplicity. To reduce the order of dynamics of Hopf bifurcation, we include $\dot\lambda=0$ to \Eref{eq:2} and analyze the family of center manifolds, locally represented by small $\|\lambda\|$  \cite{kuznetsov2013elements}. Power series of centermanifold $\vec{H}(\vec{x},\lambda)$ can be computed recursively by solving
 \begin{align}\label{eq:3}
     D\vec{H}({\vec{\hat{x})}}(\vec{\hat{J}}_\textrm{c}\vec{\hat{x}}+\vec{f}(\vec{\hat{x}},\vec{H}(\vec{\hat{x}}))) =\vec{J}_\textrm{s} \vec{H}(\vec{\hat{x}})-\vec{g}(\vec{\hat{x}},\vec{H}(\vec{\hat {x}}))
@@ -279,39 +269,25 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. Moreover, we can parametrize amplitude of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to k-th order; however, we limit our attention up to third order. SNF can be expressed as
+Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{algaba1998hypernormal,yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. We can exact third order polynomial of amplitude in polar coordinates where conventional normal form has infinite degree high order terms. Moreover, we can parametrize amplitude and the stability of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to $k$-th order as
 \begin{align}\label{eq:5}
   \begin{split}
-    &\frac{du}{d\tau}=(\vec{\alpha}_1+\textrm{i}\vec{\beta}_1)\nu u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\textrm{i}\sum_k g_k(u,\bar{u}),\\
-    \textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k.
+    &\frac{du}{d\tau}=(\vec{\alpha}_1 \nu+\textrm{i}\vec{\beta}_1) u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\textrm{i}\sum_k g_k(u,\bar{u}),\\
+    \textrm{where} \;  &g_k(u,\bar{u})=(b_{1k}+\textrm{i}b_{2k})u^{\frac{k+1}{2}}\bar{u}^{\frac{k-1}{2}}, \; \textrm{for odd integer} \;k \geq 5.
   \end{split}
 \end{align}
-Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by following near identity transformation
-\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\),
-\begin{align}\label{eq:6}
+Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by near identity transformation
+\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\). More detailed explanation on the derivation and coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ and function $h$, $T$, $g$ and $p$ is presented in \ref{ap0}.
+
+If we express \Eref{eq:5} in polar coordinates $u=Re^{\textrm{i}\theta}$ and collect the real part, following equation can be derived as
+
+\begin{align}\label{eq:polar}
   \begin{split}
-    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
-    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}[(u+\bar{u})]^j\nu^m\Big)\tau,\\
-    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
+    &\frac{dR}{d\tau}=\vec{\alpha}_1 \nu R+\vec{\alpha}_2 R^3,
   \end{split}
 \end{align}
-Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}, SNF of Hopf bifurcation is derived with coefficients of original coordinate as
 
-\begin{align}\label{eq:9}
-&\frac{du}{d\tau}=\textrm{i}u+\vec{a}_{1101}\nu u+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})u^2\bar u+\textrm{i}\sum_{m=1}b_{2(2m+1)}u^{m+1}u^m.
-\end{align}
-
-\noindent This can be expressed in a more simpler form by transforming to polar coordinates,
-
-\begin{align}\label{eq:10}
-\begin{split}
-\frac{dR}{d\tau}=&\vec{a}_{1101}\nu R+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})R^3\\
-\frac{d\theta}{d\tau}=&1+b_{23}R^2,
-\end{split}
-\end{align}
-
-\noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is supercritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) and subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}>0\).
-
+\noindent where the nonzero fixed point of \Eref{eq:polar} is the amplitude of the LCO.
 
 \subsection{Stabilizability of the controller}
 
@@ -327,7 +303,9 @@ We will consider linear proportional derivative control acting on a single coord
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
 \end{align}
 
-\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We will show the controlled system can be simplified to forced Hopf bifurcation where the single harmonic forcing is added to a SNF of the unforced equation under a certain assumption. First, we analyze autonomous term of \Eref{eq:11} by dropping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
+\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We will show the controlled system can be simplified to forced Hopf bifurcation where the single harmonic forcing is added to a SNF of the unforced equation under a certain assumption. We can understand more easily how CBC can stabilize the unstable LCO near the Hopf bifurcation point and about the input-output map if \Eref{eq:11} is simplified to a normal form.
+
+First, we analyze unforced term of \Eref{eq:11} by dropping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
 
 \begin{align}\label{eq:12}
     \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
@@ -344,7 +322,7 @@ We will consider linear proportional derivative control acting on a single coord
 
 \noindent As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between center subspace of origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
 
-Now, stabilizability of unstable limit cycle of the uncontroled system can be studied from normal form of \Eref{eq:12} at $\lambda=\lambda_1=[\mu,0,0]^T$. Unstable limit cycle ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of SNF \Eref{eq:10} and expressed in normal form coordinates $[u,\bar u]^T$ as
+Now, stability of LCO of the uncontroled system can be studied from normal form of \Eref{eq:12} at $\lambda=\lambda_1=[\mu,0,0]^T$. LCO ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of \Eref{eq:polar} and expressed in normal form coordinates $[u,\bar u]^T$ as
 
 \begin{align}\label{eq:14}
   \begin{split}
@@ -365,10 +343,10 @@ Now, stabilizability of unstable limit cycle of the uncontroled system can be st
     [x^*(\tau),\bar {x^*}(\tau)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
 \end{align}
 
-\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is solution of \Eref{eq:0} since $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))=0$. Moreover, by assuming $\| \lambda \|$ is small enough to say small amplitude periodic solution of \Eref{eq:13} is on the center manifold, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
+\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is solution of \Eref{eq:0} since $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))=0$. Moreover, by assuming $\| \lambda \|$ is small enough to say periodic solution near the equilibria of \Eref{eq:13} is on the center manifold, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
 
 \begin{lemma}\label{l1}
-$\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution for \Eref{eq:11} if and only if $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$,
+$\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution of \Eref{eq:11} if and only if $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$,
 where $\vec{\Sigma}$ is a coordinate transformation matrix to jordan normal matrix $\vec{J}$ satisfying $\vec{J}=\Sigma^{-1}\vec{F}_\vec{z}(0,\lambda) \Sigma$ at $\lambda=0$, and $\pi_j$ is a scalar projection to j-th principle coordinate.
 \end{lemma}
 
@@ -376,24 +354,24 @@ where $\vec{\Sigma}$ is a coordinate transformation matrix to jordan normal matr
 If $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$, by inserting $\vec z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and the control force is zero. For the only if part, lets assume $z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution. Then, $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T)$ since the solution is noninvasive.
 \end{proof}
 
-\noindent Let $\lambda_2=[\mu,K_p,K_d]^T$ and stability of the noninvasive periodic solution $\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ with control target $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the coefficients of $h(u,\bar u,\nu)$ and response $\vec{z}(t)$ to develop a scheme that is practically applicable in experiments.
+\noindent Let $\lambda_2=[\mu,K_p,K_d]^T$ and stability of the noninvasive periodic solution $\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ with control target $z^*(t)=\pi_j (\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$  at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the near identity transformation and amplitude $R_1$ to develop a scheme that is practically applicable in experiments.
 
 \begin{assumption}\label{a1}
-For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, near identity transformation in \Eref{eq:6} $c_{1jlm}$, $c_{2jlm}$ is sufficiently small, and therefore neglectable for $j+j+m\geq 2$, i.e., $u \approx x$. Also, amplitude of LCO is small enough to say $\tau \approx t$ and $\vec H(x^*,\bar {x^*},\lambda) \approx 0$.
+For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, $c_{1jlm}\nu^m$, $c_{2jlm}\nu^m$ in \Eref{eq:6} is sufficiently small, and therefore neglectable for $j+j+m\geq 2$, i.e., $x \approx u$. Also, $R_1$ is small enough to have $t=T(u_1,\bar u_1,\tau) \approx \tau$ and $\vec H(x^*,\bar {x^*},\lambda) \approx 0$.
 \end{assumption}
 
-\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator with small amplitude by using the result of \Lref{l1}. Now, our problem to be solved is Hopf bifurcation with single harmonic forcing. The normal form of forced Hopf bifurcation for small amplitude bounded solution is equivalent to adding force in the direction of the center subspace to the autonomous Hopf normal form \cite{golubitsky2012feed,elphick1987normal}. Therefore, by letting $\epsilon$ as an amplitude of periodic forcing which is appropriately rescailed by projecting $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to the center subspace, normal form of \Eref{eq:11} at $\lambda=\lambda_2$ can be derived as
+\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator with small amplitude by using the result of \Lref{l1}. Now, our problem to be solved is Hopf bifurcation with single harmonic forcing. The normal form of forced Hopf bifurcation for small amplitude bounded solution is equivalent to adding force in the direction of the center subspace to the autonomous Hopf normal form (see \cite{golubitsky2012feed,elphick1987normal} for the proof). We assume $\| \vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))\|$ is sufficiently small to have solutions of \Eref{eq:11} on the center manifold. Then, by letting $\epsilon$ as an amplitude of periodic forcing which is appropriately rescailed by projecting $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to the center subspace, SNF of \Eref{eq:11} at $\lambda=\lambda_2$ can be derived as
 
 \begin{align}\label{eq:18}
-  \frac{du}{dt}=(\alpha_1+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_1 t},
+  \frac{du}{dt}=(\alpha_1 \nu_2+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_1 t},
 \end{align}
 
-\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from \Eref{eq:9} using the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$, and stability condition of noninvasive periodic solution can be derived as following lemma.
+\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$, and $\nu_2$ is the rescailed control parameter vector satisfying $\lambda_2=p(\nu_2)$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, noninvasive periodic solution can be expressed as $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$ since we have , and the stability condition can be derived as following lemma.
 
 \begin{lemma}\label{t1}
 Noninvasive periodic solution $u_2(t)$ is stable if the amplitude of the noninvasive periodic solution $R_1$ satisfies
 \begin{align}\label{eq:20}
-3(\alpha_2^2+\beta_2^2)R_1^3+4(\alpha_1+\beta_2(\beta_1-\omega_1))R_1+(\alpha_1^2+(\beta_1-\omega_2)^2)<0.
+3(\alpha_2^2+\beta_2^2)R_1^3+4(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R_1+((\alpha_1 \nu_2)^2+(\beta_1-\omega_1)^2)<0.
 \end{align}
 \end{lemma}
 
@@ -407,25 +385,25 @@ If we look \Eref{eq:18} in the rotating coordinates defined by
 \noindent The dynamical system becomes autonomous,
 
 \begin{align}\label{eq:22}
-  \dot v=(\alpha_1+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
+  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
 \end{align}
 
 \noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution with the forcing of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
 
 \begin{align}\label{eq:23}
-  ((\alpha_1+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon.
+  ((\alpha_1\nu_2+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon.
 \end{align}
 
 \noindent $P(R)$, where the zeros of $P(R)$ is phase-locked periodic solutions of \Eref{eq:18}, can be derived by taking norm square of both side of \Eref{eq:23} as
 
 \begin{align}\label{eq:24}
-  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1+\beta_2(\beta_1-\omega_1))R^4+(\alpha_1^2+(\beta_1+\omega_1)^2)R^2-\epsilon^2=0.
+  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R^4+((\alpha_1 \nu_2)^2+(\beta_1+\omega_1)^2)R^2-\epsilon^2=0.
 \end{align}
 
-\noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of P(R). Stability of the noninvasive periodic solution can be analyzed from the stability of this fixed point.Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
+\noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of $P(R)$ which is stable if $P_R(R_1)<0$. Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
 \end{proof}
 
-\noindent The controller is able to stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. For CBC experiments, finding noninvasive control target remains as a problem even if the controller is stabilizable. This will be discussed in the next subsection.
+\noindent From \Lref{t1}, we can see the stability of noninvasive periodic solution depends on parameters of the original dynamical system, including amplitude and frequency of LCO, and control parameters $\mu$, $K_p$, and $K_d$. The controller can stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. However, $z^*(t)$, and suitable control gains $K_p$, $K_d$ to stabilize the noninvasive periodic solution is unknown factors for CBC experiments. Implementing CBC experiment to stabilize the unstable LCO is generally finding $z^*(t)$ from the experiment with suitable $K_p$, and $K_d$ that makes controller noninvasive. The scheme for solving this problem will be discussed in the next subsection.
 
 \subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
 
@@ -1061,6 +1039,30 @@ To apply PP-CBC to more general problems, phase locking scheme for multiharmonic
 
 \begin{appendices}
 \gdef\thesection{Appendix \Alph{section}}
+
+\section{SNF of Hopf bifurcation} \label{ap0}
+Near identity transformation
+\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\) can be expressed in power series as
+
+\begin{align}\label{eq:6}
+  \begin{split}
+    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
+    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}(u+\bar{u})^j\nu^m\Big)\tau,\\
+    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
+  \end{split}
+\end{align}
+
+Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}. Coefficients of \Eref{eq:5} can be derived with coefficients of original coordinate as $\alpha_1=\vec{a}_{1101}$, $\beta_1=1$, $\alpha_2=a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}$, and  (see \cite{yu2002simplest} for coefficients of $g_k$, $\beta_2$, $h_k$, $t_{jm}$, and $p_j$). \Eref{eq:5} can be expressed in  polar coordinates up to third order as
+
+\begin{align}\label{eq:10}
+\begin{split}
+\frac{dR}{d\tau}=&\vec{a}_{1101}\nu R+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})R^3\\
+\frac{d\theta}{d\tau}=&1+\beta_2 R^2,
+\end{split}
+\end{align}
+
+\noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle near equilibria can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is supercritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) and subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}>0\).
+
 
 \section{Center manifold and reduced dynamics of \Eref{eq:2-6}} \label{ap1}
 Equation should be transformed in the form of \Eref{eq:2} to compute the centermanifold of \Eref{eq:2-6}. Hence, linearization of \Eref{eq:2-6} is rewritten in Jordan normal form at $U=U_f$ as
