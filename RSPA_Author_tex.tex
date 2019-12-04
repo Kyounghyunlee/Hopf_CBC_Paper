@@ -146,7 +146,7 @@ The main contribution of this paper is the development of CBC scheme for Hopf bi
 
 Another contribution of this paper is developing a framework of system identification using the result of CBC, and this is the first research to build a mathematical model from an accurate bifurcation diagram of subcritical Hopf bifurcation. Few studies \cite{abdelkefi2013analytical,thothadri2005nonlinear} can be found in the context of system identification of system with Hopf bifurcation. However, there was no research used to build a mathematical model with the help of feedback control to stabilize the unstable LCO.
 
-Rest of the paper is formulated as follows. In the second section, the general idea where this research is motivated from is presented. CBC scheme is briefly introduced in the third section. In the fourth section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation and small amplitude response is assumed. CBC scheme to lock the phase between the control target and the output response is presented and effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed from the forced Hopf bifurcation. In the fifth section, the proposed CBC scheme is applied experimentally to a flutter rig that has subcritical Hopf bifurcation, and CBC results are applied to linear system verification, and nonlinear parameter identification.
+Rest of the paper is formulated as follows. In the second section, the general idea where this research is motivated from is presented. CBC scheme is briefly introduced in the third section. In the fourth section, theory to simplify the dynamics of Hopf bifurcation is introduced, and we show that CBC applied to Hopf bifurcation is equivalent to forced Hopf bifurcation with single harmonic forcing if weakly nonlinear transformation and small amplitude response is assumed. CBC scheme to lock the phase between the control target and the output response is presented and effective experimental scheme to find the stabilizability of the controller and to find noninvasive periodic solution is developed from the forced Hopf bifurcation. In the fifth section, the proposed CBC scheme is applied experimentally to a flutter rig that has subcritical Hopf bifurcation, and CBC results are applied to linearized model verification, and nonlinear parameter identification.
 
 \section{General setting}\label{GS}
 Let us say that we have a suitable mathematical model that represents the dynamics of the physical system under experiment which has the form:
@@ -157,7 +157,7 @@ Let us say that we have a suitable mathematical model that represents the dynami
 
 \noindent where \(\vec{z}\in \real^n\) is state variable and \(\vec{\lambda}\in\real^m\) is control parameter and we assume $\vec{F}$ is smooth and \(\vec{F}(0,0)=0\). Specifically, we will consider the system that has generic subcritical Hopf bifurcation, where a pair of eigenvalue of $\vec{F}_\vec{z}$ crosses imaginary axis at critical value of $\lambda$ and family of unstable LCO is generated near the bifurcation point.
 
-For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fig:diagram}), where flutter \cite{dimitriadis2017introduction} is one of the typical self-excited problems in aerodynamics, and suppose dynamics can be represented by the unsteady aeroelastic mathematical model \cite{abdelkefi2013analytical}. In this case, wind speed would be a control parameter, and physical parameters will be dependent parameters for the type of bifurcation. For specific parameter values (values are given in \Tref{t2}), the dynamical system has subcritical Hopf bifurcation (\Fref{f:TH}) at wind speed 17.96 m/s which is so-called flutter speed. Limit cycle has saddle-node bifurcation at higher amplitude response where low amplitude unstable LCO branch and high amplitude stable LCO branch meets. Moreover, equilibrium is stable at wind speed < 17.96 m/s and unstable at wind speed >17.96 m/s. Even small perturbations to stable equilibria can be attracted to stable LCO at wind speed > 13.5 m/s which is a fold point which makes challenging to identify bifurcation diagram experimentally without the help of feedback control. This is why we need to stabilize the unstable LCO to explore the essential characteristics of the self-excited system which has similar bifurcation diagram with \Fref{f:TH}. In such systems, stabilizing feedback control can play an essential role in exploring dynamical features in the physical experiments. We will focus on CBC, which is one of the stabilizing feedback control experimental scheme to stabilize unstable LCO near the Hopf bifurcation, in the rest of the paper.
+For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fig:diagram}), where flutter \cite{dimitriadis2017introduction} is one of the typical self-excited problems in aerodynamics, and suppose dynamics can be represented by the unsteady aeroelastic mathematical model \cite{abdelkefi2013analytical}. In this case, wind speed would be a control parameter, and physical parameters such as stiffness will be dependent parameters for the type of bifurcation. For specific parameter values (values are given in \Tref{t2}), the dynamical system has subcritical Hopf bifurcation (\Fref{f:TH}) at wind speed 17.96 m/s which is so-called flutter speed. Limit cycle has saddle-node bifurcation at higher amplitude response where low amplitude unstable LCO branch and high amplitude stable LCO branch meets. Moreover, equilibrium is stable at wind speed < 17.96 m/s and unstable at wind speed >17.96 m/s. Even small perturbations to stable equilibria can be attracted to stable LCO at wind speed > 13.5 m/s which is a fold point that makes challenging to identify bifurcation diagram experimentally without the help of feedback control. This is why we need to stabilize the unstable LCO to explore the essential characteristics of the self-excited system which has similar bifurcation diagram with \Fref{f:TH}. In such systems, stabilizing feedback control can play an essential role in exploring dynamical features in the physical experiments. We will focus on CBC, which is one of the stabilizing feedback control experimental scheme to stabilize unstable LCO near the Hopf bifurcation, in the rest of the paper.
 
 \begin{figure}
   \centering
@@ -370,7 +370,7 @@ For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, $c_{1jlm}\nu^m$, $c_{2jlm}\nu^m
   \frac{du}{dt}=(\alpha_1 \nu_2+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_1 t},
 \end{align}
 
-\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$, and $\nu_2$ is the rescailed control parameter vector satisfying $\lambda_2=p(\nu_2)$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, noninvasive periodic solution can be expressed as $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$ since we have , and the stability condition can be derived as following lemma.
+\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$, and $\nu_2$ is the rescailed control parameter vector satisfying $\lambda_2=p(\nu_2)$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, noninvasive periodic solution can be expressed as $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$,  and the stability condition can be derived as following lemma.
 
 \begin{lemma}\label{t1}
 Noninvasive periodic solution $u_2(t)$ is stable if the amplitude of the noninvasive periodic solution $R_1$ satisfies
@@ -407,7 +407,7 @@ If we look \Eref{eq:18} in the rotating coordinates defined by
 \noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of $P(R)$ which is stable if $P_R(R_1)<0$. Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
 \end{proof}
 
-\noindent From \Lref{t1}, we can see the stability of noninvasive periodic solution depends on parameters of the original dynamical system, including amplitude and frequency of LCO, and control parameters $\mu$, $K_p$, and $K_d$. The controller can stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. However, $z^*(t)$, and suitable control gains $K_p$, $K_d$ to stabilize the noninvasive periodic solution is unknown factors for CBC experiments. Implementing CBC experiment to stabilize the unstable LCO is generally finding $z^*(t)$ from the experiment with suitable $K_p$, and $K_d$ that makes controller noninvasive. The scheme for solving this problem will be discussed in the next subsection.
+\noindent From \Lref{t1}, we can see the stability of noninvasive periodic solution depends on parameters of the original dynamical system, including amplitude and frequency of LCO, and control parameters $\mu$, $K_p$, and $K_d$. The controller can stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. Also, it is interesting to see that the feedback controller is able to stabilize the unstable LCO even if the control force is applied to an arbitrary direction, given the amplitude of the response is small. In fact, the proposed CBC method works sufficiently well, even in high amplitude responses. However, $z^*(t)$, and suitable control gains $K_p$, $K_d$ to stabilize the noninvasive periodic solution is unknown factors for CBC experiments. Implementing CBC experiment to stabilize the unstable LCO is generally finding $z^*(t)$ from the experiment with suitable $K_p$, and $K_d$ that makes controller noninvasive. The scheme for solving this problem will be discussed in the next subsection.
 
 \subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
 
@@ -494,7 +494,7 @@ Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, whi
 \end{figure}
 
 \subsection{Parameters estimation from the CBC results}\label{NSI}
-Let us assume that parameters of the linearization of \Eref{eq:0} is identified with suitable linear system identification methods such as the state-space method \cite{ljung2001system}, and we have measurement data from the CBC experiment near the bifurcation point ($\mu=0$). The amplitude of the CBC measurement data can be assumed to be identical to the amplitude of LCO of \Eref{eq:0} with sufficiently small zero-tolerance $\delta$. Then amplitude of the LCO $R$ can be derived as a function of unknown parameter vector $\theta_n$, $\nu$, and as explained in \ref{SNF}. Under \asref{a1}, projection of LCO to the $j$-th principle coordinates $a_j$ which corresponds to the measured response can be defined as
+Let us assume that parameters of the linearization of \Eref{eq:0} is identified with suitable linear system identification methods such as the state-space method \cite{ljung2001system}, and we have measurement data from the CBC experiment near the bifurcation point ($\mu=0$). The amplitude of the CBC measurement data can be assumed to be identical to the amplitude of LCO of \Eref{eq:0} with sufficiently small zero-tolerance $\delta$. Then, amplitude of the LCO $R$ can be derived as a function of unknown parameter vector $\theta_n$, and $\nu$ as explained in \ref{SNF}. Under \asref{a1}, projection of LCO to the $j$-th principle coordinates $a_j$ which corresponds to the measured response can be defined as
 
 \begin{align}\label{NSI-1}
 a_j(\nu,\theta_n)=|\pi_j (\vec{\Sigma}[Re^{\textrm{i}\dot \Theta t},Re^{-\textrm{i}\dot \Theta t},0,0,0,0]^T)|,
@@ -503,7 +503,7 @@ a_j(\nu,\theta_n)=|\pi_j (\vec{\Sigma}[Re^{\textrm{i}\dot \Theta t},Re^{-\textrm
 \noindent Prediction error $\hat{V}(\theta_n)$ from the mathematical model can be defined as
 
 \begin{align}\label{NSI-2}
-\hat{V}(\theta_n)=\sum_M (a_h(\nu_M,\theta_n)-|R_M|)^2,
+\hat{V}(\theta_n)=\sum_M (a_h(\nu_M,\theta_n)-R_M)^2,
 \end{align}
 
 \noindent where $M$ is the index of the measurement, and $R_M$ is $M$-th measured amplitude from the CBC experiment. Note that sign of $\alpha_2$ in \Eref{eq:polar} characterizes the type of the bifurcation which can provide a constraint to a parameter estimation problem. For subcritical Hopf bifurcation parameters can be identified by solving
@@ -516,7 +516,7 @@ a_j(\nu,\theta_n)=|\pi_j (\vec{\Sigma}[Re^{\textrm{i}\dot \Theta t},Re^{-\textrm
 In this section, we show a scheme developed in \Sref{SNH} can be applied to a mechanical system with Hopf bifurcation. The developed scheme is applied to a flutter rig, and we present the methodology to estimate the parameters of the mathematical model.
 
 \subsection{Experimental setup and mathematical model}\label{model}
-In this subsection, the experimental setup and the mathematical model is introduced. We also discuss the estimation of the parameters of the mathematical model.
+In this subsection, the experimental setup and the mathematical model is introduced. We also discuss the estimation of the parameters of the linearization of mathematical model.
 \subsubsection{Experimental rig and settings}\label{setup}
 The experiment was performed on a flutter rig with a NACA-0015 wing profile \cite{jacobs1933characteristics}. The profile moves in two degrees of freedom, heave, and pitch. Coil springs are installed to add linear stiffness to the heave and pitch motion, and spring plate is installed to add nonlinearity on the pitch stiffness. Measurements are taken at shaft with digital encoder for pitch and heave motion was measured from laser displacement sensor.
 
@@ -648,7 +648,7 @@ Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot
 \noindent where $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. The initial value of $\theta$ is crucial for the prediction-error identification methods to reach local minima. Therefore, the initial guess of the $\theta$ is estimated from the modal tests and optimized values of identified parameters and measured parameters are given in \Tref{t2}.
 
 Unknown parameters of $\vec{N_0}$ is difficult to estimate with the state-space approach since the meaningful initial guess of the optimization process is unknown. However, we can apply CBC results to estimate the parameters of the $\vec{N_0}$ and use the results of
-\ref{SNF} for the initial guess of the parameters and also add a constraint of the optimization process, which will be discussed in detail in the next subsection.
+\ref{SNF} for the initial guess of the parameters and also add a constraint of the optimization process.
 
 \begin{table}[!ht]
 \caption{Values of parameters of linearized model}%%%Table caption goes here
@@ -670,7 +670,7 @@ $x_\alpha$ & 0.24 & & \\
 \end{table}%%%End of the table
 
 \subsection{CBC results and applications on system identification}\label{results}
-CBC experiment results are presented in this subsection, and we show how these results can be applied to system identification.
+CBC experiment results are presented in this subsection, and we show how these results can be applied to parameter estimation of nonlinear function.
 \subsubsection{CBC results and application on model verification}\label{lin_sys}
 Open-loop tests are performed initially to investigate the dynamics of the system. Below the wind speed approximately 15 $m/sec$, equilibrium is stable and transient response ends with equilibrium state when the large perturbation is applied to equilibrium. However, above the wind speed approximately 15 $m/sec$, transient response ends with stable LCO when even small perturbation is applied to equilibrium. From this observation, we assume that the dynamical system has subcritical Hopf bifurcation and family of LCO has a saddle-node bifurcation at approximately around 15 $m/sec$ which has similar bifurcation diagram with \Fref{f:TH} (b).\\
 To stabilize the unstable LCO, we first make multiple measurements at the different amplitude of control target to analyze the stabilizability. \Fref{f:4} (a) shows that the frequency of the phase-locked response with a different amplitude of target coefficient $\hat A$ which shows the frequency of the phase-locked response is parametrized by $\hat A$. Also, we can conclude controller is stabilizable for the unstable LCO if the $\Xi$ crosses zero as \Fref{f:4} (b) for some sequence of $\hat A_k$.
@@ -926,25 +926,25 @@ The computed eigenvalues of the Jacobian of the identified linearized system are
 
 \subsubsection{Nonlinear parameter estimation of the flutter rig}\label{nonlinear}
 
-If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Symbolic computational program Maple\textsuperscript{TM} \cite{char1986tutorial} is used to compute the center manifold and normal form in this research. Results of center manifold and reduced dynamics of \Eref{eq:2-6} is presented in \ref{ap1}.
+If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Julia symbolic computational package SymEngine is used to compute the center manifold and normal form in this research. Code developed to compute center manifold and normal form, and the results of computation can be found in \cite{hopfNF}.
 
 Now, SNF of \Eref{eq:2-6} can be computed using the coefficients of reduced dynamics as
 \begin{align}\label{eq:2-11}
 \begin{split}
-\frac{dR}{dt}=&0.0075\nu R+(- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2)R^3\\
-\frac{d\Theta}{dt}=&(8.57 \times 10^{-10}  k_{\alpha 2}^2) - 2.61 \times 10^{-6}k_{\alpha 3},
+\frac{dR}{dt}=&8.8\times 10^{-3}\nu R+(- 7.10 \times 10^{-6}  k_{\alpha 3} + 2.33 \times 10^{-8} k_{\alpha 2}^2)R^3\\
+\frac{d\Theta}{dt}=&\omega_f,
 \end{split}
 \end{align}
 
-\noindent Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\nu$ which is a nonzero fixed point of \Eref{eq:2-11}
+\noindent where $\omega_f$ is the flutter frequency. Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\nu$ which is a nonzero fixed point of \Eref{eq:2-11}
 
 \begin{align}\label{eq:2-12}
-R=\frac{0.0075\nu}{- 5.88 \times 10^{-6}  k_{\alpha 3} + 6.72 \times 10^{-9} k_{\alpha 2}^2}.
+R=\frac{8.8\times 10^{-3}\nu}{- 7.10 \times 10^{-6}  k_{\alpha 3} + 2.33 \times 10^{-8} k_{\alpha 2}^2}.
 \end{align}
 
 \noindent Nonlinear parameter vector $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ can be identified by solving \Eref{NSI-3} near $\theta_n=0$ as
 \begin{align}\label{eq:2-15}
-k_{\alpha2}=2936.3 \: Nm, \; k_{\alpha3}=795.3 \: Nm.
+k_{\alpha2}=3401.3 \: Nm, \; k_{\alpha3}=2979.9 \: Nm.
 \end{align}
 
 Computed amplitude via numerical continuation, normal form, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using same parameters with the normal form computation. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using normal form theory-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
@@ -1049,224 +1049,18 @@ Near identity transformation
   \end{split}
 \end{align}
 
-Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}. Coefficients of \Eref{eq:5} can be derived with coefficients of original coordinate as $\alpha_1=\vec{a}_{1101}$, $\beta_1=1$, $\alpha_2=a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}$, and  (see \cite{yu2002simplest} for coefficients of $g_k$, $\beta_2$, $h_k$, $t_{jm}$, and $p_j$). \Eref{eq:5} can be expressed in  polar coordinates up to third order as
+Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}. Coefficients of \Eref{eq:5} can be derived with coefficients of original coordinate as $\alpha_1=\vec{a}_{1101}$, $\beta_1=1$, $\alpha_2=a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}$, and  (see \cite{yu2002simplest} for coefficients of $g_k$, $h_k$, $t_{jm}$, and $p_j$). \Eref{eq:5} can be expressed in  polar coordinates up to third order as
 
 \begin{align}\label{eq:10}
 \begin{split}
 \frac{dR}{d\tau}=&\vec{a}_{1101}\nu R+(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110})R^3\\
-\frac{d\theta}{d\tau}=&1+\beta_2 R^2,
+\frac{d\theta}{d\tau}=&1,
 \end{split}
 \end{align}
 
 \noindent where $u=Re^{\textrm{i} \theta}$, $\bar u=Re^{-\textrm{i} \theta}$. The stability of limit cycle near equilibria can be analyzed from \Eref{eq:10}; for instance, Hopf bifurcation is supercritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}<0\) and subcritical if \(a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}>0\).
 
-
-\section{Center manifold and reduced dynamics of \Eref{eq:2-6}} \label{ap1}
-Equation should be transformed in the form of \Eref{eq:2} to compute the centermanifold of \Eref{eq:2-6}. Hence, linearization of \Eref{eq:2-6} is rewritten in Jordan normal form at $U=U_f$ as
-
-\begin{align} \label{A1}
-\dot X=\vec{J}X+\vec{\Sigma}^{-1} \vec{N}_0(\vec{\Sigma} X),
-\end{align}
-
-\noindent where $\vec{\Sigma}$ is coordinate transformation matrix whose columns are eigenvectors of eigenvalues of $\vec{B}(U_f)$ and satisfies $\vec{J}=\vec{\Sigma}^{-1}\vec{B}(U_f)\vec{\Sigma}$. Jordan normal form which has two purely imaginary, two complex conjugate, and two real eigenvlaues can be computed with the parameters given in \Tref{t2} as
-
-\begin{align}
-\vec{J}=
-\begin{bmatrix}
-   15.48 \textrm{i}       & 0 & 0 & 0 & 0 & 0 \\
-    0       & -15.48 \textrm{i} & 0 & 0 & 0 & 0 \\
-    0       & 0 & -3.22+16.43\textrm{i} & 0 & 0 & 0\\
-    0       & 0 & 0 & -3.22-16.43\textrm{i} & 0 & 0\\
-    0       & 0 & 0 & 0 & -35.42 & 0\\
-    0       & 0 & 0 & 0 & 0 & -5.4133\\
-\end{bmatrix}.
-\end{align}
-
-\noindent Let $\vec{x}=[x,\bar x]^T$ be the center subspace at $\mu=U-U_f=0$ and $\vec y=[y_1,y_2,y_3,y_4]^T$ be the stable eigenspace of \Eref{eq:2-6}, where $\vec{X}=[\vec{x},\vec{y}]^T$. Coefficeins of power series of centermanifold can be computed by solving \Eref{eq:2} every order. See \cite{bi1999symbolic} for detailed recursive algorithm. Centermanifold $\vec y=\vec H(\vec x,\mu)$ of \Eref{eq:2} can be computed upto third order as
-\begin{align}
-\begin{split}
-  y_1=&( - 0.00208+ 0.00245\,i ) { \mu}^{2}x+ (  0.000114-
-  0.000117\,i ) { \mu}^{2}\bar {x}+ (  0.264- 1.02\,i ) \times\\
-  &(  0.00000172\,i{  k_{\alpha 2}}+ 0.000000772\,{  k_{\alpha 2}} )  \mu\,{
-  x}^{2}+ (  0.193+ 0.882\,i )  ( - 0.00000455\,{  k_{\alpha 2}
-  }\\
-  &- 0.00000315\,i{  k_{\alpha 2}} )  \mu\,x\bar {x}+(  0.0248+ 0.323\,i)
-  (  0.0000000969\,i{  k_{\alpha 2}}+ 0.00000292\,{  k_{\alpha 2}}
-  )  \mu\,{\bar {x}}^{2}+\\
-& (  0.0635- 0.513\,i )  (
-  0.00000196\,{  k_{\alpha 3}}- 0.00000000226\,{{  k_{\alpha 2}}}^{2}- 0.000000654\,i
-  {  k_{\alpha 3}}-\\
-& 0.00000000199\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+   (
-  3.77+ 1.30\,i )  (  0.00000262\,i{  k_{\alpha 3}}+ 0.00000000900
-  \,i{{  k_{\alpha 2}}}^{2}\-0.00000588\,{  k_{\alpha 3}}\\&+ 0.0000000108\,{{  k_{\alpha 2}}}^{
-  2} ) \times
-  {x}^{2}\bar {x}+ (  0.0540+ 0.474\,i )  ( -
-  0.00000262\,i{  k_{\alpha 3}}- 0.00000000522\,i{{  k_{\alpha 2}}}^{2}+ \\
-  & 0.00000588\,
-  {  k_{\alpha 3}}-0.00000000588\,{{  k_{\alpha 2}}}^{2} )x{\bar {x}}^{2}+(
-  0.0142+ 0.244\,i )  ( - 0.00000196\,{  k_{\alpha 3}}-
-  \\&0.00000000274\,{{  k_{\alpha 2}}}^{2}- 0.00000000163\,i{{  k_{\alpha 2}}}^{2}+
-  0.000000654\,i{  k_{\alpha 3}} ) {\bar {x}}^{3}- (  0.0202+ 0.0419\,i
-  )  \mu\,x-\\& (  0.00325- 0.00293\,i )  \mu\,\bar {x}+ (
-  0.264- 1.02\,i ) \times  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
-    k_{\alpha 2}} ) {x}^{2}+ \\&(  0.193+ 0.882\,i )  (
-  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar {x}+(0.0248+ 0.323\,i )\times  \\&( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i
- {  k_{\alpha 2}} ) {\bar {x}}^{2},
-\end{split}
-\end{align}
-
-\begin{align}
-\begin{split}
-  y_2=&(  0.000114+ 0.000117\,i ) {\mu}^{2}x- (  0.00208+
-  0.00245\,i ) {\mu}^{2}\bar x+ (  0.0248- 0.323\,i )
-  ( - 0.00000163\,{k_{\alpha 2}}+\\
-   &0.00000244\,i{k_{\alpha 2}} ) \mu\,{
-  x}^{2}+ (  0.193- 0.882\,i )  ( - 0.00000551\,i{
-  k_{\alpha 2}}+ 0.000000118\,{k_{\alpha 2}} ) \mu\,x\bar x+\\& (  0.264+ 1.02\,i
-  ) \times
-  (  0.000000957\,{k_{\alpha 2}}+ 0.00000167\,i{k_{\alpha 2}}
-  ) \mu\,{\bar x}^{2}+ (  0.0142- 0.244\,i )\times \\
-  & (
-  0.00000196\,{k_{\alpha 3}}+ 0.00000000243\,{{k_{\alpha 2}}}^{2}- 0.000000654\,i
-  {k_{\alpha 3}}+ 0.00000000209\,i{{k_{\alpha 2}}}^{2} ) {x}^{3}+ \\
-  & (
-  0.0540- 0.474\,i )  (  0.00000262\,i{k_{\alpha 3}}- 0.00000588
-  \,{k_{\alpha 3}}+ 0.00000000379\,i{{k_{\alpha 2}}}^{2}+\\& 0.00000000691\,{{k_{\alpha 2}
-  }}^{2} ) {x}^{2}\bar x+ (  3.77- 1.30\,i )  ( -
-  0.00000262\,i{k_{\alpha 3}}- 0.00000000749\,i{{k_{\alpha 2}}}^{2}+\\& 0.00000588\,
-  {k_{\alpha 3}}- 0.0000000119\,{{k_{\alpha 2}}}^{2} ) x{\bar x}^{2}+ (
-  0.0635+ 0.513\,i )  ( - 0.00000196\,{k_{\alpha 3}}+\\&
-  0.00000000263\,{{k_{\alpha 2}}}^{2}+
-  0.00000000146\,i{{k_{\alpha 2}}}^{2}+
-  0.000000654\,i{k_{\alpha 3}} ) {\bar x}^{3}- (  0.00325+ 0.00293\,i
-  ) \mu\,x- \\& (  0.0202- 0.0419\,i ) \mu\,\bar x+(
-  0.0248- 0.323\,i ) \times
-   ( - 0.0000163\,{k_{\alpha 2}}- 0.0000314\,i
-  {k_{\alpha 2}} ) {x}^{2}+\\&(  0.193- 0.882\,i ) \times  (
-  0.0000320\,{k_{\alpha 2}}+ 0.0000634\,i{k_{\alpha 2}} ) x\bar x+
-  \\& (  0.264
-  + 1.02\,i )  ( - 0.0000163\,{k_{\alpha 2}}- 0.0000314\,i{k_{\alpha 2}
-  } ) {\bar x}^{2},
-  \end{split}
-  \end{align}
-
-  \begin{align}
-  \begin{split}
-  y_3=&(  0.000150+ 0.000122\,i ) {\mu}^{2}x+ (  0.000150-
-  0.000122\,i ) {\mu}^{2}\bar x+ (  0.240- 0.180\,i )
-  (  0.00000241\,i{  k_{\alpha 2}}+ \\&0.00000399\,{  k_{\alpha 2}} ) \mu\,{x
-  }^{2}+ (  0.375- 0.0\,i )  ( - 0.0000156\,{  k_{\alpha 2}}-
-  0.0000309\,i{  k_{\alpha 2}} ) \mu\,x\bar x+ (  0.240+ 0.180\,i
-  ) \\& \times (  0.00000469\,i{  k_{\alpha 2}}- 0.000000325\,{  k_{\alpha 2}}
-  ) \mu\,{\bar x}^{2}+ (  0.166- 0.186\,i )  (
-  0.00000196\,{  k_{\alpha 3}}+ \\
-  & 0.000000000962\,{{  k_{\alpha 2}}}^{2}- 0.000000654\,
-  i{  k_{\alpha 3}}+ 0.000000000926\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ (
-  0.329- 0.123\,i ) \times \\&(  0.00000262\,i{  k_{\alpha 3}}+
-  0.00000000407\,i{{  k_{\alpha 2}}}^{2}-0.00000588\,{  k_{\alpha 3}}+ 0.00000000599
-  \,{{  k_{\alpha 2}}}^{2} ) {x}^{2}\bar x+ (  0.329\\&+ 0.123\,i )
-  ( - 0.00000262\,i{  k_{\alpha 3}}- 0.00000000438\,i{{  k_{\alpha 2}}}^{2}+0.00000588\,{  k_{\alpha 3}}- 0.00000000575\,{{  k_{\alpha 2}}}^{2} ) \\& \times x{\bar x}^{2
-  }+ (  0.166+ 0.186\,i )  ( - 0.00000196\,{  k_{\alpha 3}}
-  0.00000000119\,{{  k_{\alpha 2}}}^{2}-0.000000000617\,i{{  k_{\alpha 2}}}^{2}+ \\&
-  0.000000654\,i{  k_{\alpha 3}} ) {\bar x}^{3}- (  0.00186- 0.00128\,i
-  ) \mu\,x-(  0.00186+ 0.00128\,i ) \mu\,\bar x+ (
-  0.240- 0.180\,i ) \times  \\&( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
-    k_{\alpha 2}} ) {x}^{2}+ (  0.375- 0.0\,i )(
-  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+\\&(  0.240
-  + 0.180\,i )  ( - 0.0000163\,{  k_{\alpha 2}}- 0.0000314\,i{
-  k_{\alpha 2}} ) {\bar x}^{2},
-  \end{split}
-  \end{align}
-  \begin{align}
-  \begin{split}
-  y_4=&(  0.000056- 0.000015\,i ) {\mu}^{2}x+ (  0.000056
-  + 0.000015\,i ) {\mu}^{2}\bar x+ (  0.097- 0.48\,i )
-  (  0.0000035\,i{  k_{\alpha 2}}+ \\&0.00000107\,{  k_{\alpha 2}} ) \mu\,{x
-  }^{2}+ (  2.46- 0.0\,i )  ( - 0.0000099\,i{  k_{\alpha 2}}-
-  0.000005\,{  k_{\alpha 2}} ) \mu\,x\bar x+ (  0.097+ 0.48\,i
-  ) \times \\&(  0.00000295\,i{  k_{\alpha 2}}+ 0.00000225\,{  k_{\alpha 2}}
-  ) \mu\,{\bar x}^{2}+ (  0.044- 0.33\,i )  (
-  0.00000196\,{  k_{\alpha 3}}- 0.0000000029\,{{  k_{\alpha 2}}}^{2}- \\&0.00000065\,i
-  {  k_{\alpha 3}}+ 0.000000005\,i{{  k_{\alpha 2}}}^{2} ) {x}^{3}+ (
-  0.35- 0.86\,i )  (  0.0000026\,i{  k_{\alpha 3}}- 0.00000588\,
-  {  k_{\alpha 3}}+ \\&0.000000000884\,i{{  k_{\alpha 2}}}^{2}+ 0.0000000112\,{{  k_{\alpha 2}}}
-  ^{2} ) {x}^{2}\bar x+ (  0.349+ 0.858\,i )  ( -
-  0.00000262\,i{  k_{\alpha 3}}- \\&0.00000001\,i{{  k_{\alpha 2}}}^{2}+ 0.0000059\,{
-    k_{\alpha 3}}- 0.0000000042\,{{  k_{\alpha 2}}}^{2} ) x{\bar x}^{2}+ (
-  0.044+ 0.33\,i )  ( - 0.000002\,{  k_{\alpha 3}}-\\&
-  0.0000000038\,{{  k_{\alpha 2}}}^{2}+ 0.0000000043\,i{{  k_{\alpha 2}}}^{2}+
-  0.00000065\,i{  k_{\alpha 3}} ) {\bar x}^{3}+ (  0.0000081+ 0.00069
-  \,i ) \mu\,x+ \\&(  0.00000808- 0.000696\,i ) \mu\,\bar x+
-  (  0.0976- 0.480\,i ) \times   ( - 0.0000163\,{  k_{\alpha 2}}-
-  0.0000314\,i{  k_{\alpha 2}} ) {x}^{2}+ 2.46\\&
-  \times (  0.0000320\,{  k_{\alpha 2}}+ 0.0000634\,i{  k_{\alpha 2}} ) x\bar x+(  0.0976+ 0.480\,i )\\& \times  ( - 0.0000163\,{  k_{\alpha 2}}-
-  0.0000314\,i{  k_{\alpha 2}} ) {\bar x}^{2}.
-  \end{split}
-  \end{align}
-\noindent Reduced dynamic on the centermanifold can be computed by inserting $\vec{y}=\vec{H}(\vec x,\mu)$ to \Eref{A1} and collecting the first two equations as
-\begin{align}\label{rd1}
-\begin{split}
-\dot x=&15.3 i  x- 0.125\,\bar x\mu- 0.0563\,i\bar x\mu- 0.000249
-\,{   k_{\alpha 2}}\,{\bar x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{\bar x}^{2}+ 0.115\,x\mu+
-0.0571\,ix\mu+ \\&0.00097\,i{   k_{\alpha 2}}\,x\bar x+ 0.00049\,{   k_{\alpha 2}}\,x\bar x-
-0.00025\,{   k_{\alpha 2}}\,{x}^{2}- 0.00048\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.002
-\,\bar x{\mu}^{2}- 0.0045\,i\bar x{\mu}^{2}+ \\&0.0000023\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
-+ 0.000038\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.00000002\,{{   k_{\alpha 2}}}^{2}{\bar x}^{
-3}- 0.000000017\,i{{   k_{\alpha 2}}}^{2}{\bar x}^{3}- \\&0.00003\,{   k_{\alpha 3}}\,{\bar x}^{
-3}+0.0000100\,i{   k_{\alpha 3}}\,{\bar x}^{3}+ 0.00223\,x{\mu}^{2}- 0.00415\,ix{
-\mu}^{2}+ 0.00000171\,{   k_{\alpha 2}}\,x\bar x\mu- \\&0.0000361\,i{   k_{\alpha 2}}\,x\bar x\mu-0.0000000508\,i{{   k_{\alpha 2}}}^{2}x{\bar x}^{2}- 0.0000000744\,{{   k_{\alpha 2}}}^{2}
-x{\bar x}^{2}- 0.0000401\,i{   k_{\alpha 3}}\,x{\bar x}^{2}+\\& 0.0000900\,{   k_{\alpha 3}}\,x{\bar x}^
-{2}+ 0.0000442\,i{   k_{\alpha 2}}\,{x}^{2}\mu- 0.0000245\,{   k_{\alpha 2}}\,{x}^{2}
-\mu+ 0.0000000545\,i{{   k_{\alpha 2}}}^{2}{x}^{2}\bar x+ \\&0.0000000716\,{{   k_{\alpha 2}}}
-^{2}{x}^{2}\bar x+ 0.0000401\,i{   k_{\alpha 3}}\,{x}^{2}\bar x- 0.0000900\,{   k_{\alpha 3}}\,{
-x}^{2}\bar x+ 0.0000000236\,{{   k_{\alpha 2}}}^{2}{x}^{3}+\\&0.0000000140\,i{{
- k_{\alpha 2}}}^{2}{x}^{3}+ 0.0000300\,{   k_{\alpha 3}}\,{x}^{3}- 0.0000100\,i{   k_{\alpha 3}}
-\,{x}^{3},
-\end{split}
-\end{align}
-
-\begin{align}\label{rd2}
-\begin{split}
-\dot {\bar x}=&- 15.3 i  \bar x+ 0.115\,\bar x\mu- 0.0571\,i\bar x\mu- 0.000249\,{   k_{\alpha 2}}\,{\bar x}^{2}- 0.000480\,i{   k_{\alpha 2}}\,{\bar x}^{2}- 0.125\,x\mu+
-0.0563\,ix\mu+\\& 0.00097\,i{   k_{\alpha 2}}\,x\bar x+ 0.0005\,{   k_{\alpha 2}}\,x\bar x-
-0.00025\,{   k_{\alpha 2}}\,{x}^{2}- 0.00048\,i{   k_{\alpha 2}}\,{x}^{2}+ 0.002
-\,\bar x{\mu}^{2}+ 0.0041\,i\bar x{\mu}^{2}+ \\&0.0000058\,i{   k_{\alpha 2}}\,{\bar x}^{2}\mu
-+ 0.00005\,{   k_{\alpha 2}}\,{\bar x}^{2}\mu- 0.00003\,{   k_{\alpha 3}}\,{\bar x}^{3}-
-0.00000002\,{{   k_{\alpha 2}}}^{2}{\bar x}^{3}+ 0.00001\,i{   k_{\alpha 3}}\,{\bar x}^{3}-\\&
-0.0000000176\,i{{   k_{\alpha 2}}}^{2}{\bar x}^{3}+ 0.00203\,x{\mu}^{2}+ 0.00453\,
-ix{\mu}^{2}- 0.0000306\,{   k_{\alpha 2}}\,x\bar x\mu- 0.0000197\,i{   k_{\alpha 2}}\,x\bar x\mu
-\\&- 0.0000401\,i{   k_{\alpha 3}}\,x{\bar x}^{2}- 0.0000000508\,i{{   k_{\alpha 2}}}^{2}x{\bar x}^
-{2}+ 0.0000900\,{   k_{\alpha 3}}\,x{\bar x}^{2}- 0.0000000744\,{{   k_{\alpha 2}}}^{2}x{\bar x}
-^{2}+ \\&0.0000323\,i{   k_{\alpha 2}}\,{x}^{2}\mu- 0.0000205\,{   k_{\alpha 2}}\,{x}^{2}
-\mu+ 0.0000401\,i{   k_{\alpha 3}}\,{x}^{2}\bar x+ 0.0000000545\,i{{   k_{\alpha 2}}}^{2}{x
-}^{2}\bar x\\&- 0.0000900\,{   k_{\alpha 3}}\,{x}^{2}\bar x+ 0.0000000716\,{{   k_{\alpha 2}}}^{2}{
-x}^{2}\bar x+ 0.0000300\,{   k_{\alpha 3}}\,{x}^{3}+ 0.0000000236\,{{   k_{\alpha 2}}}^{2}{
-x}^{3}- \\&0.0000100\,i{   k_{\alpha 3}}\,{x}^{3}+ 0.0000000140\,i{{   k_{\alpha 2}}}^{2}
-{x}^{3}.
-\end{split}
-\end{align}
-
-\section{Nonlinear transformations for SNF of  \Eref{eq:2-6} on the center manifold} \label{ap2}
-
-Reduced dynamics \Eref{rd1},\Eref{rd2} can be transformed to \Eref{eq:2-11} if we use \Eref{eq:6}. From \asref{a1}, we assume $C_{1ijk}=C_{2ijk=0}$ for $i+j \geq 0$, and we can have
-
-\begin{align}
-C_{1101}=C_{2101}=C_{1011}=C_{2011}=0,
-\end{align}
-
-\noindent and coefficients for time, parameter rescailing can be obtained as
-
-\begin{align}
-p_2=2.19\times10^{-6},
-\end{align}
-
-\begin{align}
-t_{10}=t_{11}=0=t_{20}=0,\;t_{01}=-0.0037, \; t_{02}=0.000016.
-\end{align}
-
 \end{appendices}
-
-
 
 %%%%%%%%%% Insert bibliography here %%%%%%%%%%%%%%
 
