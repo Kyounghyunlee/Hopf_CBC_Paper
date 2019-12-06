@@ -520,7 +520,7 @@ In this subsection, the experimental setup and the mathematical model is introdu
 \subsubsection{Experimental rig and settings}\label{setup}
 The experiment was performed on a flutter rig with a NACA-0015 wing profile \cite{jacobs1933characteristics}. The profile moves in two degrees of freedom, heave, and pitch. Coil springs are installed to add linear stiffness to the heave and pitch motion, and spring plate is installed to add nonlinearity on the pitch stiffness. Measurements are taken at shaft with digital encoder for pitch and heave motion was measured from laser displacement sensor.
 
-Developed CBC scheme in this paper runs on a laptop computer connected to the real-time controller (RTC). The RTC box consists of a BeagleBone Black on which is fitted with a custom data acquisition board \cite{rtc2} in which the real-time feedback controller used in CBC is implemented. Measurements are taken with sampling frequency  5kHz without any filter.  Control force was applied to heave motion to stabilize unstable LCO with APS Electro-Seis Shaker and schematics of a configuration of the experiment and picture of the rig is presented in \Fref{f:rig}.
+Developed CBC scheme in this paper runs on a laptop computer connected to the real-time controller (RTC). The RTC box consists of a BeagleBone Black on which is fitted with a custom data acquisition board in which the real-time feedback controller used in CBC is implemented. Measurements are taken with sampling frequency  5kHz without any filter.  Control force was applied to heave motion to stabilize unstable LCO with APS Electro-Seis Shaker and schematics of a configuration of the experiment and picture of the rig is presented in \Fref{f:rig}.
 
 \begin{figure}
   \centering
@@ -645,7 +645,7 @@ Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot
 \hat{\theta}=\underset{\theta \in D_m}{\arg\min} \: V_N(\theta,\vec{Z}^N),
 \end{align}
 
-\noindent where $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. The initial value of $\theta$ is crucial for the prediction-error identification methods to reach local minima. Therefore, the initial guess of the $\theta$ is estimated from the modal tests and optimized values of identified parameters and measured parameters are given in \Tref{t2}.
+\noindent where $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. Parameter identification of the linearized model was performed using Matlab system identification toolbox. The initial value of $\theta$ is crucial for the prediction-error identification methods to reach local minima. Therefore, the initial guess of the $\theta$ is estimated from the modal tests and optimized values of identified parameters and measured parameters are given in \Tref{t2}.
 
 Unknown parameters of $\vec{N_0}$ is difficult to estimate with the state-space approach since the meaningful initial guess of the optimization process is unknown. However, we can apply CBC results to estimate the parameters of the $\vec{N_0}$ and use the results of
 \ref{SNF} for the initial guess of the parameters and also add a constraint of the optimization process.
@@ -926,7 +926,7 @@ The computed eigenvalues of the Jacobian of the identified linearized system are
 
 \subsubsection{Nonlinear parameter estimation of the flutter rig}\label{nonlinear}
 
-If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Julia symbolic computational package SymEngine is used to compute the center manifold and normal form in this research. Code developed to compute center manifold and normal form, and the results of computation can be found in \cite{hopfNF}.
+If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed and $\mu=U_f-U$, \Eref{eq:2-6} has Hopf bifurcation at $\mu=0$. First, \Eref{eq:2-6} should be expressed in the form of \Eref{eq:2} by adding $\dot \mu=0$ to the equation of motion. Then, 3-dimensional center manifold and reduced dynamics on the center manifold can be computed from \Eref{eq:3}. Julia symbolic computational package SymEngine is used to compute the center manifold and normal form in this research.
 
 Now, SNF of \Eref{eq:2-6} can be computed using the coefficients of reduced dynamics as
 \begin{align}\label{eq:2-11}
