@@ -790,7 +790,7 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
   		b={mark=o,mark size=2pt,red}},%
     ,legend style={at={(0.33,0.95)}}]
 
-  \nextgroupplot[title=(a),ylabel={Heave amplitude ($m$)},y label style={at={(-0.1,0.5)}}]
+  \nextgroupplot[title=(a),xmin=14,xmax=18,ymax=0.08,ylabel={Heave amplitude ($m$)},y label style={at={(-0.1,0.5)}}]
   \addplot [mark=*,only marks,%
 		mark size=2pt,blue]
     table {
@@ -811,72 +811,35 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
   17.2000    0.0078
       };\label{q4}
 
-\addplot [mark=triangle*,only marks,%
-    mark size=2pt,blue]
-    table {
-  x     y
-  18.4000 0.0523
-  19.2000 0.0645
-  20.1000 0.0754
-  20.9000 0.0875
-    };\label{q5}
 
-\addplot [mark=triangle,only marks,%
-          mark size=2pt,red]
-          table {
-  x     y
-  18.3000 0.0341
-  19.3000 0.0344
-  20.1000 0.0288
-  21.0000 0.0258
-  21.8000 0.0224
-  22.7000 0.0151
-  23.5000 0.0088
-        };\label{q6}
-  \nextgroupplot[title=(b),ylabel={Frequency ($Hz$)},y label style={at={(-0.12,0.5)}}]
-  \addplot [scatter,only marks,%
-		scatter src=explicit symbolic]
-    table[meta=label] {
-  x     y      label
-  14.9000    2.4472 a
-  15.6000    2.4501 a
-  16.5000    2.4494 a
-  17.3000    2.4394 a
-  14.9000    2.4500 b
-  15.7000    2.4631 b
-  15.8000    2.4683 b
-  16.5000    2.4876 b
-  17.2000    2.5000 b
-  	};
+  \nextgroupplot[title=(b),xmin=17,xmax=24,ymax=0.08,ylabel={Frequency ($Hz$)},y label style={at={(-0.12,0.5)}}]
+  \addplot [mark=*,only marks,%
+      mark size=2pt,blue]
+      table {
+    x     y
+    18.4000 0.0523
+    19.2000 0.0645
+    20.1000 0.0754
+    20.9000 0.0875
+      };
 
-\addplot [mark=triangle*,only marks,%
-  mark size=2pt,blue]
-  table {
-  x     y
-  20.7000    2.4174
-  21.5000    2.4274
-  22.4000    2.4353
-  23.2000    2.4434
-  };
-
-\addplot [mark=triangle,only marks,%
+  \addplot [mark=o,only marks,%
             mark size=2pt,red]
             table {
-  x     y
-  20.6000    2.3978
-  21.6000    2.4157
-  22.4000    2.3861
-  23.3000    2.3860
-  24.1000    2.3933
-  25.0000    2.4262
-  25.8000    2.4104
-};
-
+    x     y
+    18.3000 0.0341
+    19.3000 0.0344
+    20.1000 0.0288
+    21.0000 0.0258
+    21.8000 0.0224
+    22.7000 0.0151
+    23.5000 0.0088
+          };
   \end{groupplot}
 
   \end{tikzpicture}
   \centering
-\caption{CBC results (a) Heave amplitude of LCO ($m$), (b) Frequeny of LCO ($Hz$). (\ref{q3}) is measured stable LCO of system 1 and (\ref{q4}) is the measured unstable LCO of system 1, (\ref{q4}) is measured stable LCO of system 2 and (\ref{q5}) is the measured unstable LCO of system 2.}
+\caption{CBC results (a) Heave amplitude of LCO (system 1), (b) Heave amplitude of LCO (system 2). (\ref{q3}) is measured stable LCO, (\ref{q4}) is measured unstable LCO.}
 \label{f:5}
 \end{figure}
 
@@ -962,7 +925,7 @@ CBC results can be used to check if the identified linear model captures importa
       24.1000    2.3933
       25.0000    2.4262
       25.8000    2.4104
-              };
+              };\label{q6}
 
   \end{groupplot}
 
@@ -992,13 +955,13 @@ Now, SNF of \Eref{eq:2-6} for amplitude can be computed using the coefficients o
 \noindent Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\mu$ which is a nonzero fixed point of \Eref{eq:2-11}, \Eref{eq:2-11-2}. Nonlinear parameter vector $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ can be identified by solving \Eref{NSI-3} where the numerical code is included in Julia package \cite{hopfNF}. For system 1, optimized value of $\theta_n$ is
 
 \begin{align}\label{eq:2-15}
-k_{\alpha2}=3010.0 \: Nm, \; k_{\alpha3}=3000.1 \: Nm.
+k_{\alpha2}=3857.7 \: Nm, \; k_{\alpha3}=13956.3 \: Nm.
 \end{align}
 
 \noindent and for system 2 as
 
 \begin{align}\label{eq:2-15-2}
-k_{\alpha2}=2917.2 \: Nm, \; k_{\alpha3}=519.0 \: Nm.
+k_{\alpha2}=4358.1 \: Nm, \; k_{\alpha3}=20010.4 \: Nm.
 \end{align}
 
 Computed amplitude via numerical continuation, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using identified parameters. $x$-axis of the measured responses are shifted by the difference of the flutter speed between the model and the measured result to compare the amplitude of LCO as a function of $\mu=U-U_f$. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using spectral methods-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
