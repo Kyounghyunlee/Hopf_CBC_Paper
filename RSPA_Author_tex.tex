@@ -109,14 +109,14 @@
 K.H. Lee$^{1}$, D.A.W. Barton$^{1}$ and L. Renson$^{2}$}
 
 %%%%%%%%% Insert author address here
-\address{$^{1}$Department of Engineering Mathematics, University of Bristol\\
+\address{$^{1}$Department of Engineering Mathematics, University of Bristol, United Kingdom\\
 $^{2}$Department of Mechanical Engineering, Imperial College London, United Kingdom}
 
 %%%% Subject entries to be placed here %%%%
 \subject{mechanical engineering, differential equations}
 
 %%%% Keyword entries to be placed here %%%%
-\keywords{Hopf bifurcation, feedback control, limit cycle, stabilization}
+\keywords{Hopf bifurcation, control based continuation, feedback control, limit cycle oscillation, stabilization}
 
 %%%% Insert corresponding author and its email address}
 \corres{K.H. Lee\\
@@ -171,7 +171,7 @@ For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fi
   \put(-100,79){$x_{\alpha}$}
   \put(-96,71){$a$}
   \put(-46,58){$h$}
-  \caption{Schematic drawing of simplified aeroelastic model.}
+  \caption{Schematic drawing of simplified aeroelastic model. (Description of parameters of the diagram are given in \Tref{wing_par})}
   \label{fig:diagram}
 \end{figure}
 
@@ -217,7 +217,7 @@ For example, let's say we are conducting a flutter test of an aerofoil (\Fref{fi
 
 \section{Control based continuation (CBC)}\label{CBC}
 
-Periodic solution of \Eref{eq:gs} can be tracked via numerical continuation by defining zero problem which has boundary value problem. However, ontinuation of a periodic solution in the experiment needs a different approach with numerical continuation since the equation of motion is unknown. First, the unstable periodic solution should be stabilized by feedback control. The scalar control force $\Gamma(t)$ with proportional derivative control can be expressed as
+Periodic solution of \Eref{eq:gs} can be tracked via numerical continuation by defining zero problem which has boundary value problem. However, continuation of a periodic solution in the experiment needs a different approach with numerical continuation since the equation of motion is unknown. First, the unstable periodic solution should be stabilized by feedback control. The scalar control force $\Gamma(t)$ with proportional derivative control can be expressed as
 
 \begin{align}
   \Gamma(t)=K_p(x^*(t)-x(t))+K_d(\dot x^*(t)-\dot x(t)),
@@ -274,7 +274,7 @@ at each order of power series, where \(\vec{\hat{x}}=[\lambda;\vec{x}]\) and \(\
 \end{align}
 Note that in \Eref{eq:4}, \(\lambda=[\lambda_1;\lambda_2;\ldots;\lambda_m]\) and \(\lambda^m\) denotes \(\lambda_1^{m_1}\lambda_2^{m_2}\cdots\lambda_m^{m_m}\) satisfying \(\sum_i m_i = m\) with \(\vec{a}_{1jlm}=[a_{1jlm_1};a_{1jlm_2};\ldots;a_{1jlm_m}]\).
 
-Recently, researchers have worked extensively to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. We can derive third order polynomial of amplitude in polar coordinates where conventional normal form has infinite degree high order terms. Moreover, we can parametrize amplitude and the stability of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to $k$-th order as
+Researchers have worked to develop an efficient simplest normal form of Hopf bifurcation using computer algebra \cite{yu1998computation}. Simplest normal form (SNF), simplest means that the number of terms retained at each order of is minimized, is one of the most effective ways to derive the normal form from the nonlinear differential equation defined on center manifold. We can derive third order polynomial of amplitude in polar coordinates where conventional normal form has infinite degree high order terms. Moreover, we can parametrize amplitude and the stability of LCO by parameters of the original coordinate system if we use SNF. Unlike the dynamical system without control parameters, SNF cannot be computed using only near identity transformation. P.Yu \cite{yu2002simplest} proved time and parameter rescaling is essential additional to near identity transformation and developed a recursive formula to compute SNF up to $k$-th order as
 \begin{align}\label{eq:5}
   \begin{split}
     &\frac{du}{d\tau}=(\vec{\alpha}_1 \nu+\textrm{i}\vec{\beta}_1) u+(\vec{\alpha}_2+\textrm{i}\vec{\beta}_2) u^2 \bar{u}+\textrm{i}\sum_k g_k(u,\bar{u}),\\
@@ -282,9 +282,17 @@ Recently, researchers have worked extensively to develop an efficient simplest n
   \end{split}
 \end{align}
 Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{u}\) is neglected. \(u\),\(\tau\) and \(\nu\) are transformed from \(x\),\(t\) and \(\lambda\) by near identity transformation
-\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\). More detailed explanation on the derivation and coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ and function $h$, $T$, $g$ and $p$ is presented in \cite{yu2002simplest}.
+\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\) which can be expressed in power series as
 
-If we express \Eref{eq:5} in polar coordinates $u=Re^{\textrm{i}\theta}$ and collect the real part, following equation can be derived as
+\begin{align}\label{eq:6}
+  \begin{split}
+    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
+    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}(u+\bar{u})^j\nu^m\Big)\tau,\\
+    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
+  \end{split}
+\end{align}
+
+\noindent Coefficients of \Eref{eq:6} can be computed recursively (see \cite{yu2002simplest} for detail) by eliminating noncritical terms of \Eref{eq:4}. By transforming \Eref{eq:5} in polar coordinates $u=Re^{\textrm{i}\theta}$ and collect the real part, we have
 
 \begin{align}\label{eq:polar}
   \begin{split}
@@ -325,7 +333,7 @@ First, we analyze unforced term of \Eref{eq:11} by dropping off the time-periodi
 \end{split}
 \end{align}
 
-\noindent As explained in \Ssref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between center subspace of origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
+\noindent As explained in section 4.\ref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between center subspace of origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
 
 Now, stability of LCO of the uncontroled system can be studied from normal form of \Eref{eq:12} at $\lambda=\lambda_1=[\mu,0,0]^T$. LCO ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of \Eref{eq:polar} and expressed in normal form coordinates $[u,\bar u]^T$ as
 
@@ -384,25 +392,25 @@ Noninvasive periodic solution $u_2(t)$ is stable if the amplitude of the noninva
 If we look \Eref{eq:18} in the rotating coordinates defined by
 
 \begin{align}\label{eq:21}
-  v=ue^{\textrm{i}\omega_1 t},
+  v=ue^{-\textrm{i}(\omega_1+\theta_1) t},
 \end{align}
 
-\noindent The dynamical system becomes autonomous,
+\noindent where the $\theta_1$ is the phase difference of projected periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to center space and the control target $x^*(t)$. The dynamical system becomes autonomous as
 
 \begin{align}\label{eq:22}
-  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon.
+  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon e^{\textrm{i} \theta_1}.
 \end{align}
 
-\noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution with the forcing of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
+\noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution between the control target $z^*(t)$ and the response $z(t)$ of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
 
 \begin{align}\label{eq:23}
-  ((\alpha_1\nu_2+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon.
+  ((\alpha_1\nu_2+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon e^{\textrm{i} \theta_1}.
 \end{align}
 
 \noindent $P(R)$, where the zeros of $P(R)$ is phase-locked periodic solutions of \Eref{eq:18}, can be derived by taking norm square of both side of \Eref{eq:23} as
 
 \begin{align}\label{eq:24}
-  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R^4+((\alpha_1 \nu_2)^2+(\beta_1+\omega_1)^2)R^2-\epsilon^2=0.
+  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R^4+((\alpha_1 \nu_2)^2+(\beta_1+\omega_1)^2)R^2-|\epsilon|^2=0.
 \end{align}
 
 \noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of $P(R)$ which is stable if $P_R(R_1)<0$. Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
@@ -412,16 +420,15 @@ If we look \Eref{eq:18} in the rotating coordinates defined by
 
 \subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
 
-In general experiment, stabilizability of the control cannot be determined from the equation as in \Sref{SNF}. We will discuss effective scheme to find noninvasive periodic solutions near the Hopf bifurcation in this subsection.
+In general experiment, stabilizability of the control cannot be determined from the equation as in Section 4.\ref{SNF}. We will discuss effective scheme to find noninvasive periodic solutions near the Hopf bifurcation in this subsection.
 
-Phase-locked response with the forcing should be tracked from the response of forced Hopf bifurcation, see \cite{zhang2011periodically,wiser2015bifurcations} for detailed bifurcation diagram, to find the noninvasive periodic solution. However, solutions of \Eref{eq:20} are not necessarily to be in phase with forcing frequency. For example, if we set rotating coordinates of \Eref{eq:21} $v=ue^{\textrm{i}(\omega_2 \tau-\theta)}$, where $\theta$ is an arbitrary phase shift, we can rewrite \Eref{eq:18}
-as
+Phase-locked response should be tracked from the response of forced Hopf bifurcation, see \cite{zhang2011periodically,wiser2015bifurcations} for detailed bifurcation diagram, to find the noninvasive periodic solution. However, solutions of \Eref{eq:20} are not necessarily to be in phase with the control target. For example, if we set  $v=ue^{-\textrm{i}(\omega_1 t+\theta_2)}$ in \Eref{eq:21}, where $\theta_2$ is an arbitrary phase shift which does not necessarily guarantee phase locking between the control target $z^*(t)$ and response $z(t)$, we can rewrite \Eref{eq:18} as
 
 \begin{align}\label{eq:ps}
-\dot v=(\alpha_1+\textrm{i}\beta_1)v+(\alpha_2+\textrm{i}\beta_2)v^2 \bar v+\epsilon e^{\textrm{i}\theta}.
+  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon e^{\textrm{i} \theta_2}.
 \end{align}
 
-\noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.
+\noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta_2$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.
 
 We use a phase plane based CBC (PP-CBC) to achieve phase locking between target coefficients $z^*(t)$ with the response in \Eref{eq:11}. This is equivalent to phase-locking between force and response in \Eref{eq:20}, which was first proposed in \cite{irene}. Monitored signals $z_j$, $z_{j+1}$  are assumed as an analytic signal,
 
@@ -508,7 +515,7 @@ CBC results can be used as a tool of system identification if we have a model \E
 \end{align}
 
 \section{CBC experiment and system identification}
-In this section, we show a scheme developed in \Sref{SNH} can be applied to a mechanical system with Hopf bifurcation. The developed scheme is applied to a flutter rig, and we present the methodology to estimate the parameters of the mathematical model.
+In this section, we show a scheme developed in Section \ref{SNH} can be applied to a mechanical system with Hopf bifurcation. The developed scheme is applied to a flutter rig, and we present the methodology to estimate the parameters of the mathematical model.
 
 \subsection{Experimental setup and mathematical model}\label{model}
 \subsubsection{Experimental rig and settings}\label{setup}
@@ -520,13 +527,13 @@ Developed CBC scheme in this paper runs on a laptop computer connected to the re
   \centering
   \begin{subfigure}[b]{0.5\linewidth}
     \includegraphics[width=\linewidth]{flutter_rig.eps}
-    \caption{Schematic of flutter rig}
+    \caption{}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\linewidth}
     \includegraphics[width=\linewidth]{rig_pic.png}
-    \caption{Picture of flutter rig.}
+    \caption{}
   \end{subfigure}
-  \caption{Schematic drawing and picture of flutter rig.}
+  \caption{Flutter rig. (a) Schematic. (b) Picture.}
   \label{f:rig}
 \end{figure}
 
@@ -641,7 +648,7 @@ Air density $\rho$ is known value and we set $\theta=[I_\alpha,c_\alpha,c_h,\dot
 \noindent where $D_m$ is vector space of unknown parameters, $V_N$ is the summation of vector norm of filtered prediction error, $N$ is the length of the free-decay data, and $\vec{Z}^N$ is a vector containing all measured signal. See \cite{ljung2001system} for details about the filter and the algorithm. Parameter identification of the linearized model was performed using Matlab system identification toolbox \cite{ljung1988system} and the developed code and the results can be found in \cite{sysID}. The initial value of $\theta$ is crucial for the prediction-error identification methods to reach local minima. Therefore, the initial guess of the $\theta$ is estimated from the modal tests and optimized values of identified parameters and measured parameters are given in \Tref{t2} for two systems with different spring plate.
 
 Unknown parameters of $\vec{N_0}$ is difficult to estimate with the state-space approach since the meaningful initial guess of the optimization process is unknown. However, we can apply CBC results to estimate the parameters of the $\vec{N_0}$ and use the results of
-\ref{SNF} for the initial guess of the parameters and also add a constraint of the optimization process.
+Section 4.\ref{SNF} for the initial guess of the parameters and also add a constraint of the optimization process.
 
 \begin{table}[!ht]
 \caption{Values of parameters of linearized model}%%%Table caption goes here
@@ -706,7 +713,7 @@ To stabilize the unstable LCO, we first make multiple measurements at the differ
 \label{f:4}
 \end{figure}
 
-\noindent Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off.
+Now, finding a noninvasive point to measure the unstable LCO is equivalent to solving zero problem of $\Xi$, which is a function of $\hat A$. $\Xi$ has two zero points at unstable low amplitude LCO and stable high amplitude LCO. \Fref{f:2} shows the time response of heave response and control target with zero tolerance $\delta=1.8 \: mm$, where we can find input and output is sufficiently identical and phase locking between the control target and the response is accomplished by the real-time controller. We assume the zero tolerance is sufficiently small that the measured unstable and stable LCO has the same amplitude and frequency with the LCO of the uncontrolled system. This can be verified for the stable LCO by switching off the control as shown in \Fref{f:3}, stable LCO maintains it's motion; however, unstable LCO is attracted to stable equilibrium when the controller is turned off.
 
 Noninvasive points were found experimentally to obtain a bifurcation diagram of this dynamical system. Results are presented in \Fref{f:5}, which shows the measured unstable LCO, stable LCO with different wind velocities. \Fref{f:5} (a) has a similar pattern with typical bifurcation diagram of subcritical Hopf bifurcation in \Fref{f:TH}. Experimentally obtained bifurcation diagram contains valuable features of the dynamical system-- saddle-node bifurcation point of LCO, flutter speed, and flutter frequency-- which can be used as a tool to verify the mathematical model.
 
@@ -812,7 +819,7 @@ Noninvasive points were found experimentally to obtain a bifurcation diagram of 
       };\label{q4}
 
 
-  \nextgroupplot[title=(b),xmin=17,xmax=24,ymax=0.08,ylabel={Frequency ($Hz$)},y label style={at={(-0.12,0.5)}}]
+  \nextgroupplot[title=(b),xmin=17,xmax=24,ymax=0.08,ylabel={Heave amplitude ($m$)},y label style={at={(-0.07,0.5)}}]
   \addplot [mark=*,only marks,%
       mark size=2pt,blue]
       table {
@@ -1048,24 +1055,6 @@ To apply PP-CBC to more general problems, phase locking scheme for multiharmonic
 
 \ack{Insert acknowledgment text here.}
 
-\begin{appendices}
-\gdef\thesection{Appendix \Alph{section}}
-
-\section{SNF of Hopf bifurcation} \label{ap0}
-Near identity transformation
-\(x=h(u,\bar{u},\nu))=u+\sum_k h_k(u,\bar{u},\nu)\), time rescailing \(t=T(u,\bar{u},\nu,\tau)\) and parameter rescailing \(\lambda=p(\nu)\) can be expressed in power series as
-
-\begin{align}\label{eq:6}
-  \begin{split}
-    h_k &=\sum_{j+l+m=k}(c_{ijkm}+\textrm{i}c_{2jlm}u^j\bar{u}^l \nu^m),\\
-    t &=\Big(1+\sum_{k=1}\sum_{j+m=k}t_{jm}(u+\bar{u})^j\nu^m\Big)\tau,\\
-    \lambda &=\nu+\sum_{j=2}p_j \nu^j.
-  \end{split}
-\end{align}
-
-\noindent Coefficients of \Eref{eq:6} can be computed recursively \cite{yu2002simplest} by eliminating noncritical terms of \Eref{eq:4}. Coefficients of \Eref{eq:5} can be derived with coefficients of original coordinate as $\alpha_1=\vec{a}_{1101}$, $\beta_1=1$, $\alpha_2=a_{1210}-a_{1200}a_{2110}-a_{2200}a_{1110}$, and  (see \cite{yu2002simplest} for coefficients of $g_k$, $h_k$, $t_{jm}$, and $p_j$).
-
-\end{appendices}
 
 %%%%%%%%%% Insert bibliography here %%%%%%%%%%%%%%
 
