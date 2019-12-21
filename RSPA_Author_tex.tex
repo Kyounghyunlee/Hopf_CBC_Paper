@@ -502,7 +502,7 @@ Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, whi
 \end{figure}
 
 \subsection{Parameters estimation from the CBC results}\label{NSI}
-CBC results can be used as a tool of system identification if we have a model \Eref{eq:0} and identified parameters associated with the linearization of \Eref{eq:0}. Periodic solutions of \Eref{eq:0} can be computed numerically if the periodic boundary value problem is defined. Periodic boundary value problem can be transformed to a system of nonlinear equations where the unknown variables are period of LCO, and the grid points of the periodic solution if spectral method is used (see \cite{trefethen2000spectral} for detail). Results of the normal form computation provides good initial point of solving nonlinear equations derived from the periodic boundary value problem. Then, we can use the solution of the periodic boundary value problem $z(\mu_M,\theta_n)$, where $\theta_n$ is parameter vector associated with the nonlinear part of the \Eref{eq:0} and $M$ is the index of the measurement, to define the prediction error function $\hat{V}(\theta_n)$ as
+CBC results can be used as a tool of system identification if we have a model \Eref{eq:0} and identified parameters associated with the linearization of \Eref{eq:0}. Under \asref{a1}, periodic solutions can be obtained from the normal form computation. Then, we can use the periodic solution $z(\mu_M,\theta_n)$, where $\theta_n$ is parameter vector associated with the nonlinear part of the \Eref{eq:0} and $M$ is the index of the measurement, to define the prediction error function $\hat{V}(\theta_n)$ as
 
 \begin{align}\label{NSI-2}
 \hat{V}(\theta_n)= \sum_M (|\pi_j z(\nu_M,\theta_n)|-|(z_j)_M|)^2,
@@ -950,25 +950,25 @@ If $U=U_f-\mu$ is inserted to \Eref{eq:2-6}, where $U_f$ is the flutter speed an
 
 Now, SNF of \Eref{eq:2-6} for amplitude can be computed using the coefficients of reduced dynamics for system 1 as
 \begin{align}\label{eq:2-11}
-\frac{dR}{dt}=&8.8\times 10^{-3}\mu R+(- 7.10 \times 10^{-6}  k_{\alpha 3} + 2.33 \times 10^{-8} k_{\alpha 2}^2)R^3,
+\frac{dR}{dt}=&8.7\times 10^{-3}\mu R+(- 4.5 \times 10^{-5}  k_{\alpha 3} + 8.4 \times 10^{-7} k_{\alpha 2}^2)R^3,
 \end{align}
 
 \noindent and for system 2 as
 
 \begin{align}\label{eq:2-11-2}
-\frac{dR}{dt}=&6.8\times 10^{-3}\mu R+(- 4.6 \times 10^{-6}  k_{\alpha 3} + 1.28 \times 10^{-8} k_{\alpha 2}^2)R^3,
+\frac{dR}{dt}=&6.7\times 10^{-3}\mu R+(- 2.9 \times 10^{-5}  k_{\alpha 3} + 4.6 \times 10^{-7} k_{\alpha 2}^2)R^3,
 \end{align}
 
-\noindent Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\mu$ which is a nonzero fixed point of \Eref{eq:2-11}, \Eref{eq:2-11-2}. Nonlinear parameter vector $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ can be identified by solving \Eref{NSI-3} where the numerical code is included in Julia package \cite{hopfNF}. For system 1, optimized value of $\theta_n$ is
+\noindent Amplitude of LCO is now function of nonlinear parameters $k_{\alpha2}$, $k_{\alpha3}$, and $\mu$ which is a nonzero fixed point of \Eref{eq:2-11}, \Eref{eq:2-11-2}. Nonlinear parameter vector $\theta_n=[k_{\alpha2}$, $k_{\alpha3}]^T$ can be identified by solving \Eref{NSI-3}. For system 1, optimized value of $\theta_n$ is
 
 \begin{align}\label{eq:2-15}
-k_{\alpha2}=3857.7 \: Nm, \; k_{\alpha3}=13956.3 \: Nm.
+k_{\alpha2}=751.6 \: Nm, \; k_{\alpha3}=5006.7 \: Nm.
 \end{align}
 
 \noindent and for system 2 as
 
 \begin{align}\label{eq:2-15-2}
-k_{\alpha2}=4358.1 \: Nm, \; k_{\alpha3}=20010.4 \: Nm.
+k_{\alpha2}=774.7 \: Nm, \; k_{\alpha3}=3490.7 \: Nm.
 \end{align}
 
 Computed amplitude via numerical continuation, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using identified parameters. $x$-axis of the measured responses are shifted by the difference of the flutter speed between the model and the measured result to compare the amplitude of LCO as a function of $\mu=U-U_f$. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using spectral methods-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
@@ -978,11 +978,11 @@ Less accurate agreement for fold point and the stable upper branch is presumably
 \begin{figure}
   \pgfplotsset{every axis title/.append style={at={(0.5,0.95)}}}
   \begin{tikzpicture}
-  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={ymax=0.09,ymin=0},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=5.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},scatter/classes={%
+  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=40pt,every plot/.style={ymax=0.095,ymin=0},xlabels at=edge bottom,vertical sep=30pt},width=7.1cm,height=5.5cm,xlabel={Wind speed ($m/sec$)},ylabel={Heave (m)},x label style={at={(0.5,-0.1)}},scatter/classes={%
   		a={mark=*,mark size=2pt,blue},%
   		b={mark=o,mark size=2pt,red}},legend style={at={(0.33,0.95)}}]
 
-  \nextgroupplot[title=(a),xmin=13.5,xmax=18,ylabel={Heave amplitude ($m$)},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
+  \nextgroupplot[title=(a),xmin=14.5,xmax=18,ylabel={Heave amplitude ($m$)},y label style={at={(-0.05,0.5)}},legend style={at={(0.35,0.98)}}]
 
   \addplot [no marks,color=blue]
         table [x=a, y=b, col sep=comma] {./Data/Data_8-1.csv};\label{p1}
@@ -1007,7 +1007,7 @@ Less accurate agreement for fold point and the stable upper branch is presumably
     16.5000    0.0109
     17.2000    0.0078
       };\label{p4}
-  \nextgroupplot[title=(b),xmin=17,xmax=24.5,ylabel={Heave amplitude ($m$)},y label style={at={(-0.12,0.5)}}]
+  \nextgroupplot[title=(b),xmin=16.5,xmax=24.5,ylabel={Heave amplitude ($m$)},y label style={at={(-0.1,0.5)}}]
 
   \addplot [no marks,color=blue]
         table [x=a, y=b, col sep=comma] {./Data/Data_8-2.csv};
