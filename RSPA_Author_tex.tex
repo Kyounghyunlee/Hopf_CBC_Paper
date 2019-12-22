@@ -12,7 +12,7 @@
 \usepackage{microtype}              % Micro-typography for sorting out spacing
 \usepackage[utf8]{inputenc}
 \usepackage[numbers]{natbib}
-\usepackage[titletoc]{appendix}
+\usepackage[titletoc]{appendix}c
 \RequirePackage{xcolor}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -971,7 +971,7 @@ k_{\alpha2}=751.6 \: Nm, \; k_{\alpha3}=5006.7 \: Nm.
 k_{\alpha2}=774.7 \: Nm, \; k_{\alpha3}=3490.7 \: Nm.
 \end{align}
 
-Computed amplitude via numerical continuation, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using identified parameters. $x$-axis of the measured responses are shifted by the difference of the flutter speed between the model and the measured result to compare the amplitude of LCO as a function of $\mu=U-U_f$. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using spectral methods-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
+Computed amplitude via numerical continuation, and measured amplitude are compared for the validation, which is presented in \Fref{f:8}. Numerical continuation results are carried out with coco \cite{dankowicz2013recipes} using identified parameters. $x$-axis of the measured responses are shifted by the difference of the flutter speed between the model and the measured result to compare the amplitude of LCO as a function of $\mu=U-U_f$. Measured and computed heave amplitude from the numerical continuation is in good agreement. There are several aspects to improve the identified model; however, proposed system identification method-- linearized model parameters identification from linear state-space model and nonlinear parameters identification using normal form-- can successfully build a mathematical model that capture bifurcation behavior in combination with the proposed CBC scheme.
 
 Less accurate agreement for fold point and the stable upper branch is presumably due to inaccuracy of aeroelastic model of unsteady flutter equation in large response. To increase the accuracy of the parameter identification, more sophisticated aeroelastic model should be considered. However, building the mathematical model that captures the exact fold point and the stable branch is beyond the scope of this research.
 
