@@ -13,6 +13,7 @@ RSPA_Author_tex.pdf
 *.cb
 *.cb2
 .*.lb
+.DS_Store
 
 ## Intermediate documents:
 *.dvi

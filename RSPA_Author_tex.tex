@@ -20,9 +20,23 @@
 \usepgfplotslibrary{groupplots}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{amsthm}
 \allowdisplaybreaks
 \usetikzlibrary{shapes,arrows,chains}
 %\PreviewEnvironment{tikzpicture}
+
+\newtheoremstyle{own}%
+    {3pt}% Space above
+    {3pt}% Space below
+    {}% Body font
+    {}% Indent amount
+    {\color{blue}\bfseries}% Theorem head font
+    {}% Punctuation after theorem head
+    {\newline}% Space after theorem head
+    {}% Theorem head spec
+
+\theoremstyle{own}
+\newtheorem{example}{Example}[section]
 
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
@@ -249,7 +263,136 @@ However, stabilizing unstable LCO with CBC is not simple because of the complexi
 
 \section{Stablizing control near the Hopf bifurcation}\label{SNH}
 
-Simplifying the dynamical system using normal form is the popular way to study the bifurcation problem. There are numerous tools to derive normal form, for example, center manifold reduction, Liapunov-Shmidt reduction and method of multiple scales. In this research, we focus on studying controlled and uncontrolled dynamics near the Hopf bifurcation via center manifold reduction, near-identity transformation, time, and control parameter rescaling. Simplified dynamics of CBC applied to a dynamical system with Hopf bifurcation provides the basis of the developed CBC scheme of this research. Also, we introduce the idea to estimate the unknown parameters from the measured results.
+In the first subsection, we explain how phase-plane CBC (PP-CBC) can stabilize the unstable LCO of the self-excited system. The practical algorithm to solve zero-problem for achieving noninvasive control is explained in the second subsection. In the final subsection, we provide the theoretical background of simplifying dynamics of a dynamical system with Hopf bifurcation. We can use the CBC results to identify the nonlinear parameters of the model using the simplified dynamics.
+
+\subsection{Stabilizing unstable LCOs of self-excited systems using PP-CBC} \label{CBC-t}
+Suppose that the dynamical system $\dot{\vec{z}}= \vec F(\vec{z},\lambda)$ has a periodic solution $\vec x_{p}(t)$ with period $T$. Trajectory of $\vec x_{p}(t)$ is a closed curve  $\Gamma=\{ x \in \mathbb{R}^N: x=x_p(t), 0 \leq t \leq T\}$ and we assume projection of $\Gamma$ to $(z_1,z_2)$ plane, $\Gamma_p$, can be paramterically represented as
+
+\begin{align}\label{PP_curve}
+	\begin{split}
+z_1=\hat z_1(\vec p_c,\phi)\\
+z_2=\hat z_2(\vec p_c,\phi),\\
+\end{split}
+\end{align}
+
+\noindent where $\vec p_c\in \mathbb{R}^{n_p}$ is a $n_p$-length vector and $\phi \in \mathbb{R}$ is a parametrization variable of the parametric curve. Furthermore, we assume $\phi=\phi(\vec p_c,z_1,z_2)$ is a function of $z_1,z_2$ and $\vec p_c$. Now, following equation also has a periodic solution $\vec x_{p}(t)$ if we add a control force to original dynamical system as
+
+\begin{align}\label{CBC+}
+\dot{\vec{z}}= \vec F(\vec{z},\lambda)+\vec e_c (K_1(\hat z_1(\vec p_c,\phi)-z_1)+ K_2(\hat z_2(\vec p_c,\phi) -z_2))
+\end{align}
+
+\noindent where $\vec e_c$ is the direction vector of the control force and $K_1, K_2$ are the control gains. Moreover, it is assumed that the control gains $K_1,K_2$ are chosen to stabilize the periodic solution by modifying the Jacobian of the original uncontrolled system. In this research, we will assume that the $\Gamma_p$ has an elliptic shape. Therefore, $\hat z_1$, $\hat z_2$ can be represented as following by setting $\phi=\tan^{-1}\Big(\frac{z_2-b_2}{a(z_1-b_1)}\Big)$
+
+\begin{align}\label{PP_curve2}
+	\begin{split}
+\hat z_1(\vec p_c,\phi)=A\cos(\phi)\\
+\hat z_2(\vec p_c,\phi)=A\sin(\phi),\\
+\end{split}
+\end{align}
+
+\noindent where $\vec p_c=[A,a,b_1,b_2]^\textrm{T}$. Following example shows how PP-CBC can stabilize the unstable LCOs of the self-excited system.
+
+\begin{example}
+Suppose PP-CBC is added to the subcritical Hopf normal form as
+
+\begin{align}\label{PP_HopfNF}
+	\begin{split}
+&\dot u_1=\nu u_1 -u_2+u_1(u_1^2+u_2^2)+K_1(r_0 \cos \phi-u_1)+K_2(r_0 \sin \phi-u_2)\\
+&\dot u_2=\nu u_2 +u_1+u_2(u_1^2+u_2^2)
+\end{split}
+\end{align}
+
+\noindent where $\phi=\tan^{-1}\frac{u_2}{u_1}$. Note that $\vec p_c=[r_0,1,0,0]^\textrm{T}$ where $r_0=\sqrt{-\nu}$ is the amplitude of the LCO of the Hopf normal form. At $\nu=-0.1$, LCO of the uncontrolled system can be stabilized by using $K_1=K_2=0.5$. Left of Fig.\ref{pp_CBC} compares the phase-portrait of the system with PP-CBC and the system without PP-CBC computed the Fourier collocation methods and the right of Fig.\ref{pp_CBC} shows the time series comparison computed by numerical integration. We can see that PP-CBC stabilizes the unstable LCO of the uncontrolled system which can be used as an approximated solution in the experiment.
+\end{example}
+
+\begin{figure}
+  \centering
+  \subfloat{\includegraphics[width=0.45\linewidth]{./Images/PP_compare_hopf_nf.pdf}}
+  \hspace*{-0.3em}
+  \subfloat{\includegraphics[width=0.45\linewidth]{./Images/time_s_hopf_nf.pdf}}
+  \caption{Stabilizing control using PP-CBC (left) phase portrait of system with PP-CBC and uncontrolled system (right) time series of system with PP-CBC and uncontrolled system}
+\end{figure}\label{pp_CBC}
+
+The key point of PP-CBC is making the control approximately noninvasive, i.e. $\|K_1(A \cos \phi-u_1)+K_2(A \sin \phi-u_2)\|<\epsilon$, to approximate the unstable LCO of the uncontrolled system. Let's say we add a feedback control to the experiment with control target $\hat {\vec p}_c=[\hat A,\hat a,\hat b_1,\hat b_2]^\textrm{T}$ as
+
+\begin{align}\label{CBC+2}
+\dot{\vec{z}}= \vec F(\vec{z},\lambda)+\vec e_c (K_1(\hat A\cos(\tan^{-1}\Big(\frac{z_2-\hat b_2}{\hat a(z_1-\hat b_1)}\Big))-z_1)+ K_2(\hat A\sin(\tan^{-1}\Big(\frac{z_2-\hat b_2}{\hat a(z_1-\hat b_1)}\Big)) -z_2)).
+\end{align}
+
+\noindent where we assume the existence of a stable periodic solution and its trajectory is also assumed to be an elliptic curve with the center $(\bar b_1,\bar b_2)$ and width $\bar A$ and height $\bar A \bar a$. Now, we can define a root-finding problem to achieve noninvasive control as
+
+\begin{align}\label{non_in}
+\|[\hat A,\hat a,\hat b_1,\hat b_2]-[\bar A,\bar a,\bar b_1,\bar b_2]\|<\epsilon
+\end{align}
+
+\noindent with sufficiently small $\epsilon$.
+
+\subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
+
+Suppose that the signals $z_1$ and $z_2=\dot z_1$ are measured through the experiment. It is also assumed that $z_1$ and $z_2$ are both mono harmonic signals,
+
+\begin{align}\label{eq:25}
+\begin{split}
+z_{1}(t)=&A\cos{\phi},\\
+z_{2}(t)=&-\dot\phi A\sin{\phi}
+\end{split}
+\end{align}
+
+\noindent where $A$ is the amplitude, $\phi=\omega t$ is the phase of the response, $\omega$ is the frequency of the response which is constant if the system is at the steady-state. We can set $\hat z_1$ by taking $\hat {\vec p}_c=[\hat A,\omega,0,0]$ as
+
+\begin{align}\label{eq:26}
+\hat z_1(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \omega z_{j}(t)}}\Big) \Big),
+\end{align}
+
+\noindent where $\hat A$ is the amplitude of the control target. Zero problem of second component of Eq.\ref{non_in} is solved by updating $\omega=\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state. Zero-problem of third and fourth component of Eq.\ref{non_in} are neglected since the center of the output ellipse is approximately origin. Now, zero problem can be simplified to input output map which is defined as an one-dimensional function of $\hat A$ by control error $\Xi=\hat A - \bar A(\hat A)$ where $\bar A$ is amplitude of the response. We can say the controller is stabilizable if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
+
+Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. The procedure to find zero error is summarized in \Fref{f:1}.
+
+\begin{figure}
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+    text width=7em, text badly centered, inner sep=0pt, minimum height=3em]
+\tikzstyle{decision2} = [diamond, draw, fill=blue!20,
+        text width=6em, text badly centered, inner sep=0pt, minimum height=3em]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+    text width=8em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{block2} = [rectangle, draw, fill=blue!20,
+        text width=13em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{block3} = [rectangle, draw, fill=blue!20,
+                text width=8em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{block4} = [rectangle, draw, fill=blue!20,
+                text width=4em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{center}
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    \node [block4] (init) {$\hat A=\hat A_k$};
+    \node [block2, below of=init,node distance=1.3cm] (identify) {Wati until system reaches steady state};
+    \node [decision2, below of=identify,node distance=1.9cm] (evaluate) {$|\Xi_k|<\delta$};
+    \node [block4, left of=evaluate, node distance=4cm] (update) {stop};
+    \node [decision, below of=evaluate,node distance=2.7cm] (decide) {$|\Xi_k||\Xi_{k-1}|<0$};
+    \node [block3, left of=decide, node distance=4cm] (update2) {$\Delta_k=-\Delta_{k-1}/2$};
+    \node [block, below of=decide, node distance=2.3cm] (stop) {$\Delta_k=\Delta_{k-1}$\\ $\hat A_{k+1}=\hat A_k+\Delta_k$ \\$k=k+1$};
+    % Draw edges
+    \path [line] (init) -- (identify);
+    \path [line] (identify) -- (evaluate);
+    \path [line] (evaluate) -- node {no} (decide);
+    \path [line] (evaluate) -- node [near start] {yes} (update);
+    \path [line] (decide) -- node [near start] {yes} (update2);
+    \path [line] (decide) -- node {no}(stop);
+    \path [line] (update2) |- (stop);
+    %  \path [line] (stop.east) [xshift=5em] -- (init.east);
+      \path[line] (stop.east) -- (4,-8.2) --(4,0)
+   --(init.east);
+
+\end{tikzpicture}
+\end{center}
+\centering
+\caption{Flow chart diagram of finding noninvasive periodic solution}
+\label{f:1}
+\end{figure}
 
 \subsection{Hopf bifurcation and the normal form}\label{SNF}
 
@@ -302,207 +445,9 @@ Here, \(\vec{u}=[u,\bar{u}]\) and equation of complex conjugate variable \(\bar{
 
 \noindent where the nonzero fixed point of \Eref{eq:polar} is the amplitude of the LCO.
 
-\subsection{Stabilizability of the controller}
-
-We will consider linear proportional derivative control acting on a single coordinate vector which is a convenient setup a nonlinear dynamic experiment. Let the equation of motion of autonomous dynamical system that has  generic subcritical Hopf bifurcation at $\mu=0$ be
-
-\begin{align}\label{eq:0}
-    \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu}).
-\end{align}
-
-\noindent where $\mu\in \real$ is an unfolding parameter of uncontrolled system, and $z_{j+1}=\dot z_j$ for all odd $j$. To stabilize the unstable periodic orbit near the Hopf bifurcation point, we add a proportional derivative feed-back control to \Eref{eq:0}. Let us assume that the control force is applied in the direction of the one principle coordinates to \Eref{eq:0} as
-
-\begin{align}\label{eq:11}
-    \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})+\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1})),
-\end{align}
-
-\noindent where $\mu\in \real$ is an control parameter of uncontroled system, $\vec{e}_{j+1}$ is $j+1$ th standard basis, $z_{j}$, $z_{j+1}$ are monitored signal for the control, and $z^*(t)$  is the time-periodic control target. We will show the controlled system can be simplified to forced Hopf bifurcation where the single harmonic forcing is added to a SNF of the unforced equation under a certain assumption. We can understand more easily how CBC can stabilize the unstable LCO near the Hopf bifurcation point if \Eref{eq:11} is simplified to a normal form.
-
-First, we analyze unforced term of \Eref{eq:11} by dropping off the time-periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ as
-
-\begin{align}\label{eq:12}
-    \dot{\vec{z}} =\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_p z_j+K_d z_{j+1}).
-\end{align}
-
-\noindent \Eref{eq:12} can be written in the form of \Eref{eq:gs} by
-
-\begin{align}\label{eq:13}
-\begin{split}
-  F({\vec{z}})=&\vec{G}(\vec{z},\vec{\mu})-\vec{e}_{j+1}(K_pz_j+K_d z_{j+1})\\
-  \lambda=&[\mu,K_p,K_d]^T.
-\end{split}
-\end{align}
-
-\noindent As explained in section 4.\ref{SNF}, we can derive the reduced dynamics on center manifold of \Eref{eq:13} and compute SNF using nonlinear transformation between center subspace of origianl coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ and rescailing time and control parameters.
-
-Now, stability of LCO of the uncontroled system can be studied from normal form of \Eref{eq:12} at $\lambda=\lambda_1=[\mu,0,0]^T$. LCO ($[u_1(\tau),\bar u_1(\tau)]^T$) is a nonzero fixed point of \Eref{eq:polar} and expressed in normal form coordinates $[u,\bar u]^T$ as
-
-\begin{align}\label{eq:14}
-  \begin{split}
-      u_1(\tau)=&R_1e^{\textrm{i}\omega_1 \tau},\\
-      \bar u_1(\tau)=&R_1e^{-\textrm{i}\omega_1 \tau},
-    \end{split}
-\end{align}
-
-\noindent where $R_1$ is the amplitude and $\omega_1$ is frequency of the limit cycle in rescailed time. If we define homeomorphism($\Psi_1:\complex\times\complex\rightarrow\complex\times\complex$) between the original coordinates $[x,\bar x]^T$ and normal form coordinates $[u,\bar u]^T$ at $\lambda=\lambda_1$ as
-
-\begin{align}\label{eq:15}
-    [x,\bar x]^T=\Psi_1(u,\bar u)=&[h(u,\bar u,\nu_1),\bar h(u,\bar u,\nu_1)]^T,
-\end{align}
-
-\noindent  where $\nu_1=p^{-1}(\lambda_1)$ is control parameter reparametrization in the coordinates of the normal form with $p(0)=0$. Limit cycle \Eref{eq:14} in original coordinates $x^*(t)$ can be computed from
-
-\begin{align}\label{eq:16}
-    [x^*(\tau),\bar {x^*}(\tau)]^T=\Psi_1(R_1e^{\textrm{i}\omega_1 \tau},R_1e^{-\textrm{i}\omega_1 \tau}).
-\end{align}
-
-\noindent If we define \textbf{Noninvasive periodic solution} as a periodic solution of \Eref{eq:11} where control force $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))$ is zero, noninvasive periodic solution of \Eref{eq:11} is solution of \Eref{eq:0} since $\vec{e}_{j+1}(K_p(z^*(t)-z_j)+K_d(\dot z^*(t)-z_{j+1}))=0$. Moreover, by assuming $\| \lambda \|$ is small enough to say periodic solution near the equilibria of \Eref{eq:13} is on the center manifold, we can derive the following lemma which relates the control target and the noninvasive periodic solution.
-
-\begin{lemma}\label{l1}
-$\vec{z}(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution of \Eref{eq:11} if and only if $z^*(t)=\pi_j \vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$,
-where $\vec{\Sigma}$ is a coordinate transformation matrix to jordan normal matrix $\vec{J}$ satisfying $\vec{J}=\Sigma^{-1}\vec{F}_\vec{z}(0,\lambda) \Sigma$ at $\lambda=0$, and $\pi_j$ is a scalar projection to j-th principle coordinate.
-\end{lemma}
-
-\begin{proof}
-If $z^*(t)=\pi_j \vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$, by inserting $\vec z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ to \Eref{eq:11}, we have $\vec{G}(\vec{z},\mu)=0$ and the control force is zero. For the only if part, let $z(t)=\vec{\Sigma}[x^*,\bar {x^*},\vec H(x^*,\bar {x^*},\lambda)]^T$ is a noninvasive periodic solution. Then, $z^*(t)=\pi_j z(t)$ from noninvasiveness.
-\end{proof}
-
-\noindent Let $\lambda_2=[\mu,K_p,K_d]^T$ and stability of the noninvasive periodic solution with control target defined as \Lref{l1} at $\lambda=\lambda_2$ will be analyzed. We make the following assumption on the near identity transformation and amplitude $R_1$ to develop a scheme that is practically applicable in experiments.
-
-\begin{assumption}\label{a1}
-For $\lambda=\lambda_1$ and $\lambda=\lambda_2$, $c_{1jlm}\nu^m$, $c_{2jlm}\nu^m$ in \Eref{eq:6} is sufficiently small, and therefore neglectable for $j+j+m\geq 2$, i.e., $x \approx u$. Also, $R_1$ is small enough to have $t=T(u_1,\bar u_1,\tau) \approx \tau$ and $\vec H(x^*,\bar {x^*},\lambda) \approx 0$.
-\end{assumption}
-
-\noindent  Under \asref{a1}, periodic solutions in the normal form will be transformed into a single harmonic oscillator in the original coordinates. Therefore, limit cycle in original coordinates $x^*(t)$ and control target  $z^*(t)$ can be expressed as a single harmonic oscillator with small amplitude by using the result of \Lref{l1}. Now, our problem to be solved is Hopf bifurcation with single harmonic forcing. The normal form of forced Hopf bifurcation for small amplitude bounded solution is equivalent to adding force in the direction of the center subspace to the autonomous Hopf normal form (see \cite{golubitsky2012feed,elphick1987normal} for the proof). We assume $\| \vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))\|$ is sufficiently small to have solutions of \Eref{eq:11} on the center manifold. Then, by letting $\epsilon$ as an amplitude of periodic forcing which is appropriately rescailed by projecting $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to the center subspace, SNF of \Eref{eq:11} at $\lambda=\lambda_2$ can be derived as
-
-\begin{align}\label{eq:18}
-  \frac{du}{dt}=(\alpha_1 \nu_2+\textrm{i}\beta_1)u+(\alpha_2+\textrm{i}\beta_2)u^2\bar u+\epsilon e^{\textrm{i}\omega_1 t},
-\end{align}
-
-\noindent where coefficients $\alpha_1$, $\alpha_2$, $\beta_1$, and $\beta_2$ can be computed from the coefficients of reduced dynamics at the centermanifold at $\lambda=\lambda_2$, and $\nu_2$ is the rescailed control parameter vector satisfying $\lambda_2=p(\nu_2)$. Stabilizability of the controller can be anlyzed by the stability of the noninvasive periodic solution of \Eref{eq:18} $u=u_2(t)$. Under \asref{a1}, noninvasive periodic solution can be expressed as $u_2(t)=R_1e^{\textrm{i}\omega_1 t}$,  and the stability condition can be derived as following lemma.
-
-\begin{lemma}\label{t1}
-Noninvasive periodic solution $u_2(t)$ is stable if the amplitude of the noninvasive periodic solution $R_1$ satisfies
-\begin{align}\label{eq:20}
-3(\alpha_2^2+\beta_2^2)R_1^3+4(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R_1+((\alpha_1 \nu_2)^2+(\beta_1-\omega_1)^2)<0.
-\end{align}
-\end{lemma}
-
-\begin{proof}
-If we look \Eref{eq:18} in the rotating coordinates defined by
-
-\begin{align}\label{eq:21}
-  v=ue^{-\textrm{i}(\omega_1+\theta_1) t},
-\end{align}
-
-\noindent where the $\theta_1$ is the phase difference of projected periodic forcing $\vec{e}_{j+1}(K_p(z^*(t))+K_d(\dot z^*(t)))$ to center space and the control target $x^*(t)$. The dynamical system becomes autonomous as
-
-\begin{align}\label{eq:22}
-  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon e^{\textrm{i} \theta_1}.
-\end{align}
-
-\noindent $v$ satisfying $\dot v=0$ is a phase-locked periodic solution between the control target $z^*(t)$ and the response $z(t)$ of \Eref{eq:18}. We obtain algebraic equation by setting $\dot v=0$ and $R=|v|$,
-
-\begin{align}\label{eq:23}
-  ((\alpha_1\nu_2+\alpha_2R^2)+\textrm{i}((\beta_1-\omega_1)+\beta_2 R^2)))v=-\epsilon e^{\textrm{i} \theta_1}.
-\end{align}
-
-\noindent $P(R)$, where the zeros of $P(R)$ is phase-locked periodic solutions of \Eref{eq:18}, can be derived by taking norm square of both side of \Eref{eq:23} as
-
-\begin{align}\label{eq:24}
-  P(R)=(\alpha_2^2+\beta_2^2)R^6+2(\alpha_1 \nu_2+\beta_2(\beta_1-\omega_1))R^4+((\alpha_1 \nu_2)^2+(\beta_1+\omega_1)^2)R^2-|\epsilon|^2=0.
-\end{align}
-
-\noindent Since the noninvasive periodic solution is phase-locked solution of \Eref{eq:18} at $R=R_1$ which is a non-zero fixed point of $P(R)$ which is stable if $P_R(R_1)<0$. Therefore, dividing $P_R(R_1)$ by $2R_1^2$, we arrive to the stability condition of the noninvasive periodic solution.
-\end{proof}
-
-\noindent From \Lref{t1}, we can see the stability of noninvasive periodic solution depends on parameters of the original dynamical system, including amplitude and frequency of LCO, and control parameters $\mu$, $K_p$, and $K_d$. The controller can stabilize the unstable LCO of the uncontrolled system if the noninvasive periodic solution is stable. Also, it is interesting to see that the feedback controller is able to stabilize the unstable LCO even if the control force is applied to an arbitrary direction, given the amplitude of the response is small. In fact, the proposed CBC method works sufficiently well, even in high amplitude responses. However, $z^*(t)$, and suitable control gains $K_p$, $K_d$ to stabilize the noninvasive periodic solution is unknown factors for CBC experiments. Implementing CBC experiment to stabilize the unstable LCO is generally finding $z^*(t)$ from the experiment with suitable $K_p$, and $K_d$ that makes controller noninvasive. The scheme for solving this problem will be discussed in the next subsection.
-
-\subsection{Scheme for finding noninvasive periodic solution}\label{FNP}
-
-In general experiment, stabilizability of the control cannot be determined from the equation as in Section 4.\ref{SNF}. We will discuss effective scheme to find noninvasive periodic solutions near the Hopf bifurcation in this subsection.
-
-Phase-locked response should be tracked from the response of forced Hopf bifurcation, see \cite{zhang2011periodically,wiser2015bifurcations} for detailed bifurcation diagram, to find the noninvasive periodic solution. However, solutions of \Eref{eq:20} are not necessarily to be in phase with the control target. For example, if we set  $v=ue^{-\textrm{i}(\omega_1 t+\theta_2)}$ in \Eref{eq:21}, where $\theta_2$ is an arbitrary phase shift which does not necessarily guarantee phase locking between the control target $z^*(t)$ and response $z(t)$, we can rewrite \Eref{eq:18} as
-
-\begin{align}\label{eq:ps}
-  \dot v=(\alpha_1 \nu_2+\textrm{i}(\beta_1-\omega_1))v+(\alpha_2+\textrm{i}\beta_2)v^2\bar{v}+\epsilon e^{\textrm{i} \theta_2}.
-\end{align}
-
-\noindent A stationary solution of \Eref{eq:ps} with arbitrary phase shift $\theta_2$ is also a periodic response of the controlled system. This phase shift of the response and control target depends on initial condition, which is uncontrollable. Therefore, it makes the problem much simpler if we can force the response to be in phase with a control target to determine the noninvasive periodic solution.
-
-We use a phase plane based CBC (PP-CBC) to achieve phase locking between target coefficients $z^*(t)$ with the response in \Eref{eq:11}. This is equivalent to phase-locking between force and response in \Eref{eq:20}, which was first proposed in \cite{irene}. Monitored signals $z_j$, $z_{j+1}$  are assumed as an analytic signal,
-
-\begin{align}\label{eq:25}
-\begin{split}
-z_{j}(t)=&A(t)\cos{\phi},\\
-z_{j+1}(t)=&-\dot\phi A(t)\sin{\phi}
-\end{split}
-\end{align}
-
-\noindent where $A(t)$ is the instantaneous amplitude, $\phi$ is the instantaneous phase of the response, $\dot\phi$ is the frequency of the response which is constant if the system is at the steady-state. If we set target coefficient as
-
-\begin{align}\label{eq:26}
-z^*(t)=\hat A\cos\Big(\tan^{-1}\Big({\frac{-z_{j+1}(t)}{ \dot \phi z_{j}(t)}}\Big) \Big),
-\end{align}
-
-\noindent where $\hat A$ is the amplitude of the control target, phase of the target is locked with the response since single harmonic response is assumed. Specifically, phase is locked by updating $\dot\phi$ every fixed time interval from the measurement and wait until the system reaches the steady-state. This phase-locked condition is equivalent to $\dot v=0$ in \Eref{eq:22} and as a result control target has a form:
-
-\begin{align}\label{eq:tg}
- z^*(t)=\hat A\cos{\phi}.
-\end{align}
-
-\noindent Moreover, final steady-state response is the fixed point of $P(R)$ in normal form coordinates if $P_R<0$ with $\epsilon=\epsilon(\hat A)$. Now, zero problem can be derived from input output map which is defined as a one-dimensional function of $\hat A$ by control error $\Xi=\hat A - A(\hat A)$ where $A$ is amplitude of the response in original coordinates. We can say the controller is stabilizable if the sequence of control error $\Xi_k=\hat A_k-A_k$ crosses zero for some $\hat A_k$ with step size $\Delta_k=\hat A_{k+1}-\hat A_{k}$.
-
-Let us say we found a zero-crossing sequence of $\Xi_k$ from the experiment, which means the controller is stabilizable. Then, finding a noninvasive periodic solution is equivalent to finding  $|\Xi_k|<\delta$, where $\delta$ is the zero-tolerance. The noninvasive periodic solution can be found by decreasing the stepsize $|\Delta_k|=|\Delta_{k-1}|/2$ and changing the searching direction whenever $\Xi_k$ crosses zero. The procedure to find zero error is summarized in \Fref{f:1}.
-
-\begin{figure}
-\tikzstyle{decision} = [diamond, draw, fill=blue!20,
-    text width=7em, text badly centered, inner sep=0pt, minimum height=3em]
-\tikzstyle{decision2} = [diamond, draw, fill=blue!20,
-        text width=6em, text badly centered, inner sep=0pt, minimum height=3em]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20,
-    text width=8em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{block2} = [rectangle, draw, fill=blue!20,
-        text width=13em, text centered, rounded corners, minimum height=3em]
-\tikzstyle{block3} = [rectangle, draw, fill=blue!20,
-                text width=8em, text centered, rounded corners, minimum height=3em]
-\tikzstyle{block4} = [rectangle, draw, fill=blue!20,
-                text width=4em, text centered, rounded corners, minimum height=3em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-
-\begin{center}
-\begin{tikzpicture}[node distance = 2cm, auto]
-    % Place nodes
-    \node [block4] (init) {$\hat A=\hat A_k$};
-    \node [block2, below of=init,node distance=1.3cm] (identify) {Wati until system reaches steady state};
-    \node [decision2, below of=identify,node distance=1.9cm] (evaluate) {$|\Xi_k|<\delta$};
-    \node [block4, left of=evaluate, node distance=4cm] (update) {stop};
-    \node [decision, below of=evaluate,node distance=2.7cm] (decide) {$|\Xi_k||\Xi_{k-1}|<0$};
-    \node [block3, left of=decide, node distance=4cm] (update2) {$\Delta_k=-\Delta_{k-1}/2$};
-    \node [block, below of=decide, node distance=2.3cm] (stop) {$\Delta_k=\Delta_{k-1}$\\ $\hat A_{k+1}=\hat A_k+\Delta_k$ \\$k=k+1$};
-    % Draw edges
-    \path [line] (init) -- (identify);
-    \path [line] (identify) -- (evaluate);
-    \path [line] (evaluate) -- node {no} (decide);
-    \path [line] (evaluate) -- node [near start] {yes} (update);
-    \path [line] (decide) -- node [near start] {yes} (update2);
-    \path [line] (decide) -- node {no}(stop);
-    \path [line] (update2) |- (stop);
-    %  \path [line] (stop.east) [xshift=5em] -- (init.east);
-      \path[line] (stop.east) -- (4,-8.2) --(4,0)
-   --(init.east);
-
-\end{tikzpicture}
-\end{center}
-\centering
-\caption{Flow chart diagram of finding noninvasive periodic solution}
-\label{f:1}
-\end{figure}
 
 \subsection{Parameters estimation from the CBC results}\label{NSI}
-CBC results can be used as a tool of system identification if we have a model \Eref{eq:0} and identified parameters associated with the linearization of \Eref{eq:0}. Under \asref{a1}, periodic solutions can be obtained from the normal form computation. Then, we can use the periodic solution $z(\mu_M,\theta_n)$, where $\theta_n$ is parameter vector associated with the nonlinear part of the \Eref{eq:0} and $M$ is the index of the measurement, to define the prediction error function $\hat{V}(\theta_n)$ as
+CBC results can be used as a tool of system identification if we have a model \Eref{eq:gs} and identified parameters associated with the linearization of \Eref{eq:gs}. In this research we assume the near identity transformation is identity transformation, i.e. $h_k=0$ in Eq.\ref{eq:6}. Therefore, amplitude of periodic solutions can be obtained from the normal form computation. Then, we can use the periodic solution $z(\mu_M,\theta_n)$, where $\theta_n$ is parameter vector associated with the nonlinear part of the \Eref{eq:gs} and $M$ is the index of the measurement, to define the prediction error function $\hat{V}(\theta_n)$ as
 
 \begin{align}\label{NSI-2}
 \hat{V}(\theta_n)= \sum_M (|\pi_j z(\nu_M,\theta_n)|-|(z_j)_M|)^2,
